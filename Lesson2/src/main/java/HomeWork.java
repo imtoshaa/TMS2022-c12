@@ -91,7 +91,7 @@ public class HomeWork {
      * return 20
      */
     public static double calculateHypotenuse(int a, int b) {
-        double c = Math.sqrt((Math.pow(a, 2)) + Math.pow(b, 2));
+        double c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
         return c;
     }
 }
