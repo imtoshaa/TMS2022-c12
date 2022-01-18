@@ -45,9 +45,10 @@ public class HomeWork {
      * 1. Метод должен вернуть сумму двух чисел a и b
      * 2. Дополнительно: сделать проверку если сумма a и b больше чем максимальное значение int то вернуть -1
      **/
-    public static long sum(long a, long b) {
-        long sum = a + b;
-        if (sum > Integer.MAX_VALUE) {
+    public static int sum(int a, int b) {
+        int sum = a + b;
+        long sum1 = (long) a + (long) b;
+        if (sum1 > Integer.MAX_VALUE) {
             return -1;
         } else {
             return sum;
