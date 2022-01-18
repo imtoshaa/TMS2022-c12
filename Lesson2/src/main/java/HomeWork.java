@@ -47,7 +47,7 @@ public class HomeWork {
      **/
     public static int sum(int a, int b) {
         int sum = a + b;
-        long sum1 = (long) a + (long) b;
+        long sum1 = (long) a + b;
         if (sum1 > Integer.MAX_VALUE) {
             return -1;
         } else {
