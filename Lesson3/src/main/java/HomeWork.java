@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -54,19 +55,27 @@ public class HomeWork {
          * array = {1,2,3,4,5}
          * Метод должен return 3.0
          */
-    }
+        int[] array = {1,2,3,4,5};
+        System.out.println("Задание №6" + "\n" + average(array));
+        /**
+         * 7) Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
+         **/
+        int[] array7 = {1,2,10,3};
+        System.out.println("Задание №7" + "\n" + max(array7));
 
+    }
     public static double average(int[] array) {
-
-        return 0;
+        double sum = 0;
+        for (int i = 0; i < array.length; i++) {
+            sum += array[i];
+        }
+        return sum/ (array.length);
     }
 
-    /**
-     * 7) Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
-     **/
-    public static int max(int[] array) {
 
-        return 0;
+    public static int max(int[] array) {
+        int m = Arrays.stream(array).max().getAsInt();;
+        return m;
     }
 
     private static void printEnglishAlphabet() { //сделал через коды acii
@@ -225,4 +234,6 @@ public class HomeWork {
             System.out.println(Arrays.toString(strings));
         }
     }
+
+
 }
