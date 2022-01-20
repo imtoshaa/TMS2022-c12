@@ -120,6 +120,7 @@ public class HomeWork {
     }
 
     public static void typeConversion() {
+        System.out.println("Задание №5");
         String[][] tabl = {
                 {"       ", "byte   ", "short  ", "char   ", "int    ", "long   ", "float  ", "double ", "boolean"},
                 {"byte   ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       "},
