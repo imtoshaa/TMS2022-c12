@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class HomeWork {
         //3) Меньшее по модулю число
         //Создать программу, которая будет выводить на экран меньшее по модулю из трёх введённых
         // пользователем вещественных чисел с консоли.
-        minModul();
+        minModule();
         //4) На некотором предприятии инженер Петров создал устройство, на табло которого показывается количество секунд,
         // оставшихся до конца рабочего дня. Когда рабочий день начинается ровно в 9 часов утра — табло отображает «28800» (т.е. остаётся 8 часов),
         // когда времени 14:30 — на табло «9000» (т.е. остаётся два с половиной часа), а когда наступает 17 часов — на табло отображается «0»
@@ -55,26 +54,33 @@ public class HomeWork {
          * array = {1,2,3,4,5}
          * Метод должен return 3.0
          */
-        int[] array = {1,2,3,4,5};
+        int[] array = {1, 2, 3, 4, 5};
         System.out.println("Задание №6" + "\n" + average(array));
         /**
          * 7) Метод должен вернуть максимальый элемент массива. Пример: array = {1,2,10,3} метод возвращает 10
          **/
-        int[] array7 = {1,2,10,3};
+        int[] array7 = {1, 2, 10, 3};
         System.out.println("Задание №7" + "\n" + max(array7));
 
     }
+
     public static double average(int[] array) {
         double sum = 0;
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
-        return sum/ (array.length);
+        return sum / array.length;
     }
 
 
     public static int max(int[] array) {
-        int m = Arrays.stream(array).max().getAsInt();;
+        /*int m = Arrays.stream(array).max().getAsInt();*/
+        int m = 0;
+        for (int i = 0; i < array.length; i++) { //заменил стрим на фор
+            if (array[i] > m) {
+                m = array[i];
+            }
+        }
         return m;
     }
 
@@ -91,46 +97,58 @@ public class HomeWork {
         System.out.println("Задание №2");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите число для проверки на чётность");
-        double a = scanner.nextDouble();
-        if ((int) a == a) {
+        if (scanner.hasNextInt()) {
+            double a = scanner.nextDouble();
             if (a % 2 == 0) {
                 System.out.println("Число " + (int) a + " чётное");
             } else {
                 System.out.println("Число " + (int) a + " нечётное");
             }
         } else {
-            System.out.println("Ошибка! Число " + a + " не является целым числом");
+            System.out.println("Ошибка! Число не является целым!");
         }
 
     }
 
-    private static void minModul() {
+    private static void minModule() {
         System.out.println("Задание №3");
         Scanner scanner = new Scanner(System.in);
-        int[] arr = new int[3];
+//        int[] arr = new int[3];
+        double[] arr = new double[3];
         System.out.println("Введите 3 числа через Enter для проверки на наименьший модуль");
         for (int i = 0; i < 3; i++) {
-            arr[i] = scanner.nextInt();
+            arr[i] = scanner.nextDouble();
         }
-        int max = Arrays.stream(arr).map(Math::abs).max().getAsInt();//погуглил классы для работы с массивами
-        //также можно сделать сортировку с использованием for и if, но это не так красиво, а также занимает больше кода
-        for (int i = 0; i < 3; i++) {
-            if (Math.abs(arr[i]) == max) {
-                System.out.println("Наибольшее по модулю число " + arr[i]);
+//        int max = Arrays.stream(arr).map(Math::abs).min().getAsInt();
+// погуглил классы для работы с массивами
+// также можно сделать сортировку с использованием for и if, но это не так красиво, а также занимает больше кода
+        double min = arr[0];
+        for (int i = 1; i < 3; i++) {
+            if (Math.abs(arr[i]) <= min) {
+                min = arr[i];
             }
         }
+        System.out.println("Наименьшее по модулю число " + min);
     }
 
     private static void timePetrov() {
         System.out.println("Задание №4");
-        int random = (int) (Math.random() * ((28800 - 0) + 1));
+        int random = (int) (Math.random() * 28801);
         System.out.println("Таймер для программиста Петров " + random + " секунд");
-        System.out.println("Таймер для сотрудниц " + (int) (random / 3600));
+        if (random / 3600 == 1) {
+            System.out.println("Таймер для сотрудниц " + (random / 3600) + "час");
+        }
+        if (random / 3600 >= 2 && random / 3600 <= 4) {
+            System.out.println("Таймер для сотрудниц " + (random / 3600) + "часа");
+        }
+        if (random / 3600 >= 5) {
+            System.out.println("Таймер для сотрудниц " + (random / 3600) + "часов");
+        }
     }
 
     public static void typeConversion() {
         System.out.println("Задание №5");
-        String[][] tabl = {
+        String[][] table = {
                 {"       ", "byte   ", "short  ", "char   ", "int    ", "long   ", "float  ", "double ", "boolean"},
                 {"byte   ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       "},
                 {"short  ", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       "},
@@ -142,95 +160,95 @@ public class HomeWork {
                 {"boolean", "       ", "       ", "       ", "       ", "       ", "       ", "       ", "       "},
         };
 
-        for (int i = 1; i < tabl.length; i++) {
-            for (int j = 0; j < tabl.length; j++) {
+        for (int i = 1; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
                 if (i == j) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "т"; //отнимает символы с конца строки. Погуглил.
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "т"; //отнимает символы с конца строки. Погуглил.
                 }
-                if ((Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "byte   "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "byte   "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "short  ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "short  "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "short  ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "short  "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "char   ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "char   "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "char   ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "char   "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "int    ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "int    "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "int    ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "int    "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "long   ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "long   "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "long   ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "long   "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "float  ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "float  "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "float  ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "float  "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if ((Objects.equals(tabl[i][0], "double ") && Objects.equals(tabl[0][j], "boolean")) || (Objects.equals(tabl[i][0], "boolean") && Objects.equals(tabl[0][j], "double "))) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "х";
+                if ((Objects.equals(table[i][0], "double ") && Objects.equals(table[0][j], "boolean")) || (Objects.equals(table[i][0], "boolean") && Objects.equals(table[0][j], "double "))) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "х";
                 }
-                if (Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "short  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "short  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "int    ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "int    ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "long   ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "long   ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "byte   ") && Objects.equals(tabl[0][j], "float  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "byte   ") && Objects.equals(table[0][j], "float  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "short  ") && Objects.equals(tabl[0][j], "int    ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "short  ") && Objects.equals(table[0][j], "int    ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "short  ") && Objects.equals(tabl[0][j], "long   ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "short  ") && Objects.equals(table[0][j], "long   ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "short  ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "short  ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "short  ") && Objects.equals(tabl[0][j], "float  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "short  ") && Objects.equals(table[0][j], "float  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "char   ") && Objects.equals(tabl[0][j], "int    ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "char   ") && Objects.equals(table[0][j], "int    ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "char   ") && Objects.equals(tabl[0][j], "long   ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "char   ") && Objects.equals(table[0][j], "long   ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "char   ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "char   ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "char   ") && Objects.equals(tabl[0][j], "float  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "char   ") && Objects.equals(table[0][j], "float  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "int    ") && Objects.equals(tabl[0][j], "long   ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "int    ") && Objects.equals(table[0][j], "long   ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "int    ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "int    ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "int    ") && Objects.equals(tabl[0][j], "float  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "int    ") && Objects.equals(table[0][j], "float  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "long   ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "long   ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "long   ") && Objects.equals(tabl[0][j], "float  ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "long   ") && Objects.equals(table[0][j], "float  ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][0], "float  ") && Objects.equals(tabl[0][j], "double ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 2) + "ня";
+                if (Objects.equals(table[i][0], "float  ") && Objects.equals(table[0][j], "double ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 2) + "ня";
                 }
-                if (Objects.equals(tabl[i][j], "       ")) {
-                    tabl[i][j] = tabl[i][j].substring(0, tabl[i][j].length() - 1) + "я";
+                if (Objects.equals(table[i][j], "       ")) {
+                    table[i][j] = table[i][j].substring(0, table[i][j].length() - 1) + "я";
                 }
             }
         }
-        for (String[] strings : tabl) {
+        for (String[] strings : table) {
             System.out.println(Arrays.toString(strings));
         }
     }
