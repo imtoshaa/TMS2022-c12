@@ -136,10 +136,10 @@ public class HomeWork {
         int random = (int) (Math.random() * 28801);
         System.out.println("Таймер для программиста Петров " + random + " секунд");
         if (random / 3600 == 1) {
-            System.out.println("Таймер для сотрудниц " + (random / 3600) + "час");
+            System.out.println("Таймер для сотрудниц " + (random / 3600) + " час");
         }
         if (random / 3600 >= 2 && random / 3600 <= 4) {
-            System.out.println("Таймер для сотрудниц " + (random / 3600) + "часа");
+            System.out.println("Таймер для сотрудниц " + (random / 3600) + " часа");
         }
         if (random / 3600 >= 5) {
             System.out.println("Таймер для сотрудниц " + (random / 3600) + "часов");
