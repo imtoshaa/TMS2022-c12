@@ -19,9 +19,9 @@ public class HomeWork {
 //        Надо вывести на экран сколько в этом числе цифр и положительное оно или отрицательное.
 //        Например, Введите число: 5
 //        "5 - это положительное число, количество цифр = 1"
-        System.out.println(numbers(66566665));
+        System.out.println(numbers(0));
 //4) Дано 2 числа, день и месяц рождения. Написать программу, которая определяет знак зодиака человека.
-        System.out.println(zodiacSign(5, 8)); //х - месяц, y - день);
+        System.out.println(zodiacSign(5, 8));
         //Некоторые тесты для проверки задач. Можно также написать свои тесты.
         printArray();
         System.out.println(operation(1));
@@ -45,15 +45,17 @@ public class HomeWork {
      */
     private static void printArray() {
         Scanner scanner = new Scanner(System.in);
-        Random random = new Random();
-        System.out.println("Введите положительное число");
-        int length = scanner.nextInt();
-        while (length <= 0) {
-            System.out.println("Ошибка! Введите положительное число");
+        int length = 1; //условно поставил значение 1, чтобы в заходе в do не написало "Ошибка"
+        do {
+            if (length < 0) {
+                System.out.println("Ошибка!");
+            }
+            System.out.println("Введите положительное число");
             length = scanner.nextInt();
-        }
+        } while (length <= 0);
         int[] arr = new int[length];
         System.out.println("Полученный массив");
+        Random random = new Random();
         for (int i = 0; i < length; i++) {
             arr[i] = random.nextInt();
             System.out.print(arr[i] + " ");
@@ -72,13 +74,10 @@ public class HomeWork {
     public static int operation(int number) {
         if (number > 0) {
             number++;
+        } else if (number < 0) {
+            number -= 2;
         } else {
-            if (number < 0) {
-                number -= 2;
-            } else {
-                number = 10;
-            }
-
+            number = 10;
         }
         return number;
     }
@@ -89,13 +88,13 @@ public class HomeWork {
      * в котором это значение распечатается на консоль.
      */
     public static int calculateCountOfOddElementsInMatrix(int[] ints) {
-        int k = 0;
+        int count = 0;
         for (int i = 0; i < ints.length; i++) {
             if (ints[i] % 2 != 0) {
-                k++;
+                count++;
             }
         }
-        return k;
+        return count;
     }
 
     /**
@@ -112,21 +111,11 @@ public class HomeWork {
         int test2 = count % 10;
         if (test >= 10 && test <= 20) {
             System.out.println(count + " программистов");
-            return;
-        }
-        if (test2 == 0) {
-            System.out.println(count + " программистов");
-            return;
-        }
-        if (test2 == 1) {
+        } else if (test2 == 1) {
             System.out.println(count + " программист");
-            return;
-        }
-        if (test2 > 1 && test2 <= 4) {
+        } else if (test2 > 1 && test2 <= 4) {
             System.out.println(count + " программиста");
-            return;
-        }
-        if (test2 > 4) {
+        } else {
             System.out.println(count + " программистов");
         }
 
@@ -159,17 +148,17 @@ public class HomeWork {
      */
     public static void printPrimeNumbers() {
         int y = 0;
-        for (int i = 1; i <= 1000; i++) {
+        for (int i = 2; i <= 1000; i++) {
             y = 0;
             for (int j = 1; j <= i; j++) {
-                if (i % j == 0)
+                if (i % j == 0) {
                     y++;
+                }
             }
-            if (y <= 2)
+            if (y <= 2) {
                 System.out.print(i + " ");
-
+            }
         }
-
     }
 
     // ниже методы для задач 1-4
@@ -208,106 +197,64 @@ public class HomeWork {
         String positive = null;
         if (a < 0) { //проверяем на знак/ноль
             positive = " - это отрицательное число; ";
-        }
-        if (a > 0) {
+        } else if (a > 0) {
             positive = " - это положительное число; ";
-        }
-        if (a == 0) {
+        } else {
             positive = " - это число является нулём; ";
+            k++;
         }
         while (a != 0) { //проверка на количество цифр
             a = a / 10;
-            k++;
+            k++; //исправил баг с количеством цифр в числе "0", без этого оно считало, что цифр 0
         }
         return "Задание №3" + "\n" + i + positive + "количество цифр  = " + k;
     } //Задача 3
 
-    public static String zodiacSign(int x, int y) { //Задача 4
+    public static String zodiacSign(int month, int day) { //Задача 4
         String zodiac = null;
-        if (x == 1) { //январь
-            if (y >= 1 && y <= 19) {
-                zodiac = "Козерог";
-            } else {
-                zodiac = "Водолей";
+        if (month <= 12 && month >= 1 && day <= 31 && day >= 1) { //прикрутил валидацию, но она всё равно будет баганой из-за непостоянства дней в месяце. для каждого месяца нужно будет прописывать количество дней. можно сделать как вариант в двумерном массиве. допустим если дня не существует, то ячейка будет незаполнена, т. е. прописать условие, чтобы при проверке этого условия откинулись ложные входные данные
+            switch (month) {
+                case 1:
+                    zodiac = day >= 1 && day <= 20 ? "Козерог" : "Водолей";
+                    break;
+                case 2:
+                    zodiac = day >= 1 && day <= 19 ? "Водолей" : "Рыбы";
+                    break;
+                case 3:
+                    zodiac = day >= 1 && day <= 20 ? "Рыбы" : "Овен";
+                    break;
+                case 4:
+                    zodiac = day >= 1 && day <= 20 ? "Овен" : "Телец";
+                    break;
+                case 5:
+                    zodiac = day >= 1 && day <= 21 ? "Телец" : "Близнецы";
+                    break;
+                case 6:
+                    zodiac = day >= 1 && day <= 21 ? "Близнецы" : "Рак";
+                    break;
+                case 7:
+                    zodiac = day >= 1 && day <= 22 ? "Рак" : "Лев";
+                    break;
+                case 8:
+                    zodiac = day >= 1 && day <= 21 ? "Лев" : "Дева";
+                    break;
+                case 9:
+                    zodiac = day >= 1 && day <= 23 ? "Дева" : "Весы";
+                    break;
+                case 10:
+                    zodiac = day >= 1 && day <= 23 ? "Весы" : "Скорпион";
+                    break;
+                case 11:
+                    zodiac = day >= 1 && day <= 23 ? "Скорпион" : "Стрелец";
+                    break;
+                case 12:
+                    zodiac = day >= 1 && day <= 22 ? "Стрелец" : "Козерог";
+                default:
             }
-        }
-        if (x == 2) { //февраль
-            if (y >= 1 && y <= 19) {
-                zodiac = "Водолей";
-            } else {
-                zodiac = "Рыбы";
-            }
-        }
-        if (x == 3) { //март
-            if (y >= 1 && y <= 20) {
-                zodiac = "Рыбы";
-            } else {
-                zodiac = "Овен";
-            }
-        }
-        if (x == 4) { //апрель
-            if (y >= 1 && y <= 19) {
-                zodiac = "Овен";
-            } else {
-                zodiac = "Телец";
-            }
-        }
-        if (x == 5) { //май
-            if (y >= 1 && y <= 20) {
-                zodiac = "Телец";
-            } else {
-                zodiac = "Близнецы";
-            }
-        }
-        if (x == 6) { //июнь
-            if (y >= 1 && y <= 20) {
-                zodiac = "Близнецы";
-            } else {
-                zodiac = "Рак";
-            }
-        }
-        if (x == 7) { //июль
-            if (y >= 1 && y <= 22) {
-                zodiac = "Рак";
-            } else {
-                zodiac = "Лев";
-            }
-        }
-        if (x == 8) { //август
-            if (y >= 1 && y <= 22) {
-                zodiac = "Лев";
-            } else {
-                zodiac = "Дева";
-            }
-        }
-        if (x == 9) { //сентябрь
-            if (y >= 1 && y <= 22) {
-                zodiac = "Дева";
-            } else {
-                zodiac = "Весы";
-            }
-        }
-        if (x == 10) { //октябрь
-            if (y >= 1 && y <= 23) {
-                zodiac = "Весы";
-            } else {
-                zodiac = "Скорпион";
-            }
-        }
-        if (x == 11) { //ноябрь
-            if (y >= 1 && y <= 22) {
-                zodiac = "Скорпион";
-            } else {
-                zodiac = "Стрелец";
-            }
-        }
-        if (x == 12) { //декабрь
-            if (y >= 1 && y <= 22) {
-                zodiac = "Стрелец   ";
-            } else {
-                zodiac = "Козерог";
-            }
+        } else {
+            zodiac = "Неверное значение даты!";
         }
         return "Задание №4" + "\n" + zodiac;
-    } //Задача 4
-}
+    }
+}//Задача 4
+
