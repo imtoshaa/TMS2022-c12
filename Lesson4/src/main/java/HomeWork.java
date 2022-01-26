@@ -2,6 +2,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class HomeWork {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 //1) Задача на оператор switch!
@@ -19,9 +20,9 @@ public class HomeWork {
 //        Надо вывести на экран сколько в этом числе цифр и положительное оно или отрицательное.
 //        Например, Введите число: 5
 //        "5 - это положительное число, количество цифр = 1"
-        System.out.println(numbers(0));
+        System.out.println(numbers(300));
 //4) Дано 2 числа, день и месяц рождения. Написать программу, которая определяет знак зодиака человека.
-        System.out.println(zodiacSign(5, 8));
+        System.out.println(zodiacSign(1, 3));
         //Некоторые тесты для проверки задач. Можно также написать свои тесты.
         printArray();
         System.out.println(operation(1));
@@ -45,13 +46,18 @@ public class HomeWork {
      */
     private static void printArray() {
         Scanner scanner = new Scanner(System.in);
-        int length = 1; //условно поставил значение 1, чтобы в заходе в do не написало "Ошибка"
+        int length = 0;
         do {
-            if (length < 0) {
-                System.out.println("Ошибка!");
-            }
             System.out.println("Введите положительное число");
-            length = scanner.nextInt();
+            if (scanner.hasNextInt()) { //проверка на int
+                length = scanner.nextInt();
+                if (length <= 0) { //проверка на положительный int, чтобы выдало сообщение об ошибке, которую допустили при вводе
+                    System.out.println("Ошибка! Введено отрицательное число!");
+                }
+            } else {
+                scanner.next();
+                System.out.println("Ошибка! Введено символьное значение");
+            }
         } while (length <= 0);
         int[] arr = new int[length];
         System.out.println("Полученный массив");
@@ -192,7 +198,7 @@ public class HomeWork {
     } //Задача 2
 
     public static String numbers(int a) {
-        int k = 0;
+        int count = 1;
         int i = a;
         String positive = null;
         if (a < 0) { //проверяем на знак/ноль
@@ -201,60 +207,87 @@ public class HomeWork {
             positive = " - это положительное число; ";
         } else {
             positive = " - это число является нулём; ";
-            k++;
         }
         while (a != 0) { //проверка на количество цифр
             a = a / 10;
-            k++; //исправил баг с количеством цифр в числе "0", без этого оно считало, что цифр 0
+            count++;
         }
-        return "Задание №3" + "\n" + i + positive + "количество цифр  = " + k;
+        return "Задание №3" + "\n" + i + positive + "количество цифр  = " + (count - 1);
     } //Задача 3
 
     public static String zodiacSign(int month, int day) { //Задача 4
-        String zodiac = null;
-        if (month <= 12 && month >= 1 && day <= 31 && day >= 1) { //прикрутил валидацию, но она всё равно будет баганой из-за непостоянства дней в месяце. для каждого месяца нужно будет прописывать количество дней. можно сделать как вариант в двумерном массиве. допустим если дня не существует, то ячейка будет незаполнена, т. е. прописать условие, чтобы при проверке этого условия откинулись ложные входные данные
-            switch (month) {
-                case 1:
-                    zodiac = day >= 1 && day <= 20 ? "Козерог" : "Водолей";
-                    break;
-                case 2:
-                    zodiac = day >= 1 && day <= 19 ? "Водолей" : "Рыбы";
-                    break;
-                case 3:
-                    zodiac = day >= 1 && day <= 20 ? "Рыбы" : "Овен";
-                    break;
-                case 4:
-                    zodiac = day >= 1 && day <= 20 ? "Овен" : "Телец";
-                    break;
-                case 5:
-                    zodiac = day >= 1 && day <= 21 ? "Телец" : "Близнецы";
-                    break;
-                case 6:
-                    zodiac = day >= 1 && day <= 21 ? "Близнецы" : "Рак";
-                    break;
-                case 7:
-                    zodiac = day >= 1 && day <= 22 ? "Рак" : "Лев";
-                    break;
-                case 8:
-                    zodiac = day >= 1 && day <= 21 ? "Лев" : "Дева";
-                    break;
-                case 9:
-                    zodiac = day >= 1 && day <= 23 ? "Дева" : "Весы";
-                    break;
-                case 10:
-                    zodiac = day >= 1 && day <= 23 ? "Весы" : "Скорпион";
-                    break;
-                case 11:
-                    zodiac = day >= 1 && day <= 23 ? "Скорпион" : "Стрелец";
-                    break;
-                case 12:
-                    zodiac = day >= 1 && day <= 22 ? "Стрелец" : "Козерог";
-                default:
-            }
-        } else {
-            zodiac = "Неверное значение даты!";
+        final String Козерог = "Козерог";
+        final String Водолей = "Водолей";
+        final String Рыбы = "Рыбы";
+        final String Овен = "Овен";
+        final String Телец = "Телец";
+        final String Близнецы = "Близнецы";
+        final String Рак = "Рак";
+        final String Лев = "Лев";
+        final String Дева = "Дева";
+        final String Весы = "Весы";
+        final String Скорпион = "Скорпион";
+        final String Стрелец = "Стрелец";
+        final String Error = "Неверно введена дата";
+        String zodiac;
+        switch (month) {
+            case 1:
+                zodiac = checkDayInRange(day, 1, 20) ? Козерог :
+                        checkDayInRange(day, 21, 31) ? Водолей : Error;
+                break;
+            case 2:
+                zodiac = checkDayInRange(day, 1, 19) ? Водолей :
+                        checkDayInRange(day, 20, 29) ? Рыбы : Error;
+                break;
+            case 3:
+                zodiac = checkDayInRange(day, 1, 20) ? Рыбы :
+                        checkDayInRange(day, 21, 31) ? Овен : Error;
+                break;
+            case 4:
+                zodiac = checkDayInRange(day, 1, 21) ? Овен :
+                        checkDayInRange(day, 22, 30) ? Телец : Error;
+                break;
+            case 5:
+                zodiac = checkDayInRange(day, 1, 21) ? Телец :
+                        checkDayInRange(day, 22, 31) ? Близнецы : Error;
+                break;
+            case 6:
+                zodiac = checkDayInRange(day, 1, 21) ? Близнецы :
+                        checkDayInRange(day, 22, 30) ? Рак : Error;
+                break;
+            case 7:
+                zodiac = checkDayInRange(day, 1, 22) ? Рак :
+                        checkDayInRange(day, 23, 31) ? Лев : Error;
+                break;
+            case 8:
+                zodiac = checkDayInRange(day, 1, 21) ? Лев :
+                        checkDayInRange(day, 22, 31) ? Дева : Error;
+                break;
+            case 9:
+                zodiac = checkDayInRange(day, 1, 23) ? Дева :
+                        checkDayInRange(day, 24, 30) ? Весы : Error;
+                break;
+            case 10:
+                zodiac = checkDayInRange(day, 1, 23) ? Весы :
+                        checkDayInRange(day, 24, 31) ? Скорпион : Error;
+                break;
+            case 11:
+                zodiac = checkDayInRange(day, 1, 22) ? Скорпион :
+                        checkDayInRange(day, 23, 31) ? Стрелец : Error;
+                break;
+            case 12:
+                zodiac = checkDayInRange(day, 1, 23) ? Скорпион :
+                        checkDayInRange(day, 24, 31) ? Козерог : Error;
+                break;
+            default:
+                zodiac = "Неверно введена дата!";
         }
-        return "Задание №4" + "\n" + zodiac;
+        return "Задание 4" + "\n" + zodiac;
+    } //Задача 4
+
+    private static boolean checkDayInRange(int day, int from, int to) {
+
+        return day >= from && day <= to;
     }
-}//Задача 4
+}
 
