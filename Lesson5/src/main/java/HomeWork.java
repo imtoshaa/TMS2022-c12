@@ -1,9 +1,9 @@
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class HomeWork {
-    public static int arr7[] = {0, 3, 46, 3, 2, 1, 2}; //сюда писать массив для задания 7
-    public static int[] rep = new int[arr7.length]; //
+
 
     public static void main(String[] args) {
         calculateSumOfDiagonalElements();
@@ -14,7 +14,7 @@ public class HomeWork {
         maxOfRandomNumbers();
         replaceOddIndexes();
         searchMaxNumberAndReplace(new int[]{4, 5, 0, 23, 77, 0, 8, 9, 101, 2});
-        repeatingElement(arr7); //массив объявлен выше для доступа по всему классу
+        repeatingElement(new int[]{0, 3, 46, 3, 2, 1, 2}); //массив объявлен выше для доступа по всему классу
         transpositionMatrix();
         calculateSumOfDiagonalElements();
     }
@@ -112,8 +112,27 @@ public class HomeWork {
      * <p>
      * Обратите внимание, что 21% 3 == 0 и 21% 7 = 0, но выводить надо не +-, а +
      */
+
     public static void printMatrix() {
-        // тут пишем логику
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+        System.out.println("Задание 10" + "\n" + "Введите 2 числа с консоли");
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+        int[][] array = new int[x][y];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                array[i][j] = random.nextInt(100);
+                if (array[i][j] % 3 == 0) {
+                    System.out.print("+");
+                } else if (array[i][j] % 7 == 0) {
+                    System.out.print("-");
+                } else {
+                    System.out.print("*");
+                }
+            }
+            System.out.println();
+        }
     }
 
     private static int summ(int a, int b) {
@@ -240,29 +259,42 @@ public class HomeWork {
     } //Задача 6
 
     private static void repeatingElement(int[] ints) {
-        System.out.println("Задание 7" + "\n" + "Повторяющиеся элементы:");
+        System.out.print("Задание 7" + "\n" + "Повторяющиеся элементы: ");
+        int[] repeatArr = new int[ints.length];
+        int count = 0;
+        boolean count0 = false; //был ли ноль
         for (int i = 0; i < ints.length; i++) {
-            if (!repeat(ints[i])) {
+            if (!repeat(ints[i], repeatArr, count0)) { //были ли повторяющиеся найдены
                 for (int j = i + 1; j < ints.length; j++) {
                     if (ints[i] == ints[j]) {
-                        System.out.print(ints[i] + " ");
+                        count++;
+                        if (count == 1) {
+                            System.out.print(ints[i]);
+                        } else {
+                            System.out.print(", " + ints[i]);
+                        }
                     }
                 }
-                rep[i] = ints[i]; //записали в массив, в котором ведётся учёт чисел, которые уже были
+                repeatArr[i] = ints[i]; //записали в массив, в котором ведётся учёт чисел, которые уже были
             }
         }
         System.out.println();
 
     } //Задача 7
 
-    public static boolean repeat(int x) {
-        for (int i = 0; i < arr7.length; i++) {
-            if (rep[i] == x) {
+    public static boolean repeat(int x, int[] array, boolean count0) {
+        if (x == 0 && !count0) {
+            count0 = true;
+            return false;
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == x) {
                 return true;
             }
         }
         return false;
-    } //проверяет повторки для задания 7
+    }//проверяет повторки для задания 7
+
 
     private static void transpositionMatrix() {
         Random random = new Random();
@@ -296,6 +328,7 @@ public class HomeWork {
     } // Задание 8
 
 }
+
 
 //          1 2 3 4      1 6 3 1
 //          6 7 8 9      2 7 3 5
