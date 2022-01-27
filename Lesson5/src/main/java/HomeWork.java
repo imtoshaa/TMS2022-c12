@@ -1,9 +1,24 @@
+import java.util.Arrays;
+import java.util.Random;
+
 public class HomeWork {
+    public static int arr7[] = {0, 3, 46, 3, 2, 1, 2}; //сюда писать массив для задания 7
+    public static int[] rep = new int[arr7.length]; //
+
     public static void main(String[] args) {
         calculateSumOfDiagonalElements();
         printMatrix();
         System.out.println("Задача №1" + "\n" + summ(5, 9));
+        triangles();
+        reversOddNumbers();
+        maxOfRandomNumbers();
+        replaceOddIndexes();
+        searchMaxNumberAndReplace(new int[]{4, 5, 0, 23, 77, 0, 8, 9, 101, 2});
+        repeatingElement(arr7); //массив объявлен выше для доступа по всему классу
+        transpositionMatrix();
+        calculateSumOfDiagonalElements();
     }
+
 //        Задачи:
 
 //        1) Напишите реализацию метода summ(int a, int b), вычисляющий a*b, не пользуясь операцией
@@ -57,8 +72,22 @@ public class HomeWork {
      * заполнить рандомно 2-х мерный массив и посчитать сумму элементов на диагонали
      */
     public static void calculateSumOfDiagonalElements() {
-        //пишем логику и выводим результат используя System.out.println
-    }
+        Random random = new Random();
+        System.out.println("Задание 9" + "\n" + "Получен массив:");
+        int[][] diagonal = new int[5][5];
+        int result = 1;
+        for (int i = 0; i < diagonal.length; i++) {
+            for (int j = 0; j < diagonal.length; j++) {
+                diagonal[i][j] = random.nextInt(50);
+                System.out.print(diagonal[i][j] + " ");
+                if (i == j) {
+                    result = result * diagonal[i][j];
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("Произведение чисел по диагонали матрицы = " + result);
+    } // Задание 9
 
 
     /**
@@ -93,5 +122,182 @@ public class HomeWork {
             result += a;
         }
         return result;
-    }
+    } //Задача 1
+
+    private static void triangles() {
+        char[][] tri = {{' ', ' ', ' ', '*'},
+                {' ', ' ', '*', '*'},
+                {' ', '*', '*', '*'},
+                {'*', '*', '*', '*'}};
+        System.out.println("Задача №2");
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(tri[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for (int i = 3; i >= 0; i--) {
+            for (int j = 3; j >= 0; j--) {
+                System.out.print(tri[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 3; j >= 0; j--) {
+                System.out.print(tri[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+        for (int i = 3; i >= 0; i--) {
+            for (int j = 0; j < 4; j++) {
+                System.out.print(tri[i][j] + " ");
+            }
+            System.out.println();
+        }
+    } //Задача 2
+
+    private static void reversOddNumbers() {
+        int length = 0;
+        System.out.println("Задача №3");
+        for (int i = 1; i <= 100; i++) { //считаем количество элементов будущего массива
+            if (i % 2 != 0) {
+                length++;
+            }
+        }
+        int[] arr = new int[length];
+        for (int i = 1, j = 0; i <= 100; i++) { //ищем нечётные числа и заполняем массив
+            if (i % 2 != 0) {
+                arr[j] = i;
+                System.out.print(arr[j] + " ");
+                j++;
+            }
+        }
+        System.out.println();
+        for (int i = length - 1; i >= 0; i--) { //печатаем массив в обратном направлении
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    } //Задача 3
+
+    private static void maxOfRandomNumbers() {
+        System.out.println("Задача 4");
+        int[] mass = new int[12];
+        Random random = new Random();
+        for (int i = 0; i < mass.length; i++) {
+            mass[i] = random.nextInt(15);
+            System.out.print(mass[i] + " ");
+        }
+        System.out.println();
+        int max = 0;
+        int j = 0;
+        for (int i = 0; i < mass.length; i++) {
+            if (mass[i] >= max) {
+                j = i;
+                max = mass[i];
+            }
+        }
+        System.out.println("Максимальный элемент " + max + " , индекс его последнего вхождения в массив = " + j);
+    } //Задача 4
+
+    private static void replaceOddIndexes() {
+        System.out.println("Задача 5");
+        int[] mass = new int[20];
+        Random random = new Random();
+        for (int i = 0; i < mass.length; i++) {
+            mass[i] = random.nextInt(20);
+            System.out.print(mass[i] + " ");
+        }
+        System.out.println();
+        for (int i = 1; i < mass.length; i += 2) {
+            mass[i] = 0;
+        }
+        for (int i = 0; i < mass.length; i++) {
+            System.out.print(mass[i] + " ");
+        }
+        System.out.println();
+    } //Задача 5
+
+    private static void searchMaxNumberAndReplace(int[] ints) {
+        System.out.println("Задание 6");
+        int max = 0;
+        for (int i = 0; i < ints.length; i++) {
+            if (ints[i] > max) {
+                max = ints[i];
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+        int temp = ints[0];
+        for (int i = 0; i < ints.length; i++) {
+            if (ints[i] == max) {
+                ints[0] = ints[i];
+                ints[i] = temp;
+            }
+        }
+        System.out.println(Arrays.toString(ints));
+    } //Задача 6
+
+    private static void repeatingElement(int[] ints) {
+        System.out.println("Задание 7" + "\n" + "Повторяющиеся элементы:");
+        for (int i = 0; i < ints.length; i++) {
+            if (!repeat(ints[i])) {
+                for (int j = i + 1; j < ints.length; j++) {
+                    if (ints[i] == ints[j]) {
+                        System.out.print(ints[i] + " ");
+                    }
+                }
+                rep[i] = ints[i]; //записали в массив, в котором ведётся учёт чисел, которые уже были
+            }
+        }
+        System.out.println();
+
+    } //Задача 7
+
+    public static boolean repeat(int x) {
+        for (int i = 0; i < arr7.length; i++) {
+            if (rep[i] == x) {
+                return true;
+            }
+        }
+        return false;
+    } //проверяет повторки для задания 7
+
+    private static void transpositionMatrix() {
+        Random random = new Random();
+        int x = 5;
+        System.out.println("Задание 8" + "\n" + "Получен массив:");
+        int[][] matrix = new int[x][x];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < x; j++) {
+                matrix[i][j] = random.nextInt(50);
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+        int temp;
+        for (int i = 0; i < x; i++) {
+            for (int j = i + 1; j < x; j++) {
+                temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+
+        }
+        System.out.println("Транспонированная матрица");
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < x; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+    } // Задание 8
+
 }
+
+//          1 2 3 4      1 6 3 1
+//          6 7 8 9      2 7 3 5
+//          3 3 4 5      3 8 4 6
+//          1 5 6 7      4 9 5 7
