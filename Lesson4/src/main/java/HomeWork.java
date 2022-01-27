@@ -153,9 +153,8 @@ public class HomeWork {
      * что такое просто число (https://www.webmath.ru/poleznoe/formules_18_5.php)
      */
     public static void printPrimeNumbers() {
-        int y;
         for (int i = 2; i <= 1000; i++) {
-            y = 0;
+            int y = 0;
             for (int j = 1; j <= i; j++) {
                 if (i % j == 0) {
                     y++;
@@ -216,57 +215,57 @@ public class HomeWork {
     } //Задача 3
 
     public static String zodiacSign(int month, int day) { //Задача 4
-        final String козерог = "Козерог";
-        final String водолей = "Водолей";
-        final String рыбы = "Рыбы";
-        final String овен = "Овен";
-        final String телец = "Телец";
-        final String близнецы = "Близнецы";
-        final String рак = "Рак";
-        final String лев = "Лев";
-        final String дева = "Дева";
-        final String весы = "Весы";
-        final String скорпион = "Скорпион";
-        final String стрелец = "Стрелец";
+        final String capricorn = "Козерог";
+        final String aquarius = "Водолей";
+        final String pisces = "Рыбы";
+        final String aries = "Овен";
+        final String taurus = "Телец";
+        final String gemini = "Близнецы";
+        final String cancer = "Рак";
+        final String leo = "Лев";
+        final String virgo = "Дева";
+        final String libra = "Весы";
+        final String scorpion = "Скорпион";
+        final String sagittarius = "Стрелец";
         final String error = "Неверно введена дата";
         String zodiac;
         switch (month) {
             case 1:
-                return zodiac = checkDayInRange(day, 1, 20) ? козерог :
-                        checkDayInRange(day, 21, 31) ? водолей : error;
+                return zodiac = checkDayInRange(day, 1, 20) ? capricorn :
+                        checkDayInRange(day, 21, 31) ? aquarius : error;
             case 2:
-                return zodiac = checkDayInRange(day, 1, 19) ? водолей :
-                        checkDayInRange(day, 20, 29) ? рыбы : error;
+                return zodiac = checkDayInRange(day, 1, 19) ? aquarius :
+                        checkDayInRange(day, 20, 29) ? pisces : error;
             case 3:
-                return zodiac = checkDayInRange(day, 1, 20) ? рыбы :
-                        checkDayInRange(day, 21, 31) ? овен : error;
+                return zodiac = checkDayInRange(day, 1, 20) ? pisces :
+                        checkDayInRange(day, 21, 31) ? aries : error;
             case 4:
-                return zodiac = checkDayInRange(day, 1, 21) ? овен :
-                        checkDayInRange(day, 22, 30) ? телец : error;
+                return zodiac = checkDayInRange(day, 1, 21) ? aries :
+                        checkDayInRange(day, 22, 30) ? taurus : error;
             case 5:
-                return zodiac = checkDayInRange(day, 1, 21) ? телец :
-                        checkDayInRange(day, 22, 31) ? близнецы : error;
+                return zodiac = checkDayInRange(day, 1, 21) ? taurus :
+                        checkDayInRange(day, 22, 31) ? gemini : error;
             case 6:
-                return zodiac = checkDayInRange(day, 1, 21) ? близнецы :
-                        checkDayInRange(day, 22, 30) ? рак : error;
+                return zodiac = checkDayInRange(day, 1, 21) ? gemini :
+                        checkDayInRange(day, 22, 30) ? cancer : error;
             case 7:
-                return zodiac = checkDayInRange(day, 1, 22) ? рак :
-                        checkDayInRange(day, 23, 31) ? лев : error;
+                return zodiac = checkDayInRange(day, 1, 22) ? cancer :
+                        checkDayInRange(day, 23, 31) ? leo : error;
             case 8:
-                return zodiac = checkDayInRange(day, 1, 21) ? лев :
-                        checkDayInRange(day, 22, 31) ? дева : error;
+                return zodiac = checkDayInRange(day, 1, 21) ? leo :
+                        checkDayInRange(day, 22, 31) ? virgo : error;
             case 9:
-                return zodiac = checkDayInRange(day, 1, 23) ? дева :
-                        checkDayInRange(day, 24, 30) ? весы : error;
+                return zodiac = checkDayInRange(day, 1, 23) ? virgo :
+                        checkDayInRange(day, 24, 30) ? libra : error;
             case 10:
-                return zodiac = checkDayInRange(day, 1, 23) ? весы :
-                        checkDayInRange(day, 24, 31) ? скорпион : error;
+                return zodiac = checkDayInRange(day, 1, 23) ? libra :
+                        checkDayInRange(day, 24, 31) ? scorpion : error;
             case 11:
-                return zodiac = checkDayInRange(day, 1, 22) ? скорпион :
-                        checkDayInRange(day, 23, 31) ? стрелец : error;
+                return zodiac = checkDayInRange(day, 1, 22) ? scorpion :
+                        checkDayInRange(day, 23, 31) ? sagittarius : error;
             case 12:
-                return zodiac = checkDayInRange(day, 1, 23) ? скорпион :
-                        checkDayInRange(day, 24, 31) ? козерог : error;
+                return zodiac = checkDayInRange(day, 1, 23) ? scorpion :
+                        checkDayInRange(day, 24, 31) ? capricorn : error;
             default:
                 zodiac = error;
         }
