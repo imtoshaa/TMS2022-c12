@@ -14,7 +14,10 @@ public class HomeWork {
         maxOfRandomNumbers();
         replaceOddIndexes();
         searchMaxNumberAndReplace(new int[]{4, 5, 0, 23, 77, 0, 8, 9, 101, 2});
-        repeatingElement(new int[]{0, 3, 46, 3, 2, 1, 2}); //массив объявлен выше для доступа по всему классу
+        repeatingElement(new String[]{"0", "0", "46", "2", "0", "2", "2"});
+        repeatingElement(new String[]{"3", "2", "46", "3", "2", "1", "2"});
+        repeatingElement(new String[]{"1", "1", "1", "1", "1", "1", "1"});
+        repeatingElement(new String[]{"1", "1", "1", "4", "5", "5"});
         transpositionMatrix();
         calculateSumOfDiagonalElements();
     }
@@ -258,35 +261,34 @@ public class HomeWork {
         System.out.println(Arrays.toString(ints));
     } //Задача 6
 
-    private static void repeatingElement(int[] ints) {
+    private static void repeatingElement(String[] ints) {
         System.out.print("Задание 7" + "\n" + "Повторяющиеся элементы: ");
-        int[] repeatArr = new int[ints.length];
-        int count = 0;
-        boolean count0 = false; //был ли ноль
+        String[] repeat = new String[ints.length];
         for (int i = 0; i < ints.length; i++) {
-            if (!repeat(ints[i], repeatArr, count0)) { //были ли повторяющиеся найдены
+            if (!repeat(ints[i], repeat)) { //были ли повторяющиеся найдены
                 for (int j = i + 1; j < ints.length; j++) {
                     if (ints[i] == ints[j]) {
-                        count++;
-                        if (count == 1) {
-                            System.out.print(ints[i]);
-                        } else {
-                            System.out.print(", " + ints[i]);
-                        }
+                        repeat[i] = ints[i]; //добавляем в массив с повторками элемент
                     }
                 }
-                repeatArr[i] = ints[i]; //записали в массив, в котором ведётся учёт чисел, которые уже были
+            }
+        }
+        boolean count = false; //был ли отправлен на вывод хоть один символ
+        for (int i = 0; i < repeat.length; i++) {
+            if (repeat[i] != null) { //печатаем повторки, если значение не равно null
+                if (!count) {
+                    System.out.print(repeat[i]);
+                    count = true;
+                } else {
+                    System.out.print(", " + repeat[i]);
+                }
             }
         }
         System.out.println();
 
     } //Задача 7
 
-    public static boolean repeat(int x, int[] array, boolean count0) {
-        if (x == 0 && !count0) {
-            count0 = true;
-            return false;
-        }
+    public static boolean repeat(String x, String[] array) {
         for (int i = 0; i < array.length; i++) {
             if (array[i] == x) {
                 return true;
