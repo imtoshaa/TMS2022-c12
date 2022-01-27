@@ -8,7 +8,10 @@ public class HomeWork {
     public static void main(String[] args) {
         calculateSumOfDiagonalElements();
         printMatrix();
-        System.out.println("Задача №1" + "\n" + summ(5, 9));
+        System.out.println("Задача №1" + "\n" + summ(-1, -5));
+        System.out.println("Задача №1" + "\n" + summ(-1, 5));
+        System.out.println("Задача №1" + "\n" + summ(1, -5));
+        System.out.println("Задача №1" + "\n" + summ(5, 1));
         triangles();
         reversOddNumbers();
         maxOfRandomNumbers();
@@ -84,12 +87,12 @@ public class HomeWork {
                 diagonal[i][j] = random.nextInt(50);
                 System.out.print(diagonal[i][j] + " ");
                 if (i == j) {
-                    result = result * diagonal[i][j];
+                    result = result + diagonal[i][j];
                 }
             }
             System.out.println();
         }
-        System.out.println("Произведение чисел по диагонали матрицы = " + result);
+        System.out.println("Сумма чисел по диагонали матрицы = " + result);
     } // Задание 9
 
 
@@ -139,11 +142,28 @@ public class HomeWork {
     }
 
     private static int summ(int a, int b) {
-        int result = 0;
+        int result = 0; //если что-либо равно нулю, то всё равно нулю
+        if (a == 0 || b == 0) {
+            return 0;
+        }
+        boolean negative = false; //какой либо из множителей отрицательный?
+        if (b < 0 && a < 0) {
+            b = -b;
+            a = -a;
+        } else if (a < 0) {
+            negative = true;
+            a = -a;
+        } else if (b < 0) {
+            negative = true;
+            b = -b;
+        }
         for (int i = 0; i < b; i++) {
             result += a;
         }
-        return result;
+//        if (negative) {
+//            return -result;
+//        }
+        return negative ? -result : result;
     } //Задача 1
 
     private static void triangles() {
@@ -269,6 +289,7 @@ public class HomeWork {
                 for (int j = i + 1; j < ints.length; j++) {
                     if (ints[i] == ints[j]) {
                         repeat[i] = ints[i]; //добавляем в массив с повторками элемент
+                        break;
                     }
                 }
             }
