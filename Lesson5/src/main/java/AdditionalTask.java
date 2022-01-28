@@ -19,16 +19,15 @@ public class AdditionalTask {
         int indexMaxI = 0;
         int indexMaxJ = 0;
         for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array.length; j++) {
-                if (j + 2 <= array.length - 1) {
-                    if (max < array[i][j] + array[i][j + 1] + array[i][j + 2]) {
-                        max = array[i][j] + array[i][j + 1] + array[i][j + 2];
-                        indexMaxJ = j;
-                        indexMaxI = i;
-                    }
+            for (int j = 0; j < array.length - 2; j++) {
+                int sum = array[i][j] + array[i][j + 1] + array[i][j + 2];
+                if (max < sum) {
+                    max = sum;
+                    indexMaxJ = j;
+                    indexMaxI = i;
                 }
             }
-            System.out.println(max + " (" + indexMaxI + " " + indexMaxJ + ")");
+            System.out.println(max + " (" + indexMaxI + ", " + indexMaxJ + ")");
             max = 0;
         }
     }
