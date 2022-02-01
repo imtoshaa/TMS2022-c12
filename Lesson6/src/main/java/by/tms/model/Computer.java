@@ -38,7 +38,7 @@ public class Computer {
 
     public void on() throws InterruptedException {
         if (!burned) {
-            loading();
+            loading("Включение");
             if (checkAction() && checkResourceCycles()) {
                 System.out.println("*****Компьютер включён*****");
             } else {
@@ -51,8 +51,8 @@ public class Computer {
 
     public void off() throws InterruptedException {
         if (!burned) { //если компьютер не сгорел
+            loading("Выключение");
             if (checkResourceCycles()) {
-                shutdown();
                 System.out.println("*****Компьютер выключен*****");
                 cycleSubtraction();
             }
@@ -89,21 +89,12 @@ public class Computer {
         return enteredValue == random.nextInt(2);
     }
 
-    private void loading() throws InterruptedException {
-        System.out.print("Включение");
-        for (int i = 0; i <3; i++) {
+    private void loading(String label) throws InterruptedException {
+        System.out.print(label);
+        for (int i = 0; i < 3; i++) {
             TimeUnit.SECONDS.sleep(1);
             System.out.print("...");
         }
         System.out.println();
     }
-    private void shutdown()throws InterruptedException {
-        System.out.print("Выключение");
-        for (int i = 0; i <3; i++) {
-            TimeUnit.SECONDS.sleep(1);
-            System.out.print("...");
-        }
-        System.out.println();
-    }
-
 }

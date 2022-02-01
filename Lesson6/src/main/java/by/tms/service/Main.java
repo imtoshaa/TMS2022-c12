@@ -22,14 +22,15 @@ public class Main {
 //                System.out.println("Ошибка! Введена неверная команда");
 //            }
 //        }
-        for (int i = 0; i < asus.getCycle(); i++) {
+        int cycle = asus.getCycle(); //сделал, чтобы зафиксировать количество изначальных циклов, так как у меня, если остаётся 2 цикла работы, вырубается цикл в main
+        for (int i = 0; i < cycle; i++) { // или я что-то не так понял? getCycle в этом if меняется при именении флага cycle в Computer?
             asus.on();
             if (asus.isBurned()) {
-                return;
+                break;
             } else {
                 asus.off();
                 if (asus.isBurned()) {
-                    return;
+                    break;
                 }
             }
         }
