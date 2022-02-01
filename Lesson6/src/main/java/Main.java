@@ -3,7 +3,7 @@ public class Main {
         User user1 = new User(30, "Иван", "Иванов", "Мужской");
         System.out.println(user1.nameAndSurname());
         user1.addAge(5);
-        System.out.println(user1.information() + '\n');
+        System.out.println(user1.information());
         User user = new User(20, "Антон", "Овсейчик", "Мужской");
         user.addAge(40);
     }

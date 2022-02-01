@@ -22,7 +22,8 @@ public class User {
     }
 
     public String nameAndSurname() {
-        return "Имя " + name + '\n' + "Фамилия " + surname;
+
+        return name + " " + surname;
     }
 
     @Deprecated
@@ -31,7 +32,7 @@ public class User {
     }
 
     public String information() {
-        return "Общая информация" + '\n'
+        return "Общая информация:" + '\n'
                 + "Имя " + name + '\n'
                 + "Фамилия " + surname + '\n'
                 + "Возраст " + age + '\n'
