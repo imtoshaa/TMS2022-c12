@@ -11,12 +11,14 @@ public class Main {
         asus.information();
         int command;
         while (true) {
-            System.out.println("Введите команду 1 или 0 для включения/выключения компьютера");
+            System.out.println("Введите команду 1 или 0 для включения/выключения компьютера и комманду 2 для выхода из программы");
             command = scanner.nextInt();
             if (command == 1) {
                 asus.on();
-            } else if(command == 0) {
+            } else if (command == 0) {
                 asus.off();
+            } else if (command == 2) {
+                return;
             } else {
                 System.out.println("Ошибка! Введена неверная команда");
             }

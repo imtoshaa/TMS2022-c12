@@ -1,12 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        User u1 = new User("Иван", "Иванов");
-        u1.printNameAndSurname();
-        u1.information(15, "Мужской");
-        u1.addAge(5);
-        System.out.println(u1.age);
-//        User user = new User("Антон", "Овсейчик", 20, new User("Мужской")); //* В этом конструкторе сделать вызов другого конструктора этого же класса. Не понял тут
-        User user = new User("Антон", "Овсейчик", 20, "Мужской");
-        user.addAge(3);
+        User user1 = new User(30, "Иван", "Иванов", "Мужской");
+        System.out.println(user1.nameAndSurname());
+        user1.addAge(5);
+        System.out.println(user1.information() + '\n');
+        User user = new User(20, "Антон", "Овсейчик", "Мужской");
+        user.addAge(40);
     }
 }
