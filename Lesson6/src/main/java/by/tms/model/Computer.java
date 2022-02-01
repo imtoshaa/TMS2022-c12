@@ -4,17 +4,23 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Computer {
-    String cpu;
-    int ram;
-    int hdd;
-    int cycle;
-    boolean burned; //не сгорел
+    private String cpu;
+    private int ram;
+    private int hdd;
+    private int cycle;
+    private boolean burned; //не сгорел
+    Random random = new Random();
+    Scanner scanner = new Scanner(System.in);
 
     public Computer(String cpu, int ram, int hdd, int cycle) {
         this.cpu = cpu;
         this.ram = ram;
         this.hdd = hdd;
         this.cycle = cycle;
+    }
+
+    public int getCycle() {
+        return cycle;
     }
 
     public void information() {
@@ -25,15 +31,22 @@ public class Computer {
                 + "количество циклов работы = " + cycle);
     }
 
-    Random random = new Random();
-    Scanner scanner = new Scanner(System.in);
     int enter = 2;
     int r;
     public void on() {
         if (!burned) {
-            checkAction();
+            do {
+                System.out.println("Внимание! Введите 0 или 1");
+                if (scanner.hasNextInt()) {
+                    enter = scanner.nextInt();
+                } else {
+                    System.out.println("Некорректные данные");
+                    scanner.next();
+                }
+            } while (!(enter == 1 || enter == 0));
+            r = random.nextInt(2);
 
-            if (enter == r && checkResourceCycles()) {
+            if (checkAction(enter, r) && checkResourceCycles()) {
                 System.out.println("*****Компьютер включён*****");
             } else {
                 burned();
@@ -47,7 +60,7 @@ public class Computer {
     public void off() {
 
         if (!burned) { //если компьютер не сгорел
-            if (cycle > 0) {
+            if (checkResourceCycles()) {
                 System.out.println("*****Компьютер выключен*****");
                 cycleSubtraction();
             }
@@ -68,21 +81,11 @@ public class Computer {
     }
 
     private boolean checkResourceCycles() {
-        return cycle >= 0;
+        return cycle > 0;
     }
 
-    private void checkAction() {
-        do {
-            System.out.println("Внимание! Введите 0 или 1");
-            if (scanner.hasNextInt()) {
-                enter = scanner.nextInt();
-            } else {
-                System.out.println("Некорректные данные");
-                scanner.next();
-            }
-        } while (!(enter == 1 || enter == 0));
-        r = random.nextInt(2);
-//        r = 1;
+    private boolean checkAction(int enter, int r) {
+        return enter == r;
     }
 
 }

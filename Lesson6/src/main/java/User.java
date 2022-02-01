@@ -18,11 +18,9 @@ public class User {
         this(name, surname);
         this.gender = gender;
         this.age = age;
-
     }
 
     public String nameAndSurname() {
-
         return name + " " + surname;
     }
 
