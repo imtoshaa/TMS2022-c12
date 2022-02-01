@@ -5,7 +5,7 @@ import by.tms.model.Computer;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         Computer asus = new Computer("IntelCore i7", 16, 1024, 5);
         asus.information();
@@ -24,7 +24,14 @@ public class Main {
 //        }
         for (int i = 0; i < asus.getCycle(); i++) {
             asus.on();
-            asus.off(); //да и некрасиво так. если в первый раз сразу комп крашится, то просто 10 раз сгорел и всё
+            if (asus.isBurned()) {
+                return;
+            } else {
+                asus.off();
+                if (asus.isBurned()) {
+                    return;
+                }
+            }
         }
     }
 }
