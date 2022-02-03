@@ -8,7 +8,5 @@ public class Main {
         System.out.println(user1.information());
         User user = new User(20, "Антон", "Овсейчик", "Мужской");
         user.addAge(40);
-        ArrayList<String> objects = new ArrayList<>();
-        objects.add("asdasd");
     }
 }
