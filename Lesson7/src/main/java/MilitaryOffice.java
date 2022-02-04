@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class MilitaryOffice {
-    PersonRegistry personRegistry = new PersonRegistry(new ArrayList<>());
     public MilitaryOffice() {
     }
 

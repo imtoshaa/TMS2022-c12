@@ -6,10 +6,6 @@ public class PersonRegistry {
     public PersonRegistry() {
     }
 
-    public PersonRegistry(ArrayList<Person> listPerson) {
-        this.listPerson = listPerson;
-    }
-
     public void setPerson(Person person) {
         listPerson.add(person);
     }
