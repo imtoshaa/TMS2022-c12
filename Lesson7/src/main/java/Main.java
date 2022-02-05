@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("*****Вас приветствует военный комисариат TMS!*****");
         PersonRegistry personRegistry = new PersonRegistry();
-        personRegistry.setPerson(new Person("Мария", 19, FEMALE, BELARUS, "Минск"));
-        personRegistry.setPerson(new Person("Вадим", 17, MALE, BELARUS, "Минск"));
-        personRegistry.setPerson(new Person("Александр", 22, MALE, BELARUS, "Барановичи"));
-        personRegistry.setPerson(new Person("Егор", 27, MALE, BELARUS, "Минск"));
-        personRegistry.setPerson(new Person("Антон", 20, MALE, BELARUS, "Жодино"));
-        personRegistry.setPerson(new Person("Владимир", 25, MALE, BELARUS, "Брест"));
-        personRegistry.setPerson(new Person("Александр", 21, MALE, BELARUS, "Минск"));
+        personRegistry.addPerson(new Person("Мария", 19, FEMALE, BELARUS, "Минск"));
+        personRegistry.addPerson(new Person("Вадим", 17, MALE, BELARUS, "Минск"));
+        personRegistry.addPerson(new Person("Александр", 22, MALE, BELARUS, "Барановичи"));
+        personRegistry.addPerson(new Person("Егор", 27, MALE, BELARUS, "Минск"));
+        personRegistry.addPerson(new Person("Антон", 20, MALE, BELARUS, "Жодино"));
+        personRegistry.addPerson(new Person("Владимир", 25, MALE, BELARUS, "Брест"));
+        personRegistry.addPerson(new Person("Александр", 21, MALE, BELARUS, "Минск"));
         setInRegistry(); //регистрируем нового призывника
         MilitaryOffice militaryOffice = new MilitaryOffice(personRegistry);
         militaryOffice.filterAlexander(); //выводим количество призывников с именем Александр
@@ -29,7 +29,7 @@ public class Main {
         Person newPerson = new Person();
         boolean go = false;
         System.out.println("Введите yes для добавления нового призывника");
-        if (scanner.nextLine().equals("yes")) {
+        if (sayYes()) {
             go = true;
         } else {
             return;
@@ -46,10 +46,14 @@ public class Main {
             System.out.println("Введите город призывника");
             newPerson.setCity(scanner.next());
             System.out.println("Хотите добавить ещё одного призывника? Введите yes, чтобы добавить");
-            if (!scanner.next().equals("yes")) {
+            if (!sayYes()) {
                 go = false;
             }
         }
+    }
+    private static boolean sayYes() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine().equals("yes");
     }
 }
     
