@@ -1,3 +1,7 @@
+package by.tms.model;
+
+import by.tms.service.MainMilitaryOffice;
+
 import java.util.ArrayList;
 
 public class MilitaryOffice {
@@ -50,7 +54,7 @@ public class MilitaryOffice {
     }
 
     private boolean checkFitAgeAndSex(Person person) {
-        if (checkAge(person, 18, 27) && !person.getSex().equals(Main.FEMALE)) {
+        if (checkAge(person, 18, 27) && !person.getSex().equals(MainMilitaryOffice.FEMALE)) {
             return true;
         }
         return false;

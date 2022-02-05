@@ -1,6 +1,12 @@
+package by.tms.service;
+
+import by.tms.model.MilitaryOffice;
+import by.tms.model.Person;
+import by.tms.model.PersonRegistry;
+
 import java.util.Scanner;
 
-public class Main {
+public class MainMilitaryOffice {
     public static final String MALE = "мужской";
     public static final String FEMALE = "женский";
     public static final String BELARUS = "Беларусь";

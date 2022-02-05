@@ -1,3 +1,5 @@
+package by.tms.model;
+
 public class Person   {
     private String name;
     private int age;
@@ -54,7 +56,7 @@ public class Person   {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "by.tms.model.Person{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +

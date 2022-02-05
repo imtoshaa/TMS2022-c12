@@ -1,3 +1,7 @@
+package by.tms.model;
+
+import by.tms.model.Person;
+
 import java.util.ArrayList;
 
 public class PersonRegistry {
