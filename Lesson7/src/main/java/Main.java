@@ -1,22 +1,26 @@
 import java.util.Scanner;
 
 public class Main {
-    private static final String MALE = "мужской";
-    private static final String FEMALE = "мужской";
-    private static final String BELARUS = "Беларусь";
+    public static final String MALE = "мужской";
+    public static final String FEMALE = "женский";
+    public static final String BELARUS = "Беларусь";
 
     public static void main(String[] args) {
+        System.out.println("*****Вас приветствует военный комисариат TMS!*****");
         PersonRegistry personRegistry = new PersonRegistry();
-        personRegistry.setPerson(new Person("Мария", 19, FEMALE, BELARUS, "Витебск"));
-        personRegistry.setPerson(new Person("Вадим", 17, MALE, BELARUS, "Борисов"));
+        personRegistry.setPerson(new Person("Мария", 19, FEMALE, BELARUS, "Минск"));
+        personRegistry.setPerson(new Person("Вадим", 17, MALE, BELARUS, "Минск"));
         personRegistry.setPerson(new Person("Александр", 22, MALE, BELARUS, "Барановичи"));
-        personRegistry.setPerson(new Person("Егор", 27, MALE, BELARUS, "Горки"));
+        personRegistry.setPerson(new Person("Егор", 27, MALE, BELARUS, "Минск"));
         personRegistry.setPerson(new Person("Антон", 20, MALE, BELARUS, "Жодино"));
         personRegistry.setPerson(new Person("Владимир", 25, MALE, BELARUS, "Брест"));
+        personRegistry.setPerson(new Person("Александр", 21, MALE, BELARUS, "Минск"));
         setInRegistry(); //регистрируем нового призывника
-        MilitaryOffice militaryOffice = new MilitaryOffice();
-        System.out.println(personRegistry.getPerson(0).toString());
-//        militaryOffice.filterAlexander();
+        MilitaryOffice militaryOffice = new MilitaryOffice(personRegistry);
+        militaryOffice.filterAlexander(); //выводим количество призывников с именем Александр
+        militaryOffice.fitForMilitary(); //выводим всех годных
+        militaryOffice.fitFromMinsk(); //годные из Минска
+        militaryOffice.fitOldPeople(); //от 25 до 27
 
     }
 

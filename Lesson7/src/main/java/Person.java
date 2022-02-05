@@ -36,6 +36,22 @@ public class Person   {
         this.city = city;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
