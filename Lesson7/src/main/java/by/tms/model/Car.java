@@ -5,9 +5,9 @@ public class Car {
     private String color; //можно потом добавить
     private String bodyType; //можно потом добавить
     private int yearOfRelease; //можно потом добавить
-    private String engineType; //обязательное, нельзя изменить
-    private int gasTankVolume; //обязательное, нельзя изменить
-    private GasTank gasTank;
+    private final String engineType; //обязательное, нельзя изменить
+    private final GasTank gasTank; //обязательное, нельзя изменить
+    private int gasTankVolume;
     private Engine engine = new Engine(false);
     private Odometer odometer = new Odometer(0);
 
@@ -82,7 +82,7 @@ public class Car {
         } else {
             System.out.println("Ошибка! Машина не заведена или недостаточно топлива для поездки");
         }
-        if (gasTank.getVolume() == 0) {
+        if (gasTank.getVolume() == 0) { //тут заднумано, что если у нас было топлива только на одну поездку, то при её завершении машина глохнет. тут это и проверяется
             engine.off();
             System.out.println("*Машина заглохла: кончилось топливо*");
         }

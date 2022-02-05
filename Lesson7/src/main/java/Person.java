@@ -60,6 +60,6 @@ public class Person   {
                 ", sex='" + sex + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
-                '}';
+                '}' + '\n';
     }
 }

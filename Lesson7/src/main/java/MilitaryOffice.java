@@ -2,63 +2,61 @@ import java.util.ArrayList;
 
 public class MilitaryOffice {
     private PersonRegistry personRegistry;
-    private ArrayList<Person> personArrayList = personRegistry.getListPerson();
+    private ArrayList<Person> personArrayList;
 
     public MilitaryOffice(PersonRegistry personRegistry) {//конструктор
         personArrayList = personRegistry.getListPerson();
     }
 
-    public void filterAlexander() {
+    public int getNumberOfRecruitsByName(String name) {
         int count = 0;
-        System.out.println("Количество призывников с именем Александр: ");
         for (int i = 0; i < personArrayList.size(); i++) {
-            if (personArrayList.get(i).getName().equals("Александр")) {
+            if (personArrayList.get(i).getName().equals(name)) {
                 count++;
             }
         }
-        System.out.println(count);
+        return count;
     }
 
-    public void fitForMilitary() {
-        System.out.println("Следующие призывники готовы к несению службы:");
+    public ArrayList fitForMilitary() {
+        ArrayList<Person> fitFromMilitary = new ArrayList<>();
         for (int i = 0; i < personArrayList.size(); i++) {
-            if (fitAgeAndSex(personArrayList.get(i))) {
-                System.out.println(personArrayList.get(i).toString());
+            if (checkFitAgeAndSex(personArrayList.get(i))) {
+                fitFromMilitary.add(personArrayList.get(i));
             }
         }
+        return fitFromMilitary;
     }
 
-    public void fitFromMinsk() {
+    public int fitFrom(String city) {
         int count = 0;
-        System.out.println("Количество призывников из Минска: ");
         for (int i = 0; i < personArrayList.size(); i++) {
-            if (personArrayList.get(i).getCity().equals("Минск") && fitAgeAndSex(personArrayList.get(i))) {
+            if (personArrayList.get(i).getCity().equals(city) && checkFitAgeAndSex(personArrayList.get(i))) {
                 count++;
             }
         }
-        System.out.println(count);
+        return count;
     }
 
-    public void fitOldPeople() {
+    public int ageSearch(int lower, int upper) {
         int count = 0;
-        System.out.println("Количество призывников от 25 до 27 лет: ");
         for (int i = 0; i < personArrayList.size(); i++) {
-            if (age(personArrayList.get(i), 25, 27)) {
+            if (checkAge(personArrayList.get(i), lower, upper)) {
                 count++;
             }
         }
-        System.out.println(count);
+        return count;
 
     }
 
-    private boolean fitAgeAndSex(Person person) {
-        if (age(person, 18, 27) && !person.getSex().equals(Main.FEMALE)) {
+    private boolean checkFitAgeAndSex(Person person) {
+        if (checkAge(person, 18, 27) && !person.getSex().equals(Main.FEMALE)) {
             return true;
         }
         return false;
     }
 
-    private boolean age(Person person, int lower, int upper) {
+    private boolean checkAge(Person person, int lower, int upper) {
         if (person.getAge() >= lower && person.getAge() <= upper) {
             return true;
         }
