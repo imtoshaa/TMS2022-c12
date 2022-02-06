@@ -7,7 +7,7 @@ public class Car {
     private int yearOfRelease; //можно потом добавить
     private final GasTank gasTank; //обязательное, нельзя изменить
     private final Engine engine;
-    private Odometer odometer = new Odometer(0);
+    private Odometer odometer = new Odometer();
 
     public Car(String engineType, int gasTankVolume) {
         this.gasTank = new GasTank(gasTankVolume);
@@ -47,7 +47,12 @@ public class Car {
     }
 
     public void on() {
-        engine.start(gasTank, engine);
+        if (gasTank.getVolume() > 0) {
+            engine.start(gasTank);
+        } else {
+            System.out.println("Двигатель не запущен: нет топлива");
+            System.out.println();
+        }
     }
 
     public void off() {

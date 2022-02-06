@@ -13,7 +13,6 @@ public class MainCar {
         System.out.println("Введите желаемый объём бензобака вашего автомобиля");
         int volume = scanner.nextInt();
         Car myCar = new Car(typeEngine, volume);
-
         while (true) {
             System.out.println("*****Меню взаимодействия с Вашим автомобилем*****");
             System.out.println("Выберите пункт:");

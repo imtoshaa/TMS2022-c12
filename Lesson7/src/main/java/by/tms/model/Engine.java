@@ -12,17 +12,12 @@ public class Engine {
         return isOn;
     }
 
-    public void start(GasTank gasTank, Engine engine) {
+    public void start(GasTank gasTank) {
 
-        if (!engine.isOn) {
-            if (gasTank.getVolume() > 0) {
-                engine.isOn = true;
-                System.out.println("*Двигатель запущен*");
-                System.out.println();
-            } else {
-                System.out.println("Двигатель не запущен: нет топлива");
-                System.out.println();
-            }
+        if (!isOn) {
+            isOn = true;
+            System.out.println("*Двигатель запущен*");
+            System.out.println();
         } else {
             System.out.println("Ошибка! Двигатель уже запущен!");
             System.out.println();

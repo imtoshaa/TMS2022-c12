@@ -25,10 +25,10 @@ public class MainMilitaryOffice {
         MilitaryOffice militaryOffice = new MilitaryOffice(personRegistry);
         String name = "Александр";
         System.out.println("Количество призывников с именем " + name + '\n' + militaryOffice.getNumberOfRecruitsByName(name)); //выводим количество призывников с именем Александр
-        System.out.println("Следующие призывники готовы к несению службы:" + '\n' + militaryOffice.fitForMilitary()); //выводим всех годных
+        System.out.println("Следующие призывники готовы к несению службы:" + '\n' + militaryOffice.ableBodiedForMilitaryService()); //выводим всех годных
         String city = "Минск";
-        System.out.println("Количество призывников из Минска " + city + '\n' + militaryOffice.fitFrom(city)); //годные из Минска
-        System.out.println("Количество призывников от 25 до 27 лет: " + '\n' + militaryOffice.ageSearch(25, 27)); //от 25 до 27
+        System.out.println("Количество призывников из Минска " + city + '\n' + militaryOffice.ableBodiedForMilitaryServiceFromCity(city)); //годные из Минска
+        System.out.println("Количество призывников от 25 до 27 лет: " + '\n' + militaryOffice.searchForPeopleByAge(25, 27)); //от 25 до 27
 
     }
 

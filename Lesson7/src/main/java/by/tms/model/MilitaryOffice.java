@@ -22,7 +22,7 @@ public class MilitaryOffice {
         return count;
     }
 
-    public ArrayList fitForMilitary() {
+    public ArrayList ableBodiedForMilitaryService() {
         ArrayList<Person> fitFromMilitary = new ArrayList<>();
         for (int i = 0; i < personArrayList.size(); i++) {
             if (checkFitAgeAndSex(personArrayList.get(i))) {
@@ -32,7 +32,7 @@ public class MilitaryOffice {
         return fitFromMilitary;
     }
 
-    public int fitFrom(String city) {
+    public int ableBodiedForMilitaryServiceFromCity(String city) {
         int count = 0;
         for (int i = 0; i < personArrayList.size(); i++) {
             if (personArrayList.get(i).getCity().equals(city) && checkFitAgeAndSex(personArrayList.get(i))) {
@@ -42,7 +42,7 @@ public class MilitaryOffice {
         return count;
     }
 
-    public int ageSearch(int lower, int upper) {
+    public int searchForPeopleByAge(int lower, int upper) {
         int count = 0;
         for (int i = 0; i < personArrayList.size(); i++) {
             if (checkAge(personArrayList.get(i), lower, upper)) {
