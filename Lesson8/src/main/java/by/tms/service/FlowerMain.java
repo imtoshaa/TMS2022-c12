@@ -1,5 +1,6 @@
 package by.tms.service;
 
+import by.tms.model.Bouquet;
 import by.tms.model.FlowerMarket;
 
 import static by.tms.utils.Constants.*;

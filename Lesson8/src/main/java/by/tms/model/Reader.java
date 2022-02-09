@@ -1,6 +1,7 @@
 package by.tms.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Reader {
@@ -51,11 +52,12 @@ public class Reader {
         System.out.println(fullName + " сдал книги: ");
         ArrayList<Book> returnBookList = new ArrayList<>(List.of(book));
         for (int i = 0; i < returnBookList.size(); i++) {
-            for (int j = 0; j < listBook.size(); j++) {
-                if (returnBookList.get(i).equals(listBook.get(j))) {
-                    listBook.remove(j);
-                    System.out.println(listBook.get(j));
-                    j--;
+            Iterator<Book> iterator = listBook.iterator();
+            while (iterator.hasNext()) {
+                Book book1 = iterator.next();
+                if (returnBookList.get(i).equals(book1)) {
+                    iterator.remove();
+                    System.out.println(book1);
                 }
             }
         }

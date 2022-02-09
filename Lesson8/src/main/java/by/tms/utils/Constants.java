@@ -15,7 +15,7 @@ public class Constants {
 
     public static final ArrayList<Flower> constantsFlowerList = new ArrayList<>();
 
-    public Constants() {
+    static {
         constantsFlowerList.add(new Flower(HERBERA, 5));
         constantsFlowerList.add(new Flower(ROSE, 7));
         constantsFlowerList.add(new Flower(LILY, 7));

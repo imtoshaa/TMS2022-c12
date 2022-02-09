@@ -4,6 +4,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 public class Bouquet {
@@ -12,4 +13,5 @@ public class Bouquet {
     public void addFlowerToBouquet(String... string) {
         bouquetList = new ArrayList<>(List.of(string));
     }
+
 }

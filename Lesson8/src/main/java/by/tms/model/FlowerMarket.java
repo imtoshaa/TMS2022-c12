@@ -22,14 +22,13 @@ public class FlowerMarket {
         return bouquet.getBouquetList();
     }
 
-    private void findFlowerByName() {
+    public void findFlowerByName() {
         for (int i = 0; i < bouquet.getBouquetList().size(); i++) {
             for (int j = 0; j < constantsFlowerList.size(); j++) {
-                if (bouquet.getBouquetList().get(i).equals(constantsFlowerList.get(j).getName())) { //не заходит, хотя это стринги, а там equels присутствует ведь
+                if (bouquet.getBouquetList().get(i).equals(constantsFlowerList.get(j).getName())) {
                     calculatingThePrice(constantsFlowerList.get(j));
                     calculatingTheCount();
                 }
-
             }
         }
     }
