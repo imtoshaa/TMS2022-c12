@@ -22,7 +22,7 @@ public class FlowerMarket {
         return bouquet.getBouquetList();
     }
 
-    public void findFlowerByName() {
+    private void findFlowerByName() {
         for (int i = 0; i < bouquet.getBouquetList().size(); i++) {
             for (int j = 0; j < constantsFlowerList.size(); j++) {
                 if (bouquet.getBouquetList().get(i).equals(constantsFlowerList.get(j).getName())) {
