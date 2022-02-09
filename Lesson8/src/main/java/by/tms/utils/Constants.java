@@ -12,7 +12,6 @@ public class Constants {
     public static final String ASTER = "астра";
     public static final String TULIP = "тюльпан";
     public static final String CARNATION = "гвоздика";
-
     public static final ArrayList<Flower> constantsFlowerList = new ArrayList<>();
 
     static {
@@ -22,5 +21,8 @@ public class Constants {
         constantsFlowerList.add(new Flower(ASTER, 5));
         constantsFlowerList.add(new Flower(TULIP, 8));
         constantsFlowerList.add(new Flower(CARNATION, 11));
+    }
+
+    private Constants() {
     }
 }

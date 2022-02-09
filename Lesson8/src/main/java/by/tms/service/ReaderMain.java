@@ -6,7 +6,6 @@ import by.tms.utils.Constants;
 
 public class ReaderMain {
     public static void main(String[] args) {
-        Constants constants = new Constants();
         Reader reader = new Reader("Петров В.В.", 88323, "ХТиТ", "08.05.1999", 6668670);
         reader.mustBooks();
         reader.takeBook(3);
