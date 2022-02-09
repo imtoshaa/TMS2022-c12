@@ -1,35 +1,44 @@
 package by.tms.model;
 
+import static by.tms.utils.Constants.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FlowerMarket {
-    private ArrayList<Flower> listFlower = new ArrayList<>();
-    public int count = 0;
+    Bouquet bouquet = new Bouquet();
+    private int count;
+    private int price;
 
-    public void addFlowerToList(Flower flower) {
-        listFlower.add(flower);
+    public int getCount() {
+        return count;
     }
 
-    public void getBouquet(String... bouquet) {
-        int cost = 0;
-        ArrayList<String> bouquetList = new ArrayList<String>(List.of(bouquet));
-        for (int i = 0; i < bouquetList.size(); i++) {
-            for (int j = 0; j < listFlower.size(); j++) {
-                if (nameVerification(bouquetList.get(i), listFlower.get(j).getName())) {
-                    count++;
-                    cost += listFlower.get(j).getCost();
+    public int getPrice() {
+        return price;
+    }
+
+    public ArrayList<String> getBouquet(String... string) {
+        bouquet.addFlowerToBouquet(string);
+        findFlowerByName();
+        return bouquet.getBouquetList();
+    }
+
+    private void findFlowerByName() {
+        for (int i = 0; i < bouquet.getBouquetList().size(); i++) {
+            for (int j = 0; j < constantsFlowerList.size(); j++) {
+                if (bouquet.getBouquetList().get(i).equals(constantsFlowerList.get(j).getName())) { //не заходит, хотя это стринги, а там equels присутствует ведь
+                    calculatingThePrice(constantsFlowerList.get(j));
+                    calculatingTheCount();
                 }
+
             }
         }
-        System.out.println(bouquetList.toString());
-        System.out.println("Букет готов! С вас " + cost + " рублей.");
     }
 
-    private boolean nameVerification(String flowerFromBouquet, String flower) {
-        if (flowerFromBouquet.equals(flower)) {
-            return true;
-        }
-        return false;
+    private void calculatingThePrice(Flower flower) {
+        price += flower.getCost();
+    }
+
+    private void calculatingTheCount() {
+        count++;
     }
 }

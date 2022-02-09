@@ -2,6 +2,8 @@ package by.tms.model;
 
 import lombok.Getter;
 
+import java.util.Objects;
+
 @Getter
 public class Book {
     private String nameBook;
@@ -25,5 +27,18 @@ public class Book {
                 "nameBook='" + nameBook + '\'' +
                 ", nameAuthor='" + nameAuthor + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(nameBook, book.nameBook) && Objects.equals(nameAuthor, book.nameAuthor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameBook, nameAuthor);
     }
 }

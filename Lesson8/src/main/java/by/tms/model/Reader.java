@@ -52,11 +52,10 @@ public class Reader {
         ArrayList<Book> returnBookList = new ArrayList<>(List.of(book));
         for (int i = 0; i < returnBookList.size(); i++) {
             for (int j = 0; j < listBook.size(); j++) {
-                if (returnBookList.get(i).equals(listBook.get(j))) { //не заходит в цикл, не могу разобраться в чём проблема
+                if (returnBookList.get(i).equals(listBook.get(j))) {
                     listBook.remove(j);
                     System.out.println(listBook.get(j));
-                } else {
-                    System.out.println("лишнюю книгу" + returnBookList.get(i));
+                    j--;
                 }
             }
         }
