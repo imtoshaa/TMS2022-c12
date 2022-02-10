@@ -1,8 +1,6 @@
 package by.tms.utils;
 
-import by.tms.model.Flower;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Constants {
@@ -12,15 +10,15 @@ public class Constants {
     public static final String ASTER = "астра";
     public static final String TULIP = "тюльпан";
     public static final String CARNATION = "гвоздика";
-    public static final ArrayList<Flower> constantsFlowerList = new ArrayList<>();
+    public static final HashMap<String, Integer> constantsFlowerList = new HashMap<>();
 
     static {
-        constantsFlowerList.add(new Flower(HERBERA, 5));
-        constantsFlowerList.add(new Flower(ROSE, 7));
-        constantsFlowerList.add(new Flower(LILY, 7));
-        constantsFlowerList.add(new Flower(ASTER, 5));
-        constantsFlowerList.add(new Flower(TULIP, 8));
-        constantsFlowerList.add(new Flower(CARNATION, 11));
+        constantsFlowerList.put(HERBERA, 5);
+        constantsFlowerList.put(ROSE, 7);
+        constantsFlowerList.put(LILY, 7);
+        constantsFlowerList.put(ASTER, 5);
+        constantsFlowerList.put(TULIP, 8);
+        constantsFlowerList.put(CARNATION, 11);
     }
 
     private Constants() {

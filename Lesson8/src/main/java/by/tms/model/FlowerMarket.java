@@ -1,40 +1,35 @@
 package by.tms.model;
 
 import static by.tms.utils.Constants.*;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FlowerMarket {
-    Bouquet bouquet = new Bouquet();
     private int count;
-    private int price;
 
     public int getCount() {
         return count;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
     public ArrayList<String> getBouquet(String... string) {
+        Bouquet bouquet = new Bouquet();
         bouquet.addFlowerToBouquet(string);
-        findFlowerByName();
+        findFlowerByName(bouquet);
+        bouquet.calculatePrice();
         return bouquet.getBouquetList();
     }
 
-    private void findFlowerByName() {
+    private void findFlowerByName(Bouquet bouquet) {
         for (int i = 0; i < bouquet.getBouquetList().size(); i++) {
-            for (int j = 0; j < constantsFlowerList.size(); j++) {
-                if (bouquet.getBouquetList().get(i).equals(constantsFlowerList.get(j).getName())) {
-                    calculatingThePrice(constantsFlowerList.get(j));
+            Iterator<String> iterator = constantsFlowerList.keySet().iterator();
+            while (iterator.hasNext()) {
+                String str = iterator.next();
+                if (bouquet.getBouquetList().get(i).equals(str)) {
                     calculatingTheCount();
                 }
             }
         }
-    }
-
-    private void calculatingThePrice(Flower flower) {
-        price += flower.getCost();
     }
 
     private void calculatingTheCount() {
