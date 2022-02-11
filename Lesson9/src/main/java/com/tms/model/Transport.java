@@ -12,7 +12,6 @@ public class Transport {
     private String brand;
 
 
-
     public String info() {
         return "Мощность, л.с. = " + power + '\n'
                 + "Мощность, кВт = " + conversionOfPowerToKilowatts(power) + '\n'

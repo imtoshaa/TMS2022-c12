@@ -3,9 +3,8 @@ package com.tms.model;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class Truck extends Ground{
+public class Truck extends Ground {
     private int tonnage;
-
 
 
     @Override
@@ -23,9 +22,6 @@ public class Truck extends Ground{
     }
 
     private boolean checkTonnage(double cargo) {
-        if (cargo <= tonnage) {
-            return true;
-        }
-        return false;
+        return cargo <= tonnage;
     }
 }

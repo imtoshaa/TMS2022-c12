@@ -3,7 +3,7 @@ package com.tms.model;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class Civil extends Air{
+public class Civil extends Air {
     private int passengerNumber;
     private boolean businessClass;
 
@@ -16,7 +16,8 @@ public class Civil extends Air{
 
     private String checkForBusinessClass(Boolean businessClass) {
         if (businessClass) {
-            return "да";
+            return "да"; //так это для формирования красивой строки. Метод info возвращает готовую строку, я это сделал, чтобы вставить туда.
+            //я не напишу ведь код в мэйне, чтобы мне посреди возвращаемой из метода строки слово true/false заменялось на да/нет
         }
         return "нет";
     }
@@ -30,9 +31,6 @@ public class Civil extends Air{
     }
 
     private boolean checkСapacity(int passengers) {
-        if (passengers <= passengerNumber) {
-            return true;
-        }
-        return false;
+        return passengers <= passengerNumber;
     }
 }

@@ -1,6 +1,5 @@
 package com.tms.model;
 
-import lombok.Builder;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Random;
@@ -34,10 +33,7 @@ public class Military extends Air {
     }
 
     private boolean checkRockets() {
-        if (countRocket != 0) {
-            return true;
-        }
-        return false;
+        return countRocket != 0;
     }
 
     public void eject() {

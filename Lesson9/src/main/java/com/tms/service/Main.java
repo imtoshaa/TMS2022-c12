@@ -1,18 +1,21 @@
 package com.tms.service;
 
 
-import com.tms.model.*;
+import com.tms.model.Civil;
+import com.tms.model.Military;
+import com.tms.model.Passenger;
+import com.tms.model.Truck;
 
 public class Main {
     public static void main(String[] args) {
         Truck transport1 = Truck.builder()
-                                    .tonnage(10)
-                                    .brand("Вольво")
-                                    .countWheels(8)
-                                    .maxSpeed(150)
-                                    .fuelConsumption(35)
-                                    .power(560)
-                                    .weight(500).build();
+                .tonnage(10)
+                .brand("Вольво")
+                .countWheels(8)
+                .maxSpeed(150)
+                .fuelConsumption(35)
+                .power(560)
+                .weight(500).build();
         System.out.println(transport1.info() + '\n');
         transport1.loadCargo(9);
         System.out.println();

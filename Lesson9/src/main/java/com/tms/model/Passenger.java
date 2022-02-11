@@ -16,14 +16,14 @@ public class Passenger extends Ground {
 
     public void trip(double time) {
         System.out.println("За время " + time + " ч, автомобиль " + super.getBrand() + ", двигаясь с максимальной скоростью "
-        + super.getMaxSpeed() + " км/ч, проедет " + coveredDistance(time) + " км и израсходует " + spentFuel(time) + " литров топлива");
+                + super.getMaxSpeed() + " км/ч, проедет " + coveredDistance(time) + " км и израсходует " + spentFuel(time) + " литров топлива");
     }
 
     private double spentFuel(double time) {
         return time * super.getFuelConsumption();
     }
 
-    private double coveredDistance (double time) {
+    private double coveredDistance(double time) {
         return super.getMaxSpeed() * time;
     }
 }

@@ -5,7 +5,7 @@ import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
-public class Ground extends Transport{
+public class Ground extends Transport {
     private int countWheels;
     private int fuelConsumption;
 
