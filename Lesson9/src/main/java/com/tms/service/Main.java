@@ -41,6 +41,7 @@ public class Main {
                 .power(33000)
                 .weight(21)
                 .passengerNumber(450).build();
+        System.out.println(transport3.info());
         transport3.loadPassengers(460);
         System.out.println();
 
