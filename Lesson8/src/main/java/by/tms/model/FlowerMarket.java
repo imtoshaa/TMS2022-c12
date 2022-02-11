@@ -1,30 +1,42 @@
 package by.tms.model;
 
-import lombok.Getter;
-
-import static by.tms.utils.Constants.*;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-@Getter
+
+import static by.tms.utils.Constants.NAME_PRICE_FLOWERS;
+
+//@Getter
+//если я создаю @Getter тут на все поля, то у меня ломается программа, выводит, что цена букета равно нулю
+//если создаю руками, то всё ок
+//а если я сначала запускаю c аннотацией Getter, а потом запускаю с созданными геттерами вручную, то всё равно ломается. нужно чистить таргет
 public class FlowerMarket {
+    //    @Getter
     private int count;
+    //    @Getter
     private int cost;
+    //    @Getter
+    private Bouquet bouquet;
+
     public Bouquet getBouquet(String... flowers) {
         ArrayList<Flower> flowerArrayList = new ArrayList<>();
         for (String string : flowers) {
-            Iterator<String> iterator = NAME_PRICE_FLOWERS.keySet().iterator();
-            while (iterator.hasNext()) {
-                String iter = iterator.next();
-                if (iter.equals(string)) {
-                    flowerArrayList.add(new Flower(string, NAME_PRICE_FLOWERS.get(iter)));
-                    count++;
-                }
-            }
+            Integer price = NAME_PRICE_FLOWERS.get(string);
+            flowerArrayList.add(new Flower(string, price));
         }
-        Bouquet bouquet = new Bouquet(flowerArrayList);
-        cost = bouquet.getCostBouquet();
+        bouquet = new Bouquet(flowerArrayList);
+        cost += bouquet.getCostBouquet();
+        count += flowerArrayList.size();
         return bouquet;
     }
 
+    public Bouquet getBouquet() {
+        return bouquet;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getCost() {
+        return cost;
+    }
 }
