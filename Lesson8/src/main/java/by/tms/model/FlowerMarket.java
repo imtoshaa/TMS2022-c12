@@ -1,38 +1,30 @@
 package by.tms.model;
 
+import lombok.Getter;
+
 import static by.tms.utils.Constants.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+@Getter
 public class FlowerMarket {
     private int count;
-
-    public int getCount() {
-        return count;
-    }
-
-    public ArrayList<String> getBouquet(String... string) {
-        Bouquet bouquet = new Bouquet();
-        bouquet.addFlowerToBouquet(string);
-        findFlowerByName(bouquet);
-        bouquet.calculatePrice();
-        return bouquet.getBouquetList();
-    }
-
-    private void findFlowerByName(Bouquet bouquet) {
-        for (int i = 0; i < bouquet.getBouquetList().size(); i++) {
-            Iterator<String> iterator = constantsFlowerList.keySet().iterator();
+    private int cost;
+    public Bouquet getBouquet(String... flowers) {
+        ArrayList<Flower> flowerArrayList = new ArrayList<>();
+        for (String string : flowers) {
+            Iterator<String> iterator = NAME_PRICE_FLOWERS.keySet().iterator();
             while (iterator.hasNext()) {
-                String str = iterator.next();
-                if (bouquet.getBouquetList().get(i).equals(str)) {
-                    calculatingTheCount();
+                String iter = iterator.next();
+                if (iter.equals(string)) {
+                    flowerArrayList.add(new Flower(string, NAME_PRICE_FLOWERS.get(iter)));
+                    count++;
                 }
             }
         }
+        Bouquet bouquet = new Bouquet(flowerArrayList);
+        cost = bouquet.getCostBouquet();
+        return bouquet;
     }
 
-    private void calculatingTheCount() {
-        count++;
-    }
 }

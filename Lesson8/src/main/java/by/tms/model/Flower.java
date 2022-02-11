@@ -13,4 +13,9 @@ public class Flower {
         this.name = name;
         this.cost = cost;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

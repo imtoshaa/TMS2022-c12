@@ -10,15 +10,15 @@ public class Constants {
     public static final String ASTER = "астра";
     public static final String TULIP = "тюльпан";
     public static final String CARNATION = "гвоздика";
-    public static final HashMap<String, Integer> constantsFlowerList = new HashMap<>();
+    public static final HashMap<String, Integer> NAME_PRICE_FLOWERS = new HashMap<>();
 
     static {
-        constantsFlowerList.put(HERBERA, 5);
-        constantsFlowerList.put(ROSE, 7);
-        constantsFlowerList.put(LILY, 7);
-        constantsFlowerList.put(ASTER, 5);
-        constantsFlowerList.put(TULIP, 8);
-        constantsFlowerList.put(CARNATION, 11);
+        NAME_PRICE_FLOWERS.put(HERBERA, 5);
+        NAME_PRICE_FLOWERS.put(ROSE, 7);
+        NAME_PRICE_FLOWERS.put(LILY, 7);
+        NAME_PRICE_FLOWERS.put(ASTER, 5);
+        NAME_PRICE_FLOWERS.put(TULIP, 8);
+        NAME_PRICE_FLOWERS.put(CARNATION, 11);
     }
 
     private Constants() {
