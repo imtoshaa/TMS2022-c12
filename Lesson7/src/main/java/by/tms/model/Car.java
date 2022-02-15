@@ -78,7 +78,7 @@ public class Car {
     public void driving() {
         if (engine.isOn() && gasTank.getVolume() >= 5) { //если машина заведена и есть топливо на поездку, то поехали
             System.out.println("*Машина поехала!*");
-            gasTank.burningFuel(gasTank,5); //сжигаем из бака 5 литров
+            gasTank.burningFuel(gasTank, 5); //сжигаем из бака 5 литров
             System.out.println("*Мы приехали!*"); //приехали
             System.out.println();
             if (gasTank.getVolume() == 0) { //если по окончанию поездки топливо на нуле, машина глохнет

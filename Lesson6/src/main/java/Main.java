@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
         User user1 = new User(30, "Иван", "Иванов", "Мужской");

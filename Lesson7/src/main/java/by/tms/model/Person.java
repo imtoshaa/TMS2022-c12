@@ -1,6 +1,6 @@
 package by.tms.model;
 
-public class Person   {
+public class Person {
     private String name;
     private int age;
     private String sex;

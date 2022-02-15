@@ -59,6 +59,7 @@ public class MainMilitaryOffice {
             }
         }
     }
+
     private static boolean wasYes() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().equals("yes");
