@@ -12,6 +12,7 @@ public class SpasePort {
     public void Start(IStart start) throws InterruptedException {
         if (start.checkStart()) {
             System.out.println("Проверка прошла успешно!");
+            System.out.println("Обратный отсчёт:");
             for (int i = 10; i >= 1; i--) {
                 System.out.println(i + ".....");
                 TimeUnit.SECONDS.sleep(1);
