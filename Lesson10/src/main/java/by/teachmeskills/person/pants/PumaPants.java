@@ -1,28 +1,12 @@
 package by.teachmeskills.person.pants;
 
-public class PumaPants implements IPants {
+import java.math.BigDecimal;
 
-    private final int price;
-    private boolean isOn;
+public class PumaPants extends Pants {
 
-    public PumaPants(int price) {
-        this.price = price;
-    }
+    private static final String NAME = "пума";
 
-    @Override
-    public void putOn() {
-        isOn = true;
-        System.out.println("Штаны Пума надеты");
-    }
-
-    @Override
-    public void takeOff() {
-        isOn = false;
-        System.out.println("Штаны Пума сняты");
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
+    public PumaPants(BigDecimal price) {
+        super(price, NAME);
     }
 }

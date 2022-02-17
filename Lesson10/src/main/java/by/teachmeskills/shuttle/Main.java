@@ -12,8 +12,8 @@ public class Main {
         RosCosmos rosCosmos = new RosCosmos();
         IStart nasa = new Nasa();
         SpaceX spaceX = new SpaceX();
-        spasePort.Start(rosCosmos);
-        spasePort.Start(nasa);
-        spasePort.Start(spaceX);
+        spasePort.start(rosCosmos);
+        spasePort.start(nasa);
+        spasePort.start(spaceX);
     }
 }

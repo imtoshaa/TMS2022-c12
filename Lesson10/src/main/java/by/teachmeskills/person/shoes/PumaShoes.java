@@ -1,27 +1,11 @@
 package by.teachmeskills.person.shoes;
 
-public class PumaShoes implements IShoes {
-    private boolean isOn;
-    private final int price;
+import java.math.BigDecimal;
 
-    public PumaShoes(int price) {
-        this.price = price;
-    }
+public class PumaShoes extends Shoes {
+    private static final String NAME = "пума";
 
-    @Override
-    public void putOn() {
-        isOn = true;
-        System.out.println("Обувь Пума надета");
-    }
-
-    @Override
-    public void takeOff() {
-        isOn = false;
-        System.out.println("Обувь Пума снята");
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
+    public PumaShoes(BigDecimal price) {
+        super(price, NAME);
     }
 }

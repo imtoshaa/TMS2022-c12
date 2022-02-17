@@ -1,27 +1,11 @@
 package by.teachmeskills.person.pants;
 
-public class ZaraPants implements IPants {
-    private final int price;
-    private boolean isOn;
+import java.math.BigDecimal;
 
-    public ZaraPants(int price) {
-        this.price = price;
-    }
+public class ZaraPants extends Pants {
+    private static final String NAME = "зара";
 
-    @Override
-    public void putOn() {
-        isOn = true;
-        System.out.println("Штаны Зара надеты");
-    }
-
-    @Override
-    public void takeOff() {
-        isOn = false;
-        System.out.println("Штаны Зара сняты");
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
+    public ZaraPants(BigDecimal price) {
+        super(price, NAME);
     }
 }

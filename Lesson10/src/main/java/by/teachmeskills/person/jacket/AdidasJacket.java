@@ -1,23 +1,11 @@
 package by.teachmeskills.person.jacket;
 
-public class AdidasJacket implements IJacket {
-    private boolean isOn;
-    private int price;
+import java.math.BigDecimal;
 
-    @Override
-    public void putOn() {
-        isOn = true;
-        System.out.println("Куртка Адидас надета");
-    }
+public class AdidasJacket extends Jacket {
+    private static final String NAME = "адидас";
 
-    @Override
-    public void takeOff() {
-        isOn = false;
-        System.out.println("Куртка Адидас снята");
-    }
-
-    @Override
-    public int getPrice() {
-        return price;
+    public AdidasJacket(BigDecimal price) {
+        super(price, NAME);
     }
 }

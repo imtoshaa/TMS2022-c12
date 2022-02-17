@@ -4,6 +4,8 @@ import by.teachmeskills.person.jacket.IJacket;
 import by.teachmeskills.person.pants.IPants;
 import by.teachmeskills.person.shoes.IShoes;
 
+import java.math.BigDecimal;
+
 public class Person implements IPerson {
     private IShoes shoes;
     private IPants pants;
@@ -30,8 +32,8 @@ public class Person implements IPerson {
     }
 
     @Override
-    public int getPrice() {
-        int price = shoes.getPrice() + pants.getPrice() + jacket.getPrice();
+    public BigDecimal getPrice() {
+        BigDecimal price = shoes.getPrice().add(pants.getPrice().add(jacket.getPrice()));
         return price;
     }
 }
