@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class MainSeasons {
     public static void main(String[] args) {
-//        System.out.println(Seasons.SUMMER.getDescription());
         ArrayList<Seasons> seasons = new ArrayList<>();
         seasons.add(Seasons.SUMMER);
         seasons.add(Seasons.AUTUMN);

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class MainInstrument {
 
     public static void main(String[] args) {
-        IInstrument.Type type = IInstrument.Type.DRUM;
         ArrayList<IInstrument> instruments = new ArrayList<>();
         instruments.add(createInstrument(IInstrument.Type.GUITAR, 6));
         instruments.add(createInstrument(IInstrument.Type.DRUM, 10));

@@ -30,7 +30,5 @@ public enum Seasons {
         return "Холодное время года";
     }
 
-//    public String getInfo(Seasons season) {
-//        return season.name();
 }
 
