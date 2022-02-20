@@ -8,10 +8,15 @@ import lombok.experimental.SuperBuilder;
 public abstract class Fruit {
     private double weight;
     private double pricePerKilogram;
+    private TypeFruit typeFruit;
 
     public final void printManufacturerInfo() {
         System.out.print("Made in Belarus");
     }
 
-    public abstract double getFullPrice();
+    public double getFullPrice() {
+        return getPricePerKilogram() * getWeight();
+    }
+
+    ;
 }

@@ -3,8 +3,7 @@ package com.tms.figure;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class Triangle implements IFigure {
-    private static final Type type = Type.TRIANGLE;
+public class Triangle extends Figure {
     private double height;
     private double base;
 
@@ -15,6 +14,6 @@ public class Triangle implements IFigure {
 
     @Override
     public Type getType() {
-        return type;
+        return Type.TRIANGLE;
     }
 }

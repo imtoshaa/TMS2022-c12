@@ -3,8 +3,7 @@ package com.tms.figure;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
-public class Rectangle implements IFigure {
-    private final Type type = Type.RECTANGLE;
+public class Rectangle extends Figure {
     private double firstSide;
     private double secondSide;
 
@@ -15,7 +14,7 @@ public class Rectangle implements IFigure {
 
     @Override
     public Type getType() {
-        return type;
+        return Type.RECTANGLE;
     }
 
 }

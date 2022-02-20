@@ -3,8 +3,6 @@ package com.tms.fruits;
 import java.util.ArrayList;
 
 public class FruitShop {
-    private int count;
-    private double resultCost;
     private ArrayList<Fruit> fruits;
 
     public FruitShop(ArrayList<Fruit> fruits) {
@@ -12,7 +10,10 @@ public class FruitShop {
     }
 
     public void toSell() {
+        int count = 0;
+        double resultCost = 0;
         for (Fruit fruit : fruits) {
+            System.out.println("Фрукт " + fruit.getTypeFruit());
             System.out.println("Цена фрукта за килограмм = " + fruit.getPricePerKilogram());
             System.out.println("Масса фруктов = " + fruit.getWeight());
             System.out.println("Стоимость = " + fruit.getFullPrice());

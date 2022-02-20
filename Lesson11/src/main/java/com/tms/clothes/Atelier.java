@@ -1,43 +1,40 @@
 package com.tms.clothes;
 
-import java.util.ArrayList;
+import com.tms.clothes.utils.PersonType;
+
+import java.util.List;
+
+import static com.tms.clothes.utils.PersonType.MAN;
+import static com.tms.clothes.utils.PersonType.WOMEN;
 
 public class Atelier {
 
-    public enum Type {
-        CRAVAT, PANTS, SKIRT, TSHIRT;
-    }
+    private List<Clothes> clothes;
 
-    private ArrayList<Clothes> clothes = new ArrayList<>();
-
-    public Atelier(ArrayList<Clothes> clothes) {
+    public Atelier(List<Clothes> clothes) {
         this.clothes = clothes;
     }
 
-    public void dressMan() {
+    public void dressPerson() {
         for (Clothes clothes : clothes) {
-            if (checkMansClothes(clothes)) {
+            if (checkClothes(clothes, MAN)) {
                 IManClothes manClothes = (IManClothes) clothes;
                 manClothes.dressMan();
             }
-        }
-    }
-
-    public void dressWoman() {
-        for (Clothes clothes : clothes) {
-            if (checkWomansClothes(clothes)) {
+            if (checkClothes(clothes, WOMEN)) {
                 IWomanClothes womanClothes = (IWomanClothes) clothes;
                 womanClothes.dressWoman();
             }
         }
     }
 
-    private boolean checkMansClothes(Clothes clothes) {
-        return IManClothes.class.isAssignableFrom(clothes.getClass());
-    }
-
-    private boolean checkWomansClothes(Clothes clothes) {
-        return IWomanClothes.class.isAssignableFrom(clothes.getClass());
+    private boolean checkClothes(Clothes clothes, PersonType personType) {
+        for (Class myClass : clothes.getClass().getInterfaces()) {
+            if (myClass == personType.getPersonClass()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
