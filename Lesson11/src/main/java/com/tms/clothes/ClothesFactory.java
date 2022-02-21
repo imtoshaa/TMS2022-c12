@@ -3,7 +3,7 @@ package com.tms.clothes;
 import com.tms.clothes.utils.Sizes;
 import com.tms.clothes.utils.Type;
 
-public class Dressmaker {
+public class ClothesFactory {
 
     public Clothes createClothes(Type type, String color, Sizes size, int cost) {
         return switch (type) {
@@ -22,6 +22,7 @@ public class Dressmaker {
                     .cost(cost)
                     .size(size.getEuroSize())
                     .build();
+            //я думал в этом то и суть, что поступает в конструктор американский, а выводим в европейском
             case TSHIRT -> TShirt.builder()
                     .color(color)
                     .cost(cost)

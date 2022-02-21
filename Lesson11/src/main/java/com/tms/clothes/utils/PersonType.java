@@ -7,7 +7,7 @@ public enum PersonType {
     MAN(IManClothes.class),
     WOMEN(IWomanClothes.class);
 
-    Class personClass;
+    private Class personClass;
 
     PersonType(Class personClass) {
         this.personClass = personClass;

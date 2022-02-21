@@ -1,9 +1,9 @@
 package com.tms.fruits;
 
-import static com.tms.fruits.TypeFruit.*;
+import static com.tms.fruits.FruitType.*;
 
-public class Seller {
-    public static Fruit createFruit(TypeFruit type, double weight, double pricePerKilogram) {
+public class FruitFactory {
+    public static Fruit createFruit(FruitType type, double weight, double pricePerKilogram) {
         Fruit fruit = null;
         switch (type) {
             case APPLE -> fruit = Apple.builder().weight(weight).pricePerKilogram(pricePerKilogram).typeFruit(APPLE).build();

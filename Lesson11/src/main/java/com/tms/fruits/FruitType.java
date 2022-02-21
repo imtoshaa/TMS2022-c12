@@ -1,5 +1,5 @@
 package com.tms.fruits;
 
-public enum TypeFruit {
+public enum FruitType {
     APPLE, APRICOT, PEAR;
 }
