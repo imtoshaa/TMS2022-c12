@@ -4,6 +4,8 @@ package com.tms.clothes;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.tms.clothes.utils.PersonType.MAN;
+import static com.tms.clothes.utils.PersonType.WOMEN;
 import static com.tms.clothes.utils.Sizes.*;
 import static com.tms.clothes.utils.Type.*;
 
@@ -16,10 +18,7 @@ public class ClothesMain {
         clothesArrayList.add(dressmaker.createClothes(SKIRT, "жёлтый", S, 50));
         clothesArrayList.add(dressmaker.createClothes(TSHIRT, "чёрный", M, 7));
         Atelier atelier = new Atelier(clothesArrayList);
-        atelier.dressPerson();
+        atelier.dressPerson(MAN);
+        atelier.dressPerson(WOMEN);
     }
-
-//    private static boolean checkMansClothes(Clothes clothes) {
-//        return IManClothes.class.isAssignableFrom(clothes.getClass());
-//    }
 }
