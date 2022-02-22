@@ -1,20 +1,21 @@
 package by.teachmeskills.person;
 
-import by.teachmeskills.person.jacket.IJacket;
-import by.teachmeskills.person.pants.IPants;
-import by.teachmeskills.person.shoes.IShoes;
+import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 
+@SuperBuilder
 public class Person implements IPerson {
-    private IShoes shoes;
-    private IPants pants;
-    private IJacket jacket;
+    private final Clothes shoes;
+    private final Clothes pants;
+    private final Clothes jacket;
+    private final String namePerson;
 
-    public Person(IShoes shoes, IPants pants, IJacket jacket) {
+    public Person(Clothes shoes, Clothes pants, Clothes jacket, String namePerson) {
         this.shoes = shoes;
         this.pants = pants;
         this.jacket = jacket;
+        this.namePerson = namePerson;
     }
 
     @Override

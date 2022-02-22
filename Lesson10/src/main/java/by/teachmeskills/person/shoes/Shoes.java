@@ -1,35 +1,19 @@
 package by.teachmeskills.person.shoes;
 
+import by.teachmeskills.person.Clothes;
+import by.teachmeskills.person.utils.BrandName;
+import by.teachmeskills.person.utils.ClothesType;
+import lombok.experimental.SuperBuilder;
+
 import java.math.BigDecimal;
 
-public class Shoes implements IShoes {
-    private BigDecimal price;
-    private boolean isOn;
-    private String name;
+import static by.teachmeskills.person.utils.ClothesType.SHOES;
 
-    public Shoes(BigDecimal price, String name) {
-        this.price = price;
-        this.name = name;
-    }
+@SuperBuilder
+public class Shoes extends Clothes implements IShoes {
+    private final ClothesType type = SHOES;
 
-    @Override
-    public void putOn() {
-        if (!isOn) {
-            System.out.println("Обувь " + name + " надета");
-            isOn = true;
-        }
-    }
-
-    @Override
-    public void takeOff() {
-        if (isOn) {
-            System.out.println("Обувь " + name + " снята");
-            isOn = false;
-        }
-    }
-
-    @Override
-    public BigDecimal getPrice() {
-        return price;
+    public Shoes(BigDecimal price, BrandName brandName) {
+        super(price, brandName);
     }
 }
