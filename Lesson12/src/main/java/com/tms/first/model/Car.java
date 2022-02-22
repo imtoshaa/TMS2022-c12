@@ -50,17 +50,20 @@ public class Car {
 
     public void on() throws CarIsNotStart {
         Random random = new Random();
-        if (random.nextInt(20) % 2 == 0) {
-            if (gasTank.getVolume() > 0) {
-                engine.start(gasTank);
+        if (!engine.isOn()) {
+            if (random.nextInt(20) % 2 == 0) {
+                if (gasTank.getVolume() > 0) {
+                    engine.start(gasTank);
+                } else {
+                    System.out.println("Двигатель не запущен: нет топлива");
+                    System.out.println();
+                }
             } else {
-                System.out.println("Двигатель не запущен: нет топлива");
-                System.out.println();
+                throw new CarIsNotStart("Машина не завелась!");
             }
         } else {
-            throw new CarIsNotStart("Машина не завелась!");
+            System.out.println("Хватит тыкать на единицу, машина и так заведена");
         }
-
 
     }
 
