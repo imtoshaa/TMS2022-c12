@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import static by.teachmeskills.person.utils.ClothesType.PANTS;
 
 @SuperBuilder
-public class Pants extends Clothes implements IPants {
+public class Pants extends Clothes {
     private final ClothesType type = PANTS;
 
     public Pants(BigDecimal price, BrandName brandName) {

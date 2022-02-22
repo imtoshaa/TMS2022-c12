@@ -1,9 +1,8 @@
-package by.teachmeskills.person.pants;
+package by.teachmeskills.person;
 
 import java.math.BigDecimal;
 
-public interface IPants {
-
+public interface ClothesAware {
     void putOn();
 
     void takeOff();

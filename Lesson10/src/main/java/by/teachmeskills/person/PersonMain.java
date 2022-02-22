@@ -6,60 +6,64 @@ import by.teachmeskills.person.shoes.Shoes;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 import static by.teachmeskills.person.utils.BrandName.*;
 import static by.teachmeskills.person.utils.ClothesType.*;
 
 public class PersonMain {
     public static void main(String[] args) {
-        ArrayList<Person> persons = new ArrayList<>();
-//        persons.add(new Person(new AdidasShoes(new BigDecimal("1")), new ZaraPants(new BigDecimal("3")), new PumaJacket(new BigDecimal("5"))));
-//        persons.add(new Person(new PumaShoes(new BigDecimal("3")), new AdidasPants(new BigDecimal("5")), new ZaraJacket(new BigDecimal("4"))));
-//        persons.add(new Person(new ZaraShoes(new BigDecimal("8")), new ZaraPants(new BigDecimal("3")), new PumaJacket(new BigDecimal("5"))));
+        List<Person> persons = new ArrayList<>();
+        List<ClothesAware> clothesPavel = new ArrayList<>();
+        clothesPavel.add(Jacket.builder()
+                .brandName(PUMA)
+                .price(new BigDecimal("2"))
+                .type(JACKET).build());
+        clothesPavel.add(Shoes.builder()
+                .brandName(ZARA)
+                .price(new BigDecimal("3"))
+                .type(SHOES).build());
+        clothesPavel.add(Pants.builder()
+                .brandName(ADIDAS)
+                .price(new BigDecimal("9"))
+                .type(PANTS).build());
         persons.add(Person.builder()
                 .namePerson("Павел")
-                .jacket(Jacket.builder()
-                        .brandName(PUMA)
-                        .price(new BigDecimal("2"))
-                        .type(JACKET).build())
-                .shoes(Shoes.builder()
-                        .brandName(ZARA)
-                        .price(new BigDecimal("3"))
-                        .type(SHOES).build())
-                .pants(Pants.builder()
-                        .brandName(ADIDAS)
-                        .price(new BigDecimal("9"))
-                        .type(PANTS).build()).build());
+                .clothes(clothesPavel).build());
 
+        List<ClothesAware> clothesAnton = new ArrayList<>();
+        clothesAnton.add(Jacket.builder()
+                .brandName(ZARA)
+                .price(new BigDecimal("3"))
+                .type(JACKET).build());
+        clothesAnton.add(Shoes.builder()
+                .brandName(ZARA)
+                .price(new BigDecimal("4"))
+                .type(SHOES).build());
+        clothesAnton.add(Pants.builder()
+                .brandName(PUMA)
+                .price(new BigDecimal("11"))
+                .type(PANTS).build());
         persons.add(Person.builder()
                 .namePerson("Антон")
-                .jacket(Jacket.builder()
-                        .brandName(ZARA)
-                        .price(new BigDecimal("4"))
-                        .type(JACKET).build())
-                .shoes(Shoes.builder()
-                        .brandName(ZARA)
-                        .price(new BigDecimal("3"))
-                        .type(SHOES).build())
-                .pants(Pants.builder()
-                        .brandName(ADIDAS)
-                        .price(new BigDecimal("8"))
-                        .type(PANTS).build()).build());
+                .clothes(clothesPavel).build());
 
+        List<ClothesAware> clothesAvdotiy = new ArrayList<>();
+        clothesAvdotiy.add(Jacket.builder()
+                .brandName(ADIDAS)
+                .price(new BigDecimal("1"))
+                .type(JACKET).build());
+        clothesAvdotiy.add(Shoes.builder()
+                .brandName(ADIDAS)
+                .price(new BigDecimal("1"))
+                .type(SHOES).build());
+        clothesAvdotiy.add(Pants.builder()
+                .brandName(ADIDAS)
+                .price(new BigDecimal("3"))
+                .type(PANTS).build());
         persons.add(Person.builder()
-                .namePerson("Авдотий")
-                .jacket(Jacket.builder()
-                        .brandName(ADIDAS)
-                        .price(new BigDecimal("10"))
-                        .type(JACKET).build())
-                .shoes(Shoes.builder()
-                        .brandName(ADIDAS)
-                        .price(new BigDecimal("1"))
-                        .type(SHOES).build())
-                .pants(Pants.builder()
-                        .brandName(ADIDAS)
-                        .price(new BigDecimal("1"))
-                        .type(PANTS).build()).build());
+                .namePerson("Павел")
+                .clothes(clothesPavel).build());
 
         BigDecimal max = new BigDecimal("0");
         int indexMax = 0;

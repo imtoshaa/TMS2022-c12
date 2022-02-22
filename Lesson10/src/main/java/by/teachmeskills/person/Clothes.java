@@ -1,8 +1,5 @@
 package by.teachmeskills.person;
 
-import by.teachmeskills.person.jacket.IJacket;
-import by.teachmeskills.person.pants.IPants;
-import by.teachmeskills.person.shoes.IShoes;
 import by.teachmeskills.person.utils.BrandName;
 import by.teachmeskills.person.utils.ClothesType;
 import lombok.experimental.SuperBuilder;
@@ -10,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 import java.math.BigDecimal;
 
 @SuperBuilder
-public abstract class Clothes implements IJacket, IPants, IShoes {
+public abstract class Clothes implements ClothesAware {
 
 
     private final BigDecimal price;

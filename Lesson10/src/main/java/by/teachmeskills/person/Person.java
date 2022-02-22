@@ -3,38 +3,31 @@ package by.teachmeskills.person;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @SuperBuilder
 public class Person implements IPerson {
-    private final Clothes shoes;
-    private final Clothes pants;
-    private final Clothes jacket;
     private final String namePerson;
+    private final List<ClothesAware> clothes;
 
-    public Person(Clothes shoes, Clothes pants, Clothes jacket, String namePerson) {
-        this.shoes = shoes;
-        this.pants = pants;
-        this.jacket = jacket;
-        this.namePerson = namePerson;
-    }
 
     @Override
     public void putOn() {
-        shoes.putOn();
-        pants.putOn();
-        jacket.putOn();
+        for (ClothesAware clothesAware : clothes) {
+            clothesAware.putOn();
+        }
     }
 
     @Override
     public void takeOff() {
-        shoes.takeOff();
-        pants.takeOff();
-        jacket.takeOff();
+        for (ClothesAware clothesAware : clothes) {
+            clothesAware.takeOff();
+        }
     }
 
     @Override
     public BigDecimal getPrice() {
-        BigDecimal price = shoes.getPrice().add(pants.getPrice().add(jacket.getPrice()));
-        return price;
+        return clothes.stream().map(ClothesAware::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add);
+        //стримы это клёво!
     }
 }

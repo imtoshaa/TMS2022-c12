@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import static by.teachmeskills.person.utils.ClothesType.JACKET;
 
 @SuperBuilder
-public class Jacket extends Clothes implements IJacket {
+public class Jacket extends Clothes {
     private final ClothesType type = JACKET;
 
 
