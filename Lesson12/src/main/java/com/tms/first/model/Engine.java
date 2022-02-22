@@ -1,4 +1,4 @@
-package by.tms.model;
+package com.tms.first.model;
 
 public class Engine {
     private boolean isOn;
