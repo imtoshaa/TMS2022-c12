@@ -1,14 +1,16 @@
 package com.tms.fruits;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
+@Setter
 public abstract class Fruit {
-    private double weight;
+    private final double weight;
     private double pricePerKilogram;
-    private FruitType typeFruit;
+    private final FruitType typeFruit;
 
     public final void printManufacturerInfo() {
         System.out.print("Made in Belarus");

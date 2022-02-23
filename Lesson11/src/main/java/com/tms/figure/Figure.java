@@ -5,5 +5,6 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public abstract class Figure implements IFigure {
 
+    abstract Type getType();
 
 }

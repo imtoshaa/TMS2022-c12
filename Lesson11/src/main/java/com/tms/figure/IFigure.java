@@ -4,5 +4,4 @@ public interface IFigure {
 
     double getSquare();
 
-    Type getType();
 }
