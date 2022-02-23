@@ -37,7 +37,6 @@ public class Second {
                 throw new WrongLoginException("Неверный логин");
             }
             if (password.matches("^[a-zA-Z0-9_]{2,20}+$") && password.equals(confirmPassword)) {
-                System.out.println("ура");
                 checkPassword = true;
             } else {
                 throw new WrongPasswordException("Неверный пароль");
