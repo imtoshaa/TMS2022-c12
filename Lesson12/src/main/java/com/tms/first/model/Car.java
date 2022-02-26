@@ -1,5 +1,7 @@
 package com.tms.first.model;
 
+import com.tms.first.exception.CarIsNotStartException;
+
 import java.util.Random;
 
 public class Car {
@@ -48,7 +50,7 @@ public class Car {
         this.bodyType = bodyType;
     }
 
-    public void on() throws CarIsNotStart {
+    public void on() throws CarIsNotStartException {
         Random random = new Random();
         if (!engine.isOn()) {
             if (random.nextInt(20) % 2 == 0) {
@@ -59,7 +61,7 @@ public class Car {
                     System.out.println();
                 }
             } else {
-                throw new CarIsNotStart("Машина не завелась!");
+                throw new CarIsNotStartException("Машина не завелась!");
             }
         } else {
             System.out.println("Хватит тыкать на единицу, машина и так заведена");

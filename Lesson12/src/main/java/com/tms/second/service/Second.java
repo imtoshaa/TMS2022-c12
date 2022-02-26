@@ -1,4 +1,9 @@
-package com.tms.second;
+package com.tms.second.service;
+
+import com.tms.second.Authorization;
+
+import static com.tms.second.Authorization.checkAuthorization;
+import static com.tms.second.Authorization.exceptionCauseMessageIfAvailable;
 
 public class Second {
     /**
@@ -21,30 +26,13 @@ public class Second {
      * PS: если не знаем как сделать проверку, то можно просто оставить пустую реализацию! Прорабатываем работу с исключениями
      */
 
-    public static void main(String[] args) throws WrongLoginException, WrongPasswordException {
-
-        System.out.println(checkAuthorization("A2d", "123-", "123"));
-
-    }
-
-    private static boolean checkAuthorization(String login, String password, String confirmPassword) {
-        boolean checkLogin = false;
-        boolean checkPassword = false;
+    public static void main(String[] args) throws Exception {
+        Authorization authorization = new Authorization();
         try {
-            if (login.matches("^[a-zA-Z0-9_]{2,20}+$")) {
-                checkLogin = true;
-            } else {
-                throw new WrongLoginException("Неверный логин");
-            }
-            if (password.matches("^[a-zA-Z0-9_]{2,20}+$") && password.equals(confirmPassword)) {
-                checkPassword = true;
-            } else {
-                throw new WrongPasswordException("Неверный пароль");
-            }
-
-        } catch (WrongLoginException | WrongPasswordException w) {
-            System.out.println(w.getMessage());
+            System.out.println(checkAuthorization("awd", "123-", "123"));
+        } catch (Exception exception) {
+            System.out.println(exceptionCauseMessageIfAvailable(exception));
         }
-        return checkLogin && checkPassword;
     }
 }
+

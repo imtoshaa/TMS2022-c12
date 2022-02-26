@@ -1,12 +1,12 @@
 package com.tms.first.service;
 
 import com.tms.first.model.Car;
-import com.tms.first.model.CarIsNotStart;
+import com.tms.first.exception.CarIsNotStartException;
 
 import java.util.Scanner;
 
 public class MainCar {
-    public static void main(String[] args) throws CarIsNotStart {
+    public static void main(String[] args) throws CarIsNotStartException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Приветствуем Вас в создании вашего автомобиля!");
 //        System.out.println("Введите тип двигателя вашего автомобиля");
@@ -34,7 +34,7 @@ public class MainCar {
                 case 1:
                     try {
                         myCar.on();
-                    } catch (CarIsNotStart c) {
+                    } catch (CarIsNotStartException c) {
                         System.out.println(c.getMessage());
                     }
                     break;
