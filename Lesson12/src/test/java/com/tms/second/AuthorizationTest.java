@@ -2,9 +2,8 @@ package com.tms.second;
 
 import com.tms.second.exception.WrongLoginException;
 import com.tms.second.exception.WrongPasswordException;
+import com.tms.second.service.Authorization;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +11,6 @@ public class AuthorizationTest {
 
     @Test
     public void exceptionCauseMessageIfAvailable() throws Exception {
-        Authorization authorization = new Authorization();
         String[] stringsActual = new String[3];
         stringsActual[0] = Authorization.exceptionCauseMessageIfAvailable(new WrongPasswordException("Ошибка в поле пароль",
                 new WrongLoginException("Ошибка в поле логин")));

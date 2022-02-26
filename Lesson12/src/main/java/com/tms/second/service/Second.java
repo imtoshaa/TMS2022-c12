@@ -1,9 +1,7 @@
 package com.tms.second.service;
 
-import com.tms.second.Authorization;
-
-import static com.tms.second.Authorization.checkAuthorization;
-import static com.tms.second.Authorization.exceptionCauseMessageIfAvailable;
+import static com.tms.second.service.Authorization.checkAuthorization;
+import static com.tms.second.service.Authorization.exceptionCauseMessageIfAvailable;
 
 public class Second {
     /**
@@ -27,9 +25,8 @@ public class Second {
      */
 
     public static void main(String[] args) throws Exception {
-        Authorization authorization = new Authorization();
         try {
-            System.out.println(checkAuthorization("awd", "123-", "123"));
+            System.out.println(checkAuthorization("awdф", "123ф", "123"));
         } catch (Exception exception) {
             System.out.println(exceptionCauseMessageIfAvailable(exception));
         }

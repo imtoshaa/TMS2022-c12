@@ -1,4 +1,4 @@
-package com.tms.second;
+package com.tms.second.service;
 
 import com.tms.second.exception.WrongLoginException;
 import com.tms.second.exception.WrongPasswordException;
@@ -6,7 +6,7 @@ import com.tms.second.exception.WrongPasswordException;
 import static com.tms.second.utils.ValidationPatterns.PATTERN_LOGIN;
 import static com.tms.second.utils.ValidationPatterns.PATTERN_PASSWORD;
 
-public class Authorization {
+public abstract class Authorization {
 
 
     public static boolean checkAuthorization(String login, String password, String confirmPassword) throws Exception {
