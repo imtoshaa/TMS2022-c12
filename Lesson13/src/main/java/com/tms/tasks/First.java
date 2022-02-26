@@ -8,9 +8,6 @@ public class First {
     private static String cutFromAtoB(String string) {
 
         int lastB = string.lastIndexOf("В") + 1;
-        return string.substring(string.indexOf("А"), lastB);
-//        return string.substring(string.indexOf("А"), string.lastIndexOf("В"));
-//        substring не включает в подстроку последний элемент, а lastIndexOf не позволяет к найденному значению прибавить единицу
-//        пришлось сделать int lastB
+        return string.substring(string.indexOf("А"), string.lastIndexOf("В") + 1);
     }
 }

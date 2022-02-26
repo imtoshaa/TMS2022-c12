@@ -9,11 +9,11 @@ public class Report implements ReportAware {
     @Override
     public void generateReport(List<Employee> employees) {
         for (Employee employee : employees) {
-            System.out.printf("| %-20s | %20.2f | \n", getFCs(employee.getFullName()), employee.getSalary());
+            System.out.printf("| %-20s | %20.2f | \n", getAbbreviatedName(employee.getFullName()), employee.getSalary());
         }
     }
 
-    private String getFCs(String string) {
+    private String getAbbreviatedName(String string) {
         StringBuilder fcs = new StringBuilder();
         String[] arrayString = string.split(" ");
         for (int i = 0; i < arrayString.length - 1; i++) {

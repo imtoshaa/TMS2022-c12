@@ -1,6 +1,6 @@
 package com.tms.tasks.foutth.model;
 
-import com.tms.tasks.foutth.utils.TextFormater;
+import com.tms.tasks.sixth.service.TextFormater;
 
 public class TextHandler {
     private  String string;

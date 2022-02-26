@@ -1,8 +1,8 @@
-package com.tms.tasks.foutth.utils;
+package com.tms.tasks.sixth.service;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class TextFormater {
+public abstract class TextFormater {
 
     public static String[] splitByPoint(String string) {
         return string.split("\\. ");
