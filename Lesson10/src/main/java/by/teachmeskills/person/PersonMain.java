@@ -8,72 +8,55 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static by.teachmeskills.person.utils.BrandName.*;
+import static by.teachmeskills.person.utils.Brand.*;
 import static by.teachmeskills.person.utils.ClothesType.*;
 
 public class PersonMain {
     public static void main(String[] args) {
         List<Person> persons = new ArrayList<>();
+
+        List<ClothesAware> clothesVadim = new ArrayList<>();
+        clothesVadim.add(new Jacket(new BigDecimal("10"), ADIDAS));
+        clothesVadim.add(new Pants(new BigDecimal("10"), ADIDAS));
+        clothesVadim.add(new Shoes(new BigDecimal("10"), ADIDAS));
+        persons.add(Person.builder()
+                .namePerson("Вадим")
+                .clothes(clothesVadim).build());
+
         List<ClothesAware> clothesPavel = new ArrayList<>();
-        clothesPavel.add(Jacket.builder()
-                .brandName(PUMA)
-                .price(new BigDecimal("2"))
-                .type(JACKET).build());
-        clothesPavel.add(Shoes.builder()
-                .brandName(ZARA)
-                .price(new BigDecimal("3"))
-                .type(SHOES).build());
-        clothesPavel.add(Pants.builder()
-                .brandName(ADIDAS)
-                .price(new BigDecimal("9"))
-                .type(PANTS).build());
+        clothesPavel.add(new Jacket(new BigDecimal("8"), PUMA));
+        clothesPavel.add(new Pants(new BigDecimal("3"), ZARA));
+        clothesPavel.add(new Shoes(new BigDecimal("15"), ADIDAS));
         persons.add(Person.builder()
                 .namePerson("Павел")
                 .clothes(clothesPavel).build());
 
         List<ClothesAware> clothesAnton = new ArrayList<>();
-        clothesAnton.add(Jacket.builder()
-                .brandName(ZARA)
-                .price(new BigDecimal("3"))
-                .type(JACKET).build());
-        clothesAnton.add(Shoes.builder()
-                .brandName(ZARA)
-                .price(new BigDecimal("4"))
-                .type(SHOES).build());
-        clothesAnton.add(Pants.builder()
-                .brandName(PUMA)
-                .price(new BigDecimal("11"))
-                .type(PANTS).build());
+        clothesAnton.add(new Jacket(new BigDecimal("8"), ZARA));
+        clothesAnton.add(new Pants(new BigDecimal("4"), ZARA));
+        clothesAnton.add(new Shoes(new BigDecimal("11"), PUMA));
         persons.add(Person.builder()
                 .namePerson("Антон")
-                .clothes(clothesPavel).build());
+                .clothes(clothesAnton).build());
 
         List<ClothesAware> clothesAvdotiy = new ArrayList<>();
-        clothesAvdotiy.add(Jacket.builder()
-                .brandName(ADIDAS)
-                .price(new BigDecimal("1"))
-                .type(JACKET).build());
-        clothesAvdotiy.add(Shoes.builder()
-                .brandName(ADIDAS)
-                .price(new BigDecimal("1"))
-                .type(SHOES).build());
-        clothesAvdotiy.add(Pants.builder()
-                .brandName(ADIDAS)
-                .price(new BigDecimal("3"))
-                .type(PANTS).build());
+        clothesAvdotiy.add(new Jacket(new BigDecimal("4"), ZARA));
+        clothesAvdotiy.add(new Pants(new BigDecimal("1"), ADIDAS));
+        clothesAvdotiy.add(new Shoes(new BigDecimal("1"), ZARA));
         persons.add(Person.builder()
-                .namePerson("Павел")
-                .clothes(clothesPavel).build());
+                .namePerson("Авдотий")
+                .clothes(clothesAvdotiy).build());
 
-        BigDecimal max = new BigDecimal("0");
+        BigDecimal max = BigDecimal.ZERO;
         int indexMax = 0;
         for (int i = 0; i < persons.size(); i++) {
-            persons.get(i).putOn();
+            Person person = persons.get(i);
+            person.putOn();
             System.out.println();
-            persons.get(i).takeOff();
+            person.takeOff();
             System.out.println();
-            if (max.compareTo(persons.get(i).getPrice()) <= 0) {
-                max = persons.get(i).getPrice();
+            if (max.compareTo(person.getPrice()) <= 0) {
+                max = person.getPrice();
                 indexMax = i;
             }
         }

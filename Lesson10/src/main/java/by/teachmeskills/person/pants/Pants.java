@@ -1,7 +1,7 @@
 package by.teachmeskills.person.pants;
 
 import by.teachmeskills.person.Clothes;
-import by.teachmeskills.person.utils.BrandName;
+import by.teachmeskills.person.utils.Brand;
 import by.teachmeskills.person.utils.ClothesType;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +13,8 @@ import static by.teachmeskills.person.utils.ClothesType.PANTS;
 public class Pants extends Clothes {
     private final ClothesType type = PANTS;
 
-    public Pants(BigDecimal price, BrandName brandName) {
+    public Pants(BigDecimal price, Brand brandName) {
         super(price, brandName);
+        super.setType(type);
     }
 }
