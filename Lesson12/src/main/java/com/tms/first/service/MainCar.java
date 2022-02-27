@@ -1,18 +1,19 @@
-package by.tms.service;
+package com.tms.first.service;
 
-import by.tms.model.Car;
+import com.tms.first.model.Car;
+import com.tms.first.exception.CarIsNotStartException;
 
 import java.util.Scanner;
 
 public class MainCar {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CarIsNotStartException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Приветствуем Вас в создании вашего автомобиля!");
-        System.out.println("Введите тип двигателя вашего автомобиля");
-        String typeEngine = scanner.next();
-        System.out.println("Введите желаемый объём бензобака вашего автомобиля");
-        int volume = scanner.nextInt();
-        Car myCar = new Car(typeEngine, volume);
+//        System.out.println("Введите тип двигателя вашего автомобиля");
+//        String typeEngine = scanner.next();
+//        System.out.println("Введите желаемый объём бензобака вашего автомобиля");
+//        int volume = scanner.nextInt();
+        Car myCar = new Car("typeEngine", 10);
         while (true) {
             System.out.println("*****Меню взаимодействия с Вашим автомобилем*****");
             System.out.println("Выберите пункт:");
@@ -31,7 +32,11 @@ public class MainCar {
                 case 0:
                     return;
                 case 1:
-                    myCar.on();
+                    try {
+                        myCar.on();
+                    } catch (CarIsNotStartException c) {
+                        System.out.println(c.getMessage());
+                    }
                     break;
                 case 2:
                     myCar.off();

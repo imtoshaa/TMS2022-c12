@@ -1,9 +1,9 @@
-package by.tms.model;
+package com.tms.first.model;
 
 public class GasTank {
 
     private int fullVolume;
-    private int volume;
+    private int volume = 5;
 
     public GasTank(int fullVolume) {
         this.fullVolume = fullVolume;

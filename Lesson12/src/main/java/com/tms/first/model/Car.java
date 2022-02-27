@@ -1,4 +1,8 @@
-package by.tms.model;
+package com.tms.first.model;
+
+import com.tms.first.exception.CarIsNotStartException;
+
+import java.util.Random;
 
 public class Car {
     private String model; //можно потом добавить
@@ -46,13 +50,23 @@ public class Car {
         this.bodyType = bodyType;
     }
 
-    public void on() {
-        if (gasTank.getVolume() > 0) {
-            engine.start(gasTank);
+    public void on() throws CarIsNotStartException {
+        Random random = new Random();
+        if (!engine.isOn()) {
+            if (random.nextInt(20) % 2 == 0) {
+                if (gasTank.getVolume() > 0) {
+                    engine.start(gasTank);
+                } else {
+                    System.out.println("Двигатель не запущен: нет топлива");
+                    System.out.println();
+                }
+            } else {
+                throw new CarIsNotStartException("Машина не завелась!");
+            }
         } else {
-            System.out.println("Двигатель не запущен: нет топлива");
-            System.out.println();
+            System.out.println("Хватит тыкать на единицу, машина и так заведена");
         }
+
     }
 
     public void off() {
