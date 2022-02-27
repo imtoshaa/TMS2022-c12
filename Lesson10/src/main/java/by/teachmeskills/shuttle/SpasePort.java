@@ -9,7 +9,8 @@ public class SpasePort {
     public SpasePort() {
     }
 
-    public void Start(IStart start) throws InterruptedException {
+    public void start(IStart start) throws InterruptedException {
+        //слишком много стартов просто было, поэтому случайно написал, я знаю, что методы с маленькой
         if (start.checkStart()) {
             System.out.println("Проверка прошла успешно!");
             System.out.println("Обратный отсчёт:");
