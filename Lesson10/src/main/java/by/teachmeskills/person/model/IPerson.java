@@ -1,4 +1,4 @@
-package by.teachmeskills.person;
+package by.teachmeskills.person.model;
 
 import java.math.BigDecimal;
 
