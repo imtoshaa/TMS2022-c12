@@ -15,6 +15,6 @@ public class Task5 {
     }
 
     private static boolean validate(String string) {
-        return string.matches("[a-z15]{4,20}+");
+        return string.matches("[a-z15]{4,20}");
     }
 }

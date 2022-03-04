@@ -3,6 +3,8 @@ package com.tms.stream.task2.model;
 
 import com.tms.stream.task2.utils.TextFormatterUtils;
 
+import static com.tms.stream.task2.utils.TextFormatterUtils.reformatAndSplit;
+
 public class TextHandler {
     private  String string;
     private String text;
@@ -18,7 +20,7 @@ public class TextHandler {
 
     public byte[] outPutSentences() {
         StringBuilder newString = new StringBuilder();
-        for (String str : TextFormatterUtils.reformatAndSplit(string)) {
+        for (String str : reformatAndSplit(string)) {
             if (TextFormatterUtils.checkForFromThreeToFiveWordsInSentence(str) || TextFormatterUtils.checkPalindromeInSentence(str)) {
                 newString.append(str).append("\r");
             }

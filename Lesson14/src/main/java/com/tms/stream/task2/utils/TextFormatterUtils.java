@@ -5,21 +5,23 @@ import org.apache.commons.lang3.StringUtils;
 
 @UtilityClass
 public class TextFormatterUtils {
+    private static final String SPACE = " ";
 
     public static String[] reformatAndSplit(String string) {
         return string.replace("-", "").replaceAll("\\r", "").replaceAll("\\n", "") .split("[.!?]");
     }
 
     public static boolean checkForFromThreeToFiveWordsInSentence(String string) {
-        String[] splitString = string.split(" ");
-        return splitString.length <= 5 && splitString.length >= 3;
+        String[] splitString = string.split(SPACE);
+        return splitString.length >= 3 && splitString.length <= 5;
     }
 
     public static boolean checkPalindromeInSentence(String string) {
-        String[] sentence = string.split(" ");
+        String[] sentence = string.split(SPACE);
         boolean isPalindromeInSentence = false;
         for (String str : sentence) {
-            isPalindromeInSentence = str.equalsIgnoreCase(StringUtils.reverse(str)) && str.length() > 1;
+            if (str.equalsIgnoreCase(StringUtils.reverse(str)) && str.length() > 1) //ну да, ерунду сделал, прошу прощения
+            isPalindromeInSentence = true;
         }
         return isPalindromeInSentence;
     }
@@ -33,7 +35,7 @@ public class TextFormatterUtils {
     }
 
     private static String[] getWordsFromTheSentence(String sentence) {
-        return sentence.split(" ");
+        return sentence.split(SPACE);
     }
 
     public static boolean isWordInTheSentence(String sentence, String word) {

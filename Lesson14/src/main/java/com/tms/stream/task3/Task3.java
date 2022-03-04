@@ -1,4 +1,4 @@
-package com.tms.stream.task3.service;
+package com.tms.stream.task3;
 
 import com.tms.stream.task2.model.TextHandler;
 

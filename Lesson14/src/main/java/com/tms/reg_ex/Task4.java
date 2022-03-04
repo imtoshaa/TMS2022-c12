@@ -14,8 +14,9 @@ public class Task4 {
 //     *  4) +,* - квантификаторы
 
     public static void main(String[] args) {
-        String text = "One two three fo раз два три one1 two2 123 last";
-        System.out.println(text.split("[A-Za-z].+?[A-Za-z](?=\\s)").length);
-        //сдаюсь впервые, даже стыдно на самом деле. нужна ещё большая подсказка. я всё перепробовал, что придумал
+        String text = "One two three раз два три one1 two2 123 ";
+        System.out.println(text.split("(([A-Яа-яёЁ]+) ([A-Za-z]*)|([0-9]+))").length);
+        //даже с объяснением не понял. что-то со мной не то последнее время,
+        // постараюсь исправиться на 15 домашке, обещаю
     }
 }
