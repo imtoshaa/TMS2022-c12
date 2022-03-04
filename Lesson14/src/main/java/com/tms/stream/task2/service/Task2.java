@@ -19,14 +19,15 @@ public class Task2 {
 //            * Разбиваем текст на предложения. Используя методы класса TextFormatter определяем подходит ли нам предложение.
 //     * Если подходит добавляем его в output.txt файл
     public static void main(String[] args) {
-        try (FileInputStream fileInputStream = new FileInputStream(
-                "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw2\\input.txt.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream(
-                     "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw2\\output.txt")) {
+        String input = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw2\\input.txt";
+        String output = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw2\\output.txt";
+        try (FileInputStream fileInputStream = new FileInputStream(input);
+             FileOutputStream fileOutputStream = new FileOutputStream(output)) {
             byte[] buffer = new byte[fileInputStream.available()];
             fileInputStream.read(buffer, 0, buffer.length);
             TextHandler textHandler = new TextHandler(new String(buffer));
-            fileOutputStream.write(textHandler.outPutSentences(), 0, textHandler.outPutSentences().length);
+            byte[] outputText = textHandler.outPutSentences();
+            fileOutputStream.write(outputText, 0, outputText.length);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

@@ -1,4 +1,4 @@
-package com.tms.regEx;
+package com.tms.reg_ex;
 
 public class Task1 {
 //    * По строкам дополнительная!

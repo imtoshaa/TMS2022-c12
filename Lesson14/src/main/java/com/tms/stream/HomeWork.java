@@ -1,3 +1,5 @@
+package com.tms.stream;
+
 public class HomeWork {
     /**
      * 1)В исходном файле hw1/blacklist.txt находятся слова, каждое слово на новой строке.

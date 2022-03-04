@@ -16,7 +16,7 @@ public class Main {
             oos.writeObject(car);
             Car car1 = (Car) ois.readObject();
             System.out.println(car1.toString());
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }

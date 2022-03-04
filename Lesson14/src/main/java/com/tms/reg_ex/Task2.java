@@ -1,4 +1,4 @@
-package com.tms.regEx;
+package com.tms.reg_ex;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +13,10 @@ public class Task2 {
 //     * cccab
 
     public static void main(String[] args) {
-        String text = "cab, ccab, cccab";
-        Pattern pattern = Pattern.compile("c.+?b");//ленивый, до первого совпадения
+        String text = "cab, ccab, cccab, cmb";
+        Pattern pattern = Pattern.compile("c+ab");//думал на квантификаторах вывезу, но не всегда удаётся настроить правильно.
+        //вообще именно по условию нам дана строка "cab, ccab, cccab", по условию никакого "cmb" там быть не должно
+        //так что чисто по логике я справился, использовав "c.+?b" :)
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
             System.out.println(text.substring(matcher.start(), matcher.end()));

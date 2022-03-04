@@ -1,4 +1,4 @@
-package com.tms.regEx;
+package com.tms.reg_ex;
 
 public class Task5 {
 //    *  5*)со звездочкой! В метод на вход приходит строка
@@ -15,6 +15,6 @@ public class Task5 {
     }
 
     private static boolean validate(String string) {
-        return string.matches("^[a-z15]{4,20}+$");
+        return string.matches("[a-z15]{4,20}+");
     }
 }

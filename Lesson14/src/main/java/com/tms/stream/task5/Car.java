@@ -9,21 +9,20 @@ import lombok.Setter;
 @JsonIgnoreProperties(value = { "str" })
 public class Car {
 
-    @JsonAlias ("brand_name")
-    private String brand;
-    @JsonAlias ("max_speed")
+
+    private String brand; //я потыкал в аннотацию @JsonProperty, там без вариантов вроде как, надо через конструктор
+    //в интернете поискал, тоже нет примеров, чтобы работало с двумя строками
+    @JsonProperty("max_speed")
     private int maxSpeed;
+    @JsonProperty("price")
     private int price;
 
     @JsonCreator
     public Car (
         @JsonProperty("brand_name") String brandName,
-        @JsonProperty("model_name") String modelName,
-        @JsonProperty("max_speed") int maxSpeed,
-        @JsonProperty("price") int price) {
+        @JsonProperty("model_name") String modelName) {
             this.brand = brandName + " " + modelName;
-            this.maxSpeed = maxSpeed;
-            this.price = price;
+
     }
 
     @Override

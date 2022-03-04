@@ -11,13 +11,14 @@ public class Task1 {
     //    * 1)В исходном файле hw1/blacklist.txt находятся слова, каждое слово на новой строке.
 //     * После запуска программы должен создать файл output.txt, который будет содержать в себе только палиндромы.
     public static void main(String[] args) {
-        try (FileInputStream fileInputStream = new FileInputStream(
-                "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw1\\blacklist.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream(
-                     "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\resources\\java\\hw1\\output.txt")) {
+        String input = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw1\\input.txt";
+        String output = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw1\\output.txt";
+        try (FileInputStream fileInputStream = new FileInputStream(input);
+             FileOutputStream fileOutputStream = new FileOutputStream(output)) {
             byte[] buffer = new byte[fileInputStream.available()];
             fileInputStream.read(buffer, 0, buffer.length);
-            fileOutputStream.write(outputPalindromes(buffer), 0, outputPalindromes(buffer).length);
+            byte[] palindromes = outputPalindromes(buffer);
+            fileOutputStream.write(palindromes, 0, palindromes.length);
 //            System.out.println(new String(outputPalindromes(buffer)));
         } catch (IOException e) {
             System.out.println(e.getMessage());

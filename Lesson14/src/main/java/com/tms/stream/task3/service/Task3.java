@@ -1,6 +1,6 @@
 package com.tms.stream.task3.service;
 
-import com.tms.stream.task3.model.TextHandler;
+import com.tms.stream.task2.model.TextHandler;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -18,18 +18,19 @@ public class Task3 {
 //     * Если нет, то выводите соответствующее сообщение, кол-во предложений не
 //     прошедших проверку и сами предложения подлежащие исправлению.
     public static void main(String[] args) {
-        try (FileInputStream fisText = new FileInputStream(
-                "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\input.txt");
-             FileInputStream fisBlackList = new FileInputStream(
-                     "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\blacklist.txt");
-             FileOutputStream fileOutputStream = new FileOutputStream(
-                     "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\output.txt")) {
+        String input = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\input.txt";
+        String blackList = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\blacklist.txt";
+        String output = "D:\\WorkProgrammer\\TMS2022-c12\\Lesson14\\src\\main\\resources\\hw3\\output.txt";
+        try (FileInputStream fisText = new FileInputStream(input);
+             FileInputStream fisBlackList = new FileInputStream(blackList);
+             FileOutputStream fileOutputStream = new FileOutputStream(output)) {
             byte[] buffer = new byte[fisText.available()];
             byte[] blacklist = new byte[fisBlackList.available()];
             fisText.read(buffer, 0, buffer.length);
             fisBlackList.read(blacklist, 0, blacklist.length);
             TextHandler textHandler = new TextHandler(new String(buffer), new String(blacklist));
-            fileOutputStream.write(textHandler.outPutSentences(), 0, textHandler.outPutSentences().length);
+            byte[] outPutText = textHandler.outPutCensoredSentence();
+            fileOutputStream.write(outPutText, 0, outPutText.length);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

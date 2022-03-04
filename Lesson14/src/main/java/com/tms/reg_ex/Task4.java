@@ -1,7 +1,4 @@
-package com.tms.regEx;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+package com.tms.reg_ex;
 
 public class Task4 {
 //    4*)со звездочкой! Предложение состоит из нескольких слов, разделенных пробелами.
@@ -17,7 +14,8 @@ public class Task4 {
 //     *  4) +,* - квантификаторы
 
     public static void main(String[] args) {
-        String text = "One two three раз два три one1 two2 123 last";
-        System.out.println(text.split("[a-zA-Z].+?([a-zA-Z]+ | \\s)").length);
+        String text = "One two three fo раз два три one1 two2 123 last";
+        System.out.println(text.split("[A-Za-z].+?[A-Za-z](?=\\s)").length);
+        //сдаюсь впервые, даже стыдно на самом деле. нужна ещё большая подсказка. я всё перепробовал, что придумал
     }
 }
