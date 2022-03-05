@@ -8,7 +8,7 @@ public class TextFormatterUtils {
     private static final String SPACE = " ";
 
     public static String[] reformatAndSplit(String string) {
-        return string.replace("-", "").replaceAll("\\r", "").replaceAll("\\n", "") .split("[.!?]");
+        return string.replace("-", "").replaceAll("\\r", "").replaceAll("\\n", "").split("[.!?]");
     }
 
     public static boolean checkForFromThreeToFiveWordsInSentence(String string) {
@@ -20,8 +20,9 @@ public class TextFormatterUtils {
         String[] sentence = string.split(SPACE);
         boolean isPalindromeInSentence = false;
         for (String str : sentence) {
-            if (str.equalsIgnoreCase(StringUtils.reverse(str)) && str.length() > 1) //ну да, ерунду сделал, прошу прощения
-            isPalindromeInSentence = true;
+            if (str.equalsIgnoreCase(StringUtils.reverse(str)) && str.length() > 1) { //ну да, ерунду сделал, прошу прощения
+                isPalindromeInSentence = true;
+            }
         }
         return isPalindromeInSentence;
     }

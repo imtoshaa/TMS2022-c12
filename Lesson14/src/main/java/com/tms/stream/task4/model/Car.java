@@ -13,7 +13,7 @@ public class Car implements Serializable {
 
     private final String brand;
     private final String engineType;
-    final transient private int numberOfCylinders;
+    private final transient int numberOfCylinders;
     private final String fuelType;
     private final int volumeOfGasTank;
     private final int speed;
