@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Animals implements AnimalsAware, Serializable {
 
-    String name;
-    int age;
+    private String name;
+    private int age;
 
     public Animals(String name, int age) {
         this.name = name;
