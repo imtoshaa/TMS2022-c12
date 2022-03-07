@@ -1,7 +1,7 @@
 package task2.service;
 
 import task2.model.Animals;
-import task2.model.GenericTest;
+import task2.model.Generic;
 
 public class Task2 {
 //    * 2) Обобщенный класс с тремя параметрами
@@ -13,7 +13,7 @@ public class Task2 {
 //     * V должен реализовать интерфейс Serializable и расширять класс Animal, K должен расширять класс Number.
 
     public static void main(String[] args) {
-        GenericTest<String, Animals, Double> genericTest = new GenericTest<>("строка", new Animals("Маша", 11), 1.2);
+        Generic<String, Animals, Double> genericTest = new Generic<>("строка", new Animals("Маша", 11), 1.2);
         System.out.println(genericTest.getK());
         System.out.println(genericTest.getT());
         System.out.println(genericTest.getV());

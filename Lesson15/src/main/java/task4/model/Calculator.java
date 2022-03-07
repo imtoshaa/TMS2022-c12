@@ -3,6 +3,9 @@ package task4.model;
 //        * subtraction. Параметры этих методов  - два числа разного типа, над которыми должна быть произведена операция.
 //        */
 
+import lombok.experimental.UtilityClass;
+
+@UtilityClass
 public class Calculator {
 
     public static <T extends Number, K extends Number> double sum(T t, K k) {

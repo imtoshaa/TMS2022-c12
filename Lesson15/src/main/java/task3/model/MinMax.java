@@ -6,13 +6,16 @@ import lombok.Getter;
 //     * Массив является переменной класса. Массив должен передаваться в класс через конструктор.
 //     * Написать метод принимающий MinMax объект и печатающий информацию об элементах.
 @Getter
-public class MinMax <T extends Number & Comparable<? super T>> {
-
+public class MinMax<T extends Number & Comparable<? super T>> {
 
     private final T[] arrayOfNumbers;
 
-    public MinMax(T[] array) {
-        this.arrayOfNumbers = array;
+    public MinMax(T[] array) throws Exception {
+        if (array != null) {
+            this.arrayOfNumbers = array;
+        } else {
+            throw new Exception();
+        }
     }
 
     public T[] sortArray() { //решил вспомнить сортировку пузырьками;
@@ -20,10 +23,10 @@ public class MinMax <T extends Number & Comparable<? super T>> {
 //        чем будет два раза идти одна и та же процедура перебора этого массива
         for (int i = arrayOfNumbers.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
-                if (arrayOfNumbers[j].compareTo(arrayOfNumbers[j+1]) > 0) {
+                if (arrayOfNumbers[j].compareTo(arrayOfNumbers[j + 1]) > 0) {
                     T temp = arrayOfNumbers[j];
-                    arrayOfNumbers[j] = arrayOfNumbers[j+1];
-                    arrayOfNumbers[j+1] = temp;
+                    arrayOfNumbers[j] = arrayOfNumbers[j + 1];
+                    arrayOfNumbers[j + 1] = temp;
                 }
             }
         }
