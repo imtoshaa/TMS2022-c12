@@ -1,27 +1,28 @@
 package by.tms.model;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.Comparator;
+import lombok.*;
+import java.util.Objects;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
+@AllArgsConstructor
 public class Product {
 
     private long id;
     private String name;
     private double price;
 
-    public Product(long id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -1,36 +1,27 @@
 package by.tms.service;
 
-import by.tms.exceptions.RepeatIdException;
 import by.tms.model.Product;
-import by.tms.model.Shop;
+import by.tms.model.ShopAware;
 
 import java.util.Scanner;
 
 public class MenuApplication {
-    Scanner scanner = new Scanner(System.in);
-    Shop shop = new Shop();
+    private final Scanner scanner = new Scanner(System.in);
+    private final ShopAware shop;
 
-    {
-        try {
-            shop.addProduct(new Product(1, "Картошка", 12));
-            shop.addProduct(new Product(2, "Морковка", 25));
-            shop.addProduct(new Product(3, "Томат", 16));
-            shop.addProduct(new Product(4, "Яйцо", 14));
-        } catch (RepeatIdException e) {
-            e.printStackTrace();
-        }
-
+    public MenuApplication(ShopAware shop) {
+        this.shop = shop;
     }
 
     public void start() {
+        System.out.println("Приветствуем в магазине!");
         while (true) {
-            System.out.println("Приветствуем в магазине!");
             System.out.println("*****Меню взаимодействия*****");
             System.out.println("Выберите действие:");
             System.out.println("""
                     * 1 - вывести список товаров
                     * 2 - добавить новый товар в список
-                    * 3 - изменение товара товара
+                    * 3 - изменение товара
                     * 4 - удалить товар
                     * 0 - выход из меню взаимодействия
                     """);
@@ -72,10 +63,12 @@ public class MenuApplication {
                     double price = scanner.nextInt();
                     try {
                         shop.addProduct(new Product(id, name, price));
+                        System.out.println("Добавление прошло успешно!");
+                        System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println();
                     }
-                    System.out.println();
                     break;
                 case 3:
                     System.out.println("Введите идентификационный номер товара, который хотите изменить");
@@ -86,22 +79,24 @@ public class MenuApplication {
                     double newPrice = scanner.nextDouble();
                     try {
                         shop.edit(new Product(idForEdit, newName, newPrice));
+                        System.out.println("Изменение прошло успешно!");
+                        System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println();
                     }
-                    System.out.println("Изменение прошло успешно!");
-                    System.out.println();
                     break;
                 case 4:
                     System.out.println("Введите идентификационный номер товара, который хотите удалить");
                     long idForDelete = scanner.nextLong();
                     try {
                         shop.deleteById(idForDelete);
+                        System.out.println("Удаление прошло успешно!");
+                        System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        System.out.println();
                     }
-                    System.out.println("Удаление прошло успешно!");
-                    System.out.println();
                     break;
                 case 0:
                     System.out.println("Выход из меню магазина...");
