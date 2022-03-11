@@ -7,11 +7,11 @@ import java.util.Collection;
 
 public interface ShopAware {
 
-    public void addProduct(Product product) throws RepeatIdException;
-    public Collection<Product> getAllProducts();
-    public void deleteById(Long id) throws ProductIsNotFound;
-    public void edit(Product product) throws ProductIsNotFound;
-    public Collection<Product> sortByAscendingPrices();
-    public Collection<Product> sortByDescendingPrices();
-    public Collection<Product> sortByDateOfAddition();
+    void addProduct(Product product) throws RepeatIdException;
+    Collection<Product> getAllProducts();
+    void deleteById(Long id) throws ProductIsNotFound;
+    void edit(Product product) throws ProductIsNotFound;
+    Collection<Product> sortByAscendingPrices();
+    Collection<Product> sortByDescendingPrices();
+    Collection<Product> sortByDateOfAddition();
 }

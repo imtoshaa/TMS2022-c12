@@ -67,7 +67,6 @@ public class MenuApplication {
                         System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        System.out.println();
                     }
                     break;
                 case 3:
@@ -83,7 +82,6 @@ public class MenuApplication {
                         System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        System.out.println();
                     }
                     break;
                 case 4:
@@ -95,7 +93,6 @@ public class MenuApplication {
                         System.out.println();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
-                        System.out.println();
                     }
                     break;
                 case 0:

@@ -7,16 +7,16 @@ import java.util.*;
 
 public class Shop implements ShopAware {
 
-    private final LinkedHashSet<Product> products;
+    private final Set<Product> products;
 
-    public Shop(Collection<Product> products) {
-        this.products = (LinkedHashSet<Product>) products;
+    public Shop(Set<Product> products) {
+        this.products = products;
     }
 
     @Override
     public void addProduct(Product product) throws RepeatIdException {
         if (!products.add(product)) {
-                throw new RepeatIdException("Товар с данным id существует!");
+                throw new RepeatIdException("Товар с id" + product.getId() + "не существует!");
         }
     }
 

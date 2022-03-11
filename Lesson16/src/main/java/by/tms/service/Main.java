@@ -2,11 +2,10 @@ package by.tms.service;
 
 import by.tms.model.Product;
 import by.tms.model.Shop;
-import by.tms.model.ShopAware;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,7 +32,7 @@ public class Main {
 //        shop.edit(new Product(12347, "Апельсин", 15));
 //        System.out.println(shop.getAllProducts().toString());
 
-        LinkedHashSet<Product> products = new LinkedHashSet<>(List.of(
+        Set<Product> products = new LinkedHashSet<>(List.of(
                 new Product(1, "Картошка", 12),
                 new Product(2, "Морковка", 25),
                 new Product(3, "Томат", 16),
