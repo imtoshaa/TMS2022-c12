@@ -53,15 +53,6 @@ public class Library {
 
 
     public boolean checkBookOfPushkin() {
-//        readers.stream()
-//                .map(Reader::getBooks)
-//                .forEach(books1 -> books1.stream()
-//                        .map(Book::getAuthor)
-//                        .forEach(s -> {
-//                            if (s.equals("Александр Сергеевич Пушкин")) {
-//                                isTrue.set(true);
-//                            }
-//                        }));
         return readers.stream()
                 .flatMap(reader -> reader.getBooks().stream())
                 //завернули книжки в стрии
