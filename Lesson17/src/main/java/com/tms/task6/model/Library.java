@@ -53,29 +53,32 @@ public class Library {
 
 
     public boolean checkBookOfPushkin() {
-        AtomicBoolean isTrue = new AtomicBoolean(false);
-        readers.stream()
-                .map(Reader::getBooks)
-                .forEach(books1 -> books1.stream()
-                        .map(Book::getAuthor)
-                        .forEach(s -> {
-                            if (s.equals("Александр Сергеевич Пушкин")) {
-                                isTrue.set(true);
-                            }
-                        }));
-        return isTrue.get();
+//        readers.stream()
+//                .map(Reader::getBooks)
+//                .forEach(books1 -> books1.stream()
+//                        .map(Book::getAuthor)
+//                        .forEach(s -> {
+//                            if (s.equals("Александр Сергеевич Пушкин")) {
+//                                isTrue.set(true);
+//                            }
+//                        }));
+        return readers.stream()
+                .flatMap(reader -> reader.getBooks().stream())
+                //завернули книжки в стрии
+                .anyMatch(book -> book.getAuthor().equals("Александр Сергеевич Пушкин"));
+        //вернули boolean
     }
 
-    public int getMaxNumberOfBook() {
-        AtomicInteger count = new AtomicInteger(); //я знаю, что это потоконезащищено, но т.к. мы работаем с одним потоком, то почему нет
-        readers.stream()
+    public Optional<Integer> getMaxNumberOfBook() {
+        return readers.stream()
                 .map(Reader::getBooks)
-                .forEach(books1 -> {
-                    if (books1.size() > count.get()) {
-                        count.set(books1.size());
+                .map(List::size)
+                .reduce((integer, integer2) -> {
+                    if (integer >= integer2) {
+                        return integer;
                     }
+                    return integer2;
                 });
-        return count.get();
     }
 
     public ArrayList<String> getTwoListOfReaders() {
@@ -91,7 +94,6 @@ public class Library {
                 .reduce("OK: {", (s, s2) -> s + s2)
                 .concat("}")
                 .replace(", }", "}");
-
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add(TOO_MUCH);
         arrayList.add(OK);

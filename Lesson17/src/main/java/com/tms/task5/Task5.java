@@ -33,6 +33,17 @@ public class Task5 {
         } else {
             System.out.println("Not present!");
         }
-        System.out.println(office.getLetterAndNumberOfEmployees());
+        office.getLetterAndNumberOfEmployees()
+                .forEach((s, aLong) -> {
+                    if (aLong % 10 == 1) {
+                        System.out.println(s + " - " + aLong + " сотрудник");
+                    }
+                    if (aLong % 10 >= 2 && aLong % 10 <= 4) {
+                        System.out.println(s + " - " + aLong + " сотрудника");
+                    }
+                    if (aLong % 10 >= 5) {
+                        System.out.println(s + " - " + aLong + " сотрудников");
+                    }
+                });
     }
 }

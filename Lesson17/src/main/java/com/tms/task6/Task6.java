@@ -8,6 +8,7 @@ import com.tms.task6.model.Reader;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public class Task6 {
@@ -63,7 +64,12 @@ public class Task6 {
         library.getAllBooksWhichReaderTook().forEach(System.out::println); //книги на руках у читателей с учётом того,
         // что у читателя на руках более двух книг
         System.out.println();
-        System.out.println("Максимальное количество книг на руках у читателей = " + library.getMaxNumberOfBook());
+        Optional<Integer> count = library.getMaxNumberOfBook();
+        if (count.isPresent()) {
+            System.out.println("Максимальное количество книг на руках у читателей = " + count.get());
+        } else {
+            System.out.println("Not present!");
+        }
         //макс количество книг на руках
         System.out.println();
         library.getTwoListOfReaders().forEach(System.out::println);

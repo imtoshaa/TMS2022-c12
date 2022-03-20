@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -30,29 +31,20 @@ public class Office implements OfficeAware {
     }
 
     @Override
-    public String getLetterAndNumberOfEmployees() {
+    public Map<String, Long> getLetterAndNumberOfEmployees() {
+//                .forEach((s, aLong) ->  {
+//                    if (aLong % 10 == 1) {
+//                        s = s + " - " + aLong + " сотрудник" + '\n';
+//                    }
+//                    if (aLong % 10 >= 2 && aLong % 10 <= 4) {
+//                        s = s + " - " + aLong + " сотрудника" + '\n';
+//                    }
+//                    if (aLong % 10 >= 5) {
+//                        s = s + " - " + aLong + " сотрудников" + '\n';
+//                    }
+//                });
         return personList.stream()
                 .map(Person::getLastName)
-                .map(s -> s = String.valueOf(s.toCharArray()[0]))
-                .distinct()
-                .map(s -> {
-                    int count = 0;
-                    for (Person person : personList) {
-                        if (s.equals(String.valueOf(person.getLastName().toCharArray()[0]))) {
-                            count++;
-                        }
-                    }
-                    if (count % 10 == 1) {
-                        return s + " - " + count + " сотрудник" + '\n';
-                    }
-                    if (count % 10 >= 2 && count % 10 <= 4) {
-                        return s + " - " + count + " сотрудника" + '\n';
-                    }
-                    if (count % 10 >= 5) {
-                        return s + " - " + count + " сотрудников" + '\n';
-                    }
-                    return "null";
-                })
-                .collect(Collectors.joining());
+                .collect(Collectors.groupingBy(s -> String.valueOf(s.toCharArray()[0]), Collectors.counting()));
     }
 }

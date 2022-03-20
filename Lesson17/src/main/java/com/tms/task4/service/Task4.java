@@ -24,7 +24,8 @@ public class Task4 {
                 new Car("AI3838PP", 2017));
 
         cars.stream()
-                .filter(car -> car.getNumber() != null && car.getYear() > 2010)
-                .forEach(car -> System.out.println(car.getNumber()));
+                .filter(car -> car.getNumber() != null && !car.getNumber().equals("") && car.getYear() > 2010)
+                .map(Car::getNumber)
+                .forEach(System.out::println);
     }
 }
