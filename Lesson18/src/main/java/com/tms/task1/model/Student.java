@@ -36,8 +36,10 @@ public class Student {
     }
 
     private List<Integer> getGrades() {
-        grades = new ArrayList<>(); //просто я почитал, что паттерн "ленивая инициализация" реализовывется именно вот так,
+        if (grades == null) {
+            grades = new ArrayList<>(); //просто я почитал, что паттерн "ленивая инициализация" реализовывется именно вот так,
 //        как было написано
+        }
         return grades;
     }
 }

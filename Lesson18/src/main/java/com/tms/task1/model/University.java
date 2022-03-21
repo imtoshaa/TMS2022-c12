@@ -30,7 +30,7 @@ public class University {
                         return "Студент " + student.getName() + " перевёлся на " + student.getCourse()
                                 + " курс со средним баллом " + student.getAverageScore() + "\n";
                     }
-                    return "Студент " + student.getName() + " отчислен!";
+                    return "Студент " + student.getName() + " отчислен!" + '\n';
                 })
                 .collect(Collectors.joining());
     }
