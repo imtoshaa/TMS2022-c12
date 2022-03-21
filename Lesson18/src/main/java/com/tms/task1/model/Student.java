@@ -19,10 +19,12 @@ public class Student {
     private boolean isStudies;
 
     public double getAverageScore() {
-        OptionalDouble average = getGrades().stream()
-                .mapToInt(value -> value).average();
-        return average.getAsDouble(); //теперь по идее поток будет в любом случае, можно и не проверять optional,
-//        но всё равно подсвечивается
+        return getGrades().stream()
+                .mapToInt(value -> value)
+                // а тут без разницы. операция проходит одна и та же, но поток дабл занимает в два раза больше памяти, чем инт
+                //в листе то хранятся инты, а дабл мы получаем уже после average. так что без разницы
+                .average()
+                .orElse(0.0);
     }
 
     public void upCourse() {
@@ -34,9 +36,8 @@ public class Student {
     }
 
     private List<Integer> getGrades() {
-        if (grades == null) {
-            grades = List.of(0);
-        }
+        grades = new ArrayList<>(); //просто я почитал, что паттерн "ленивая инициализация" реализовывется именно вот так,
+//        как было написано
         return grades;
     }
 }
