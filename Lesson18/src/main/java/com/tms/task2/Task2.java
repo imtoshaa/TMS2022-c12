@@ -18,14 +18,20 @@ public class Task2 {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String s = reader.readLine();
         //меняем знаки пунктуации на пробелы и сплитим по пробелам
-        s.lines().map(s1 -> s1.toLowerCase().replaceAll("[\\p{Punct}]", " ").split("\\s+"))
+        s.lines()
+                .map(s1 -> s1.toLowerCase()
+                        .replaceAll("[\\p{Punct}]", " ")
+                        .split("\\s+"))
                 .flatMap(Arrays::stream)
                 //как в лессон 17
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
-                .entrySet().stream().
-                sorted(Map.Entry.comparingByKey()).sorted(Comparator.comparing((Function<Map.Entry<String, Long>, Long>) Map.Entry::getValue)
+                .entrySet()
+                .stream().
+                sorted(Map.Entry.comparingByKey())
+                .sorted(Comparator.comparing((Function<Map.Entry<String, Long>, Long>) Map.Entry::getValue)
                         .reversed())
-                .map(Map.Entry::getKey).limit(10)
+                .map(Map.Entry::getKey)
+                .limit(10)
                 .forEach(System.out::println);
     }
 

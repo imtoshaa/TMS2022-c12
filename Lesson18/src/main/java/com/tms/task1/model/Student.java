@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.OptionalDouble;
+import java.util.*;
 
 @Getter
 @AllArgsConstructor
@@ -16,19 +13,16 @@ import java.util.OptionalDouble;
 public class Student {
     private final String name;
     private final int group;
-    private final List<Integer> grades;
+    private List<Integer> grades;
     @Setter
     private int course;
     private boolean isStudies;
 
-    public double getAverageScore() throws Exception {
-        OptionalDouble average = grades.stream()
+    public double getAverageScore() {
+        OptionalDouble average = getGrades().stream()
                 .mapToInt(value -> value).average();
-        if (average.isPresent()) {
-            return average.getAsDouble();
-        } else {
-            throw new Exception("Ошибка!");
-        }
+        return average.getAsDouble(); //теперь по идее поток будет в любом случае, можно и не проверять optional,
+//        но всё равно подсвечивается
     }
 
     public void upCourse() {
@@ -37,5 +31,12 @@ public class Student {
 
     public void dismiss() {
         isStudies = false;
+    }
+
+    private List<Integer> getGrades() {
+        if (grades == null) {
+            grades = List.of(0);
+        }
+        return grades;
     }
 }

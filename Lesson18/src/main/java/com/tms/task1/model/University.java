@@ -12,30 +12,26 @@ import java.util.stream.Collectors;
 public class University {
     private List<Student> students;
 
-    public String viewingStudentProgress() throws Exception {
+    public String viewingStudentProgress() {
         return students.stream()
-                .map(student -> {
-                    try {
-                        if (student.getAverageScore() >= 3) {
-                            student.upCourse();
-                        } else {
-                            student.dismiss();
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                .peek(student -> {
+                    if (student.getAverageScore() >= 3) {
+                        student.upCourse();
+                    } else {
+                        student.dismiss();
                     }
-                    return student;
                 })
-                .filter(Student::isStudies)
                 .map(student -> {
-                    try {
+                    if (student.isStudies() && student.getCourse() > 5) {
+                        return "Студент " + student.getName() + " выпустился из университета со средним баллом " +
+                                student.getAverageScore() + "\n";
+                    }
+                    if (student.isStudies() && student.getCourse() <= 5) {
                         return "Студент " + student.getName() + " перевёлся на " + student.getCourse()
                                 + " курс со средним баллом " + student.getAverageScore() + "\n";
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
-                    return "Что-то пошло не так. Проверьте оценки ученика!";
+                    return "Студент " + student.getName() + " отчислен!";
                 })
-                .collect(Collectors.joining()) + "ОСТАЛЬНЫЕ ОТЧИСЛЕНЫ!";
+                .collect(Collectors.joining());
     }
 }
