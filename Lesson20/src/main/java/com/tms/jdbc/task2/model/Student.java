@@ -1,63 +1,28 @@
 package com.tms.jdbc.task2.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 public class Student {
     private int id;
     private String name;
     private String surname;
     private int course;
+    private String nativeCity;
+    private String currentCity;
 
-    public Student(int id, String name, String surname, int course) {
-        this.id = id;
+    public Student(String name, String surname, int course, String nativeCity, String currentCity) {
         this.name = name;
         this.surname = surname;
         this.course = course;
+        this.nativeCity = nativeCity;
+        this.currentCity = currentCity;
     }
 
-    public Student(String name, String surname, int course) {
-        this.name = name;
-        this.surname = surname;
-        this.course = course;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getCourse() {
-        return course;
-    }
-
-    public void setCourse(int course) {
-        this.course = course;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", course=" + course +
-                '}';
-    }
 }

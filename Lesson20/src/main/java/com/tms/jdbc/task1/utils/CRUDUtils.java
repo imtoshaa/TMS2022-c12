@@ -10,6 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Посмотрите в пакете resources файл initProducts.sql
+ * */
+
 @UtilityClass
 public class CRUDUtils {
     private static final String GET_ALL_PRODUCTS_QUERY = "SELECT * FROM products";
