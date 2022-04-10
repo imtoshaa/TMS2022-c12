@@ -1,34 +1,23 @@
---------------------------------------------------------
---  DDL for schema students_db
---------------------------------------------------------
 DROP SCHEMA IF EXISTS students_db;
 CREATE SCHEMA IF NOT EXISTS students_db;
-
---------------------------------------------------------
---  DDL for Table students_db
---------------------------------------------------------
-DROP TABLE IF EXISTS students_db.students;
-CREATE TABLE IF NOT EXISTS students_db.students
-(
-    id      INT          NOT NULL AUTO_INCREMENT,
-    name    VARCHAR(45)  NOT NULL,
-    surname VARCHAR(100) NOT NULL,
-    course  INT          NOT NULL,
-    PRIMARY KEY (id)
-);
-
---------------------------------------------------------
---  DML for Table students_db
---------------------------------------------------------
 
 DROP TABLE IF EXISTS students_db.city;
 CREATE TABLE IF NOT EXISTS students_db.city
 (
-    idCity
-                INT         NOT NULL AUTO_INCREMENT,
+    idCity      INT PRIMARY KEY AUTO_INCREMENT,
     nativeCity  VARCHAR(45) NOT NULL,
-    currentCity VARCHAR(45) NOT NULL,
-    FOREIGN KEY (idCity) REFERENCES students (id)
+    currentCity VARCHAR(45) NOT NULL
+);
+
+DROP TABLE IF EXISTS students_db.students;
+CREATE TABLE IF NOT EXISTS students_db.students
+(
+    id      INT PRIMARY KEY AUTO_INCREMENT,
+    city_id INT,
+    name    VARCHAR(45)  NOT NULL,
+    surname VARCHAR(100) NOT NULL,
+    course  INT          NOT NULL,
+    FOREIGN KEY (city_id) REFERENCES city (idCity) ON DELETE CASCADE
 );
 
 INSERT INTO students_db.students(name, surname, course)

@@ -104,16 +104,15 @@ public class CRUDUtils {
         List<Student> updatedStudents = new ArrayList<>();
 
         try (Connection connection = DbUtils.getConnection()) {
-            PreparedStatement studentCityStatement = connection.prepareStatement(DELETE_STUDENT_CITY_QUERY);
+//            PreparedStatement studentCityStatement = connection.prepareStatement(DELETE_STUDENT_CITY_QUERY);
             PreparedStatement studentStatement = connection.prepareStatement(DELETE_STUDENT_QUERY);
 
-            studentCityStatement.setInt(1, studentId);
+//            studentCityStatement.setInt(1, studentId);
             studentStatement.setInt(1, studentId);
 
 
-            studentCityStatement.execute(); //сначала удаляем города, чтобы поломалась связь
-            studentStatement.execute(); //потом удаляем студента
-            //или это можно как то культурнее сделать?
+//            studentCityStatement.execute();
+            studentStatement.execute();
 
             updatedStudents = getAllStudents();
 
