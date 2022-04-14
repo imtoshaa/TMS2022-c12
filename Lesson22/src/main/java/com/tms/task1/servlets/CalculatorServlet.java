@@ -1,5 +1,8 @@
 package com.tms.task1.servlets;
 
+import com.tms.task1.utils.Calculator;
+import com.tms.task2.model.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,15 +11,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_EMAIL;
+import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_PASS;
 import static com.tms.task1.utils.Calculator.*;
 
 @WebServlet("/calculate")
 public class CalculatorServlet extends HttpServlet {
 
+    /*
+     * Калькулятор - защищённая страница, проходит в doGet проверка на юзера в сессии
+     * Если проверка false, то редирект на логин
+     * Если логинимся неправильно - выкидываем снова на страницу с логином
+     * */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/calculate.html");
-        requestDispatcher.forward(req, resp);
+        User user = new User(ADMIN_EMAIL, ADMIN_PASS);
+        if (req.getSession().getAttribute("user") != null
+                && req.getSession().getAttribute("user").equals(user)) {
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/calculate.html");
+            requestDispatcher.forward(req, resp);
+        } else {
+            resp.sendRedirect("/login.html");
+        }
     }
 
     @Override
