@@ -32,7 +32,8 @@ public class CalculatorServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/calculate.html");
             requestDispatcher.forward(req, resp);
         } else {
-            resp.sendRedirect("/login.html");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/login.html");
+            requestDispatcher.forward(req, resp);
         }
     }
 

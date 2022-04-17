@@ -30,7 +30,8 @@ public class LoginServlet extends HttpServlet {
             resp.sendRedirect("/login.html");
         } else {
             req.getSession().setAttribute("user", new User(ADMIN_EMAIL, ADMIN_PASS));
-            resp.sendRedirect("/calculate");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/calculate.html");
+            requestDispatcher.forward(req, resp);
         }
     }
 }
