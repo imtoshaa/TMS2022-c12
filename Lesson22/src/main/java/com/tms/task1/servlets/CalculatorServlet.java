@@ -1,5 +1,6 @@
-package com.tms.task2.task1.servlets;
+package com.tms.task1.servlets;
 
+import com.tms.task1.utils.Calculator;
 import com.tms.task2.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.tms.task2.task1.utils.AdminPasswordConstant.ADMIN_EMAIL;
-import static com.tms.task2.task1.utils.AdminPasswordConstant.ADMIN_PASS;
-import static com.tms.task2.task1.utils.Calculator.*;
+import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_EMAIL;
+import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_PASS;
+import static com.tms.task1.utils.Calculator.*;
 
 @WebServlet("/calculate")
 public class CalculatorServlet extends HttpServlet {
