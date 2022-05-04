@@ -68,66 +68,30 @@ public class CRUDUtils {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2,pass);
             ResultSet rs =  preparedStatement.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String log = rs.getString("login");
-                String name = rs.getString("name");
-                String password = rs.getString("password");
-                String surname = rs.getString("surname");
-                String img = rs.getString("img");
-                String info = rs.getString("info");
-                user = User.builder()
-                        .id(id)
-                        .login(log)
-                        .name(name)
-                        .surname(surname)
-                        .password(password)
-                        .img(img)
-                        .info(info)
-                        .build();
-            }
-
+            user = createUser(rs);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return user;
     }
 
-    public static boolean checkUser(User user) {
-        User userBD = null;
+    public static boolean checkUser(User checkedUser) {
+        User user = null;
         try (Connection connection = DbUtils.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_USER_QUERY);
-            preparedStatement.setInt(1, user.getId());
-            preparedStatement.setString(2, user.getLogin());
-            preparedStatement.setString(3, user.getName());
-            preparedStatement.setString(4, user.getSurname());
-            preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setString(6, user.getImg());
-            preparedStatement.setString(7, user.getInfo());
+            preparedStatement.setInt(1, checkedUser.getId());
+            preparedStatement.setString(2, checkedUser.getLogin());
+            preparedStatement.setString(3, checkedUser.getName());
+            preparedStatement.setString(4, checkedUser.getSurname());
+            preparedStatement.setString(5, checkedUser.getPassword());
+            preparedStatement.setString(6, checkedUser.getImg());
+            preparedStatement.setString(7, checkedUser.getInfo());
             ResultSet rs =  preparedStatement.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String log = rs.getString("login");
-                String name = rs.getString("name");
-                String password = rs.getString("password");
-                String surname = rs.getString("surname");
-                String img = rs.getString("img");
-                String info = rs.getString("info");
-                userBD = User.builder()
-                        .id(id)
-                        .login(log)
-                        .name(name)
-                        .surname(surname)
-                        .password(password)
-                        .img(img)
-                        .info(info)
-                        .build();
-            }
-
+            user = createUser(rs);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return user.equals(userBD);
+        return checkedUser.equals(user);
     }
 
     public static boolean checkUserByLogin(String login) {
@@ -160,6 +124,20 @@ public class CRUDUtils {
         return product;
     }
 
+    public static void registerUser(User user) {
+        try (Connection connection = DbUtils.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER_QUERY);
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getSurname());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getInfo());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     private static Product createProduct(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");
@@ -175,17 +153,26 @@ public class CRUDUtils {
                 .build();
     }
 
-    public static void registerUser(User user) {
-        try (Connection connection = DbUtils.getConnection()) {
-            PreparedStatement preparedStatement = connection.prepareStatement(REGISTER_USER_QUERY);
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getSurname());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setString(5, user.getInfo());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+    private static User createUser(ResultSet rs) throws SQLException {
+        User user = null;
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            String log = rs.getString("login");
+            String name = rs.getString("name");
+            String password = rs.getString("password");
+            String surname = rs.getString("surname");
+            String img = rs.getString("img");
+            String info = rs.getString("info");
+            user = User.builder()
+                    .id(id)
+                    .login(log)
+                    .name(name)
+                    .surname(surname)
+                    .password(password)
+                    .img(img)
+                    .info(info)
+                    .build();
         }
+        return user;
     }
 }
