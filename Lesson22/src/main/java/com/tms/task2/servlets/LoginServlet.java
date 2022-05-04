@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_EMAIL;
-import static com.tms.task1.utils.AdminPasswordConstant.ADMIN_PASS;
+import static com.tms.task2.task1.utils.AdminPasswordConstant.ADMIN_EMAIL;
+import static com.tms.task2.task1.utils.AdminPasswordConstant.ADMIN_PASS;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
