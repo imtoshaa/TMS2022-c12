@@ -1,7 +1,6 @@
 package by.teachmeskills.eshop.servlets;
 
 import by.teachmeskills.eshop.model.User;
-import by.teachmeskills.eshop.utils.CRUDUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import static by.teachmeskills.eshop.utils.CRUDUtils.*;
+import static by.teachmeskills.eshop.utils.CRUDUtils.getProductsByCategoryName;
+import static by.teachmeskills.eshop.utils.UserAuthenticationUtils.isAuthenticated;
 
 @WebServlet("/category")
 public class CategoryServlet extends HttpServlet {
@@ -21,7 +22,7 @@ public class CategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
-        if (user != null && checkUser(user)) {
+        if (isAuthenticated(user)) {
             String categoryName = req.getParameter("categoryName");
             List<Product> products = getProductsByCategoryName(categoryName);
             req.setAttribute("categoryName", categoryName.toUpperCase(Locale.ROOT));
