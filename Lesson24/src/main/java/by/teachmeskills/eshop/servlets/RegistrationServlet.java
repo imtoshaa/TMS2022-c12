@@ -1,5 +1,6 @@
 package by.teachmeskills.eshop.servlets;
 
+import by.teachmeskills.eshop.model.Cart;
 import by.teachmeskills.eshop.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -28,7 +29,8 @@ public class RegistrationServlet extends HttpServlet {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
         String info = req.getParameter("info");
-        User test = getUserByLoginAndPassword(login, password);
+        String email = req.getParameter("email");
+        String birthday = req.getParameter("birthday");
         if (checkUserByLogin(login)) {
             User user = User.builder()
                     .login(login)
@@ -36,6 +38,9 @@ public class RegistrationServlet extends HttpServlet {
                     .name(name)
                     .surname(surname)
                     .info(info)
+                    .cart(new Cart())
+                    .email(email)
+                    .birthday(birthday)
                     .build();
             registerUser(user);
             RequestDispatcher rd = req.getRequestDispatcher("/login");

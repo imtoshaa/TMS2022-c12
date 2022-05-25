@@ -23,7 +23,7 @@
             <a class="nav-link" href="/mypage.jsp">MyPage</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Корзина</a>
+            <a class="nav-link" href="${contextPath}/cart">Корзина</a>
         </li>
     </ul>
     <form class="form-inline" action="#">

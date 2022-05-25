@@ -19,7 +19,7 @@ public class CRUDUtils {
     private static final String GET_USER_BY_NAME_AND_PASS_QUERY = "SELECT * FROM USERS WHERE LOGIN = ? AND PASSWORD = ?";
     private static final String GET_USER_QUERY = "SELECT * FROM USERS WHERE ID = ?";
     private static final String GET_USER_BY_LOGIN = "SELECT * FROM USERS WHERE LOGIN = ?";
-    private static final String REGISTER_USER_QUERY = "INSERT INTO USERS (LOGIN, NAME, SURNAME, PASSWORD, INFO) VALUE (?, ?, ?, ?, ?)";
+    private static final String REGISTER_USER_QUERY = "INSERT INTO USERS (LOGIN, NAME, SURNAME, PASSWORD, INFO, EMAIL, BIRTHDAY) VALUE (?, ?, ?, ?, ?, ?, ?)";
     private static final String GET_PRODUCT_BY_ID_QUERY = "SELECT * FROM PRODUCTS WHERE ID = ?";
 
     public static List<Product> getProductsByCategoryName(String categoryName) {
@@ -126,6 +126,8 @@ public class CRUDUtils {
             preparedStatement.setString(3, user.getSurname());
             preparedStatement.setString(4, user.getPassword());
             preparedStatement.setString(5, user.getInfo());
+            preparedStatement.setString(6, user.getEmail());
+            preparedStatement.setString(7, user.getBirthday());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
