@@ -54,11 +54,20 @@
         <input type="surname" class="form-control w-25" name="surname" placeholder="Enter surname" id="surname">
       </div>
       <div class="form-group">
+        <label for="birthday">Username:</label>
+        <input type="date" class="form-control w-25" id="birthday"
+               placeholder="Enter birthday" name="birthday">
+        <div class="invalid-feedback">Last name should be entered!</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control w-25" name="email" placeholder="Enter email" id="email">
+      </div>
+      <div class="form-group">
         <label for="info">Information:</label>
         <textarea type="info" class="form-control w-50" name="info" placeholder="Enter information" id="info"></textarea>
       </div>
       <a class="btn btn-primary" href="/login" role="button">Login</a>
-<!--      <input type="submit" class="btn btn-primary" name="Registry-btn" value="Login" formnovalidate>-->
       <input type="submit" class="btn btn-primary" id="saveBtn" name="Registry-btn" value="Register">
     </form>
   </div>

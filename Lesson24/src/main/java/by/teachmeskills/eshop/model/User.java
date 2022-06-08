@@ -24,7 +24,9 @@ public class User {
     private String password;
     private String img;
     private String info;
-
+    private Cart cart;
+    private String email;
+    private String birthday;
 
     @Override
     public boolean equals(Object o) {
@@ -32,7 +34,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return Objects.equals(name, user.name) &&
-                Objects.equals(password, user.password); //если использовать EqualsAndHashCode, то это будет по всем полям
+                Objects.equals(password, user.password);
     }
 
     @Override
@@ -66,6 +68,8 @@ public class User {
                 String surname = rs.getString("surname");
                 String img = rs.getString("img");
                 String info = rs.getString("info");
+                String email = rs.getString("email");
+                String birthday = rs.getString("birthday");
                 user = User.builder()
                         .id(id)
                         .login(log)
@@ -74,6 +78,9 @@ public class User {
                         .password(password)
                         .img(img)
                         .info(info)
+                        .cart(new Cart())
+                        .email(email)
+                        .birthday(birthday)
                         .build();
             }
             return user;

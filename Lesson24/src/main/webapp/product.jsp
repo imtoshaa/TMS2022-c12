@@ -21,7 +21,7 @@
             <a class="nav-link" href="/mypage.jsp">MyPage</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Корзина</a>
+            <a class="nav-link" href="${contextPath}/cart">Корзина</a>
         </li>
     </ul>
     <form class="form-inline" action="#">
@@ -30,25 +30,29 @@
     </form>
 </nav>
 <div class="container">
-    <table class="table-responsive-xl">
-        <tbody>
-        <tr>
-            <td>
-                <img class="rounded" style="width: 100%;height: auto"
-                     src="${contextPath}/images/product/${product.getImg()}" alt="Card image">
-            </td>
-            <td>
-                <h6>Модель: ${product.getName()}</h6>
-                <br>
-                <h6>Описание: ${product.getDescription()}</h6>
-                <br>
-                <h6>Цена: ${product.getPrice()} BYN</h6>
-                <br>
-                <a href="#" class="btn btn-primary">Купить!</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <form method="post" action="product" accept-charset="UTF-8">
+        <table class="table-responsive-xl">
+            <tbody>
+            <tr>
+                <td>
+                    <img class="rounded" style="width: 100%;height: auto"
+                         src="${contextPath}/images/product/${product.getImg()}" alt="Card image">
+                </td>
+                <td>
+                    <h6>Модель: ${product.getName()}</h6>
+                    <br>
+                    <h6>Описание: ${product.getDescription()}</h6>
+                    <br>
+                    <h6>Цена: ${product.getPrice()} BYN</h6>
+                    <br>
+                    <button type="submit" class="btn btn-primary" name="id"
+                            value="${product.getId()}">Купить
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
 </div>
 </body>
 </html>

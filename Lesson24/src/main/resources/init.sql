@@ -34,16 +34,18 @@ CREATE TABLE IF NOT EXISTS ESHOP_DB.USERS
     surname  VARCHAR(45) NOT NULL,
     password VARCHAR(45) NOT NULL,
     img      VARCHAR(45)   DEFAULT 'cat.jpg',
-    info     VARCHAR(10000) DEFAULT 'Личная информация не настроена'
+    info     VARCHAR(10000) DEFAULT 'Личная информация не настроена',
+    email VARCHAR(45) NOT NULL,
+    birthday VARCHAR(45) NOT NULL
 );
 
 # Инициализация юзера
-INSERT INTO ESHOP_DB.USERS (login, name, surname, password, img, info) VALUE ('admin', 'Anton', 'Auseichyk', 'admin',
+INSERT INTO ESHOP_DB.USERS (login, name, surname, password, img, info, email, birthday) VALUE ('admin', 'Anton', 'Auseichyk', 'admin',
                                                                               'anton_photo.jpg', 'Beginner java programmer. Studying a Java developer course at TeachMeSkills. Studying at the
                 4th year of the Belarusian State Technological University in the specialty "Three-dimensional
                 technologies". I am a team player, easily and quickly trained, sociable, I quickly cope with tasks. I have
                 a technical mindset and dream of working in IT. With that said, I can assure you that I can be a useful
-                employee of the company.');
+                employee of the company.', 'imtoshaa.work@gmail.com', '2001-05-08');
 
 # Инициализация категорий
 # Камера
