@@ -29,7 +29,7 @@
                 <div class="invalid-feedback">Password should be entered!</div>
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
-            <a class="btn btn-primary" href="registration.html" role="button">Registration</a>
+            <a class="btn btn-primary" href="${contextPath}/eshop?command=redirect-to-registration-page" role="button">Registration</a>
         </form>
     </div>
 </div>

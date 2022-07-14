@@ -35,6 +35,8 @@ public class ApplicationServlet extends HttpServlet {
             dispatcher.forward(request, response);
         } catch (CommandException e) {
             request.getRequestDispatcher(PagesPathEnum.SIGN_IN_PAGE.getPath()).forward(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

@@ -18,15 +18,17 @@
             <a class="nav-link" href="${contextPath}/eshop?command=start-page">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/mypage.jsp">MyPage</a>
+            <a class="nav-link" href="${contextPath}/eshop?command=redirect-to-my-page">MyPage</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="${contextPath}/eshop?command=redirect-to-shopping-cart">Корзина</a>
         </li>
     </ul>
-    <form class="form-inline" action="#">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-success" type="submit">Search</button>
+    <form class="form-inline" method="post" action="eshop?command=search-page">
+        <input class="form-control mr-sm-2" type="text" id="searchQuery"
+               placeholder="Search product" name="searchQuery"
+               required>
+        <button class="btn btn-success" type="submit" >Search</button>
     </form>
 </nav>
 <div class="container">

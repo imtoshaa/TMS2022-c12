@@ -1,9 +1,11 @@
 package by.teachmeskills.eshop.commands;
 
-import by.teachmeskills.eshop.domain.Category;
-import by.teachmeskills.eshop.domain.User;
+import by.teachmeskills.eshop.domain.entities.Category;
+import by.teachmeskills.eshop.domain.entities.User;
 import by.teachmeskills.eshop.exceptions.CommandException;
 import by.teachmeskills.eshop.exceptions.RequestParamNullException;
+import by.teachmeskills.eshop.services.impl.CategoryServiceImpl;
+import by.teachmeskills.eshop.services.impl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,14 +17,14 @@ import static by.teachmeskills.eshop.RequestParamsEnum.CATEGORIES;
 import static by.teachmeskills.eshop.RequestParamsEnum.PASSWORD;
 import static by.teachmeskills.eshop.RequestParamsEnum.USER;
 import static by.teachmeskills.eshop.RequestParamsEnum.USERNAME;
-import static by.teachmeskills.eshop.utils.CRUDUtils.getAllCategories;
-import static by.teachmeskills.eshop.utils.CRUDUtils.getUserByLoginAndPassword;
 import static by.teachmeskills.eshop.utils.HttpRequestParamValidator.validateParamNotNull;
 
 public class SignInCommandImpl implements BaseCommand {
     private static final Logger log = LogManager.getLogger(SignInCommandImpl.class);
+    private final UserServiceImpl userService = new UserServiceImpl();
+    private final CategoryServiceImpl categoryService = new CategoryServiceImpl();
     @Override
-    public String execute(HttpServletRequest request) throws CommandException {
+    public String execute(HttpServletRequest request) throws Exception {
         String username = request.getParameter(USERNAME.getValue());
         String password = request.getParameter(PASSWORD.getValue());
         try {
@@ -34,11 +36,11 @@ public class SignInCommandImpl implements BaseCommand {
         return checkReceivedUser(username, password, request);
     }
 
-    private String checkReceivedUser(String username, String password, HttpServletRequest request) {
-        User user = getUserByLoginAndPassword(username, password);
+    private String checkReceivedUser(String username, String password, HttpServletRequest request) throws Exception {
+        User user = userService.getUserByLoginAndPassword(username, password);
         if (user != null) {
             request.getSession().setAttribute(USER.getValue(), user);
-            List<Category> categories = getAllCategories();
+            List<Category> categories = categoryService.read();
             request.setAttribute(CATEGORIES.getValue(), categories);
             log.info("User " + username + " was authorized!");
             return HOME_PAGE.getPath();

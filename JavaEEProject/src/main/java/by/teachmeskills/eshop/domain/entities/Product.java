@@ -1,23 +1,21 @@
-package by.teachmeskills.eshop.domain;
+package by.teachmeskills.eshop.domain.entities;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Getter
-@Builder
+@SuperBuilder
 @AllArgsConstructor
-@EqualsAndHashCode
-public class Product {
-    private int id;
+public class Product extends BaseEntity {
     private String name;
     private String description;
     private int price;
     private String img;
+    private int categoryId;
 
     public static Builder newBuilder() {
         return new Builder();
@@ -34,12 +32,14 @@ public class Product {
             String description = rs.getString("description");
             String img = rs.getString("img");
             int price = rs.getInt("price");
+            int categoryId = rs.getInt("category_id");
             return Product.builder()
                     .id(id)
                     .name(name)
                     .description(description)
                     .price(price)
                     .img(img)
+                    .categoryId(categoryId)
                     .build();
         }
     }

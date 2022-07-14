@@ -9,11 +9,15 @@ public enum RequestParamsEnum {
 
     CATEGORY("category"),
     CATEGORIES("categories"),
-    CATEGORY_NAME("categoryName"),
+    CATEGORY_ID("categoryId"),
 
     PRODUCT("product"),
     PRODUCTS("products"),
     SHOPPING_CART_PRODUCTS("cartProductsList"),
+    ORDER_HISTORY("orderHistory"),
+    PRODUCTS_FROM_CATEGORY("productsFromCategory"),
+    PRODUCTS_FROM_SEARCH("productsFromSearch"),
+    SEARCH_QUERY("searchQuery"),
     PRODUCT_ID("productId");
 
     private final String value;

@@ -7,9 +7,12 @@ import by.teachmeskills.eshop.commands.AddProductToCartCommandImpl;
 import by.teachmeskills.eshop.commands.BaseCommand;
 import by.teachmeskills.eshop.commands.CategoryRedirectCommandImpl;
 import by.teachmeskills.eshop.commands.HomePageCommandImpl;
+import by.teachmeskills.eshop.commands.MyPageCommandImpl;
 import by.teachmeskills.eshop.commands.RedirectProductPageCommandImpl;
+import by.teachmeskills.eshop.commands.RedirectToRegistrationPageCommandImpl;
 import by.teachmeskills.eshop.commands.RedirectToShoppingCartCommandImpl;
 import by.teachmeskills.eshop.commands.RegistrationPageCommandImpl;
+import by.teachmeskills.eshop.commands.SearchPageCommandImpl;
 import by.teachmeskills.eshop.commands.SignInCommandImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +23,12 @@ import static by.teachmeskills.eshop.CommandsEnum.ACTION_IN_SHOPPING_CART;
 import static by.teachmeskills.eshop.CommandsEnum.ADD_PRODUCT_TO_CART;
 import static by.teachmeskills.eshop.CommandsEnum.CATEGORY_PAGE_COMMAND;
 import static by.teachmeskills.eshop.CommandsEnum.HOME_PAGE_COMMAND;
+import static by.teachmeskills.eshop.CommandsEnum.MY_PAGE_COMMAND;
 import static by.teachmeskills.eshop.CommandsEnum.REDIRECT_PRODUCT_COMMAND;
 import static by.teachmeskills.eshop.CommandsEnum.REDIRECT_SHOPPING_CART_COMMAND;
+import static by.teachmeskills.eshop.CommandsEnum.REDIRECT_TO_REGISTRATION_PAGE;
 import static by.teachmeskills.eshop.CommandsEnum.REGISTRATION_PAGE_COMMAND;
+import static by.teachmeskills.eshop.CommandsEnum.SEARCH_PAGE;
 import static by.teachmeskills.eshop.CommandsEnum.SIGN_IN_COMMAND;
 
 public class CommandFactory {
@@ -37,6 +43,9 @@ public class CommandFactory {
         COMMAND_LIST.put(REDIRECT_SHOPPING_CART_COMMAND.getCommand(), new RedirectToShoppingCartCommandImpl());
         COMMAND_LIST.put(REDIRECT_PRODUCT_COMMAND.getCommand(), new RedirectProductPageCommandImpl());
         COMMAND_LIST.put(REGISTRATION_PAGE_COMMAND.getCommand(), new RegistrationPageCommandImpl());
+        COMMAND_LIST.put(MY_PAGE_COMMAND.getCommand(), new MyPageCommandImpl());
+        COMMAND_LIST.put(REDIRECT_TO_REGISTRATION_PAGE.getCommand(), new RedirectToRegistrationPageCommandImpl());
+        COMMAND_LIST.put(SEARCH_PAGE.getCommand(), new SearchPageCommandImpl());
     }
 
     public static BaseCommand defineCommand(HttpServletRequest request) {

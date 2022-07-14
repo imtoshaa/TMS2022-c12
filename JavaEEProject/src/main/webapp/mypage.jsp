@@ -20,15 +20,17 @@
             <a class="nav-link" href="${contextPath}/eshop?command=start-page">Home</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/mypage.jsp">MyPage</a>
+            <a class="nav-link" href="${contextPath}/eshop?command=redirect-to-my-page">MyPage</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="${contextPath}/eshop?command=redirect-to-shopping-cart">Корзина</a>
         </li>
     </ul>
-    <form class="form-inline" action="#">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-success" type="submit">Search</button>
+    <form class="form-inline" method="post" action="eshop?command=search-page">
+        <input class="form-control mr-sm-2" type="text" id="searchQuery"
+               placeholder="Search product" name="searchQuery"
+               required>
+        <button class="btn btn-success" type="submit" >Search</button>
     </form>
 </nav>
 <div class="container" style="margin-top:30px">
@@ -50,25 +52,26 @@
             <p>${user.getInfo()}</p>
             <p><h4>История покупок</h4></p>
             <div class="container-fluid">
-                <c:if test="${not empty cart.getStory()}">
+                <c:if test="${not empty orderHistory}">
                     <div class="row">
-                        <c:forEach items="${cart.getStory()}" var="product">
+                        <c:forEach items="${orderHistory}" var="order">
                             <div class="card w-25 m-1" type="category">
                                 <div class="card-body">
                                     <img class="card-img" style="width:150px;height:120px"
-                                         src="${contextPath}/images/product/${product.getValue().getImg()}"
+                                         src="${contextPath}/images/product/${order.getValue().getProduct().getImg()}"
                                          alt="Card image">
                                     <br>
-                                    <h6>Модель: ${product.getValue().getName()}</h6>
+                                    <h6>Дата заказа: ${order.getValue().getDate()}</h6>
+                                    <h6>Модель: ${order.getValue().getProduct().getName()}</h6>
                                     <br>
-                                    <h6>Цена: ${product.getValue().getPrice()} BYN</h6>
+                                    <h6>Цена: ${order.getValue().getProduct().getPrice()} BYN</h6>
                                     <br>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
                 </c:if>
-                <c:if test="${empty cart.getStory()}">
+                <c:if test="${empty orderHistory}">
                     <p><h4>Тут пока пусто. Купите что-нибудь!</h4></p>
                 </c:if>
             </div>

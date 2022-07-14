@@ -52,6 +52,57 @@ public class StudentTests {
         assertEquals(expected, actualBySex);
     }
 
+    @Test
+    public void getStudentsCountWithSexMale() {
+        int expected = Student.getStudentsCountWithSex(Sex.MALE);
+        assertEquals(expected, 1);
+    }
 
+    @Test
+    public void getStudentsCountWithSexFemale() {
+        int expected = Student.getStudentsCountWithSex(Sex.FEMALE);
+        assertEquals(expected, 2);
+    }
 
+    @Test
+    public void getStudentsCount() {
+        int expected = Student.getStudentsCount();
+        assertEquals(expected, actual.size());
+    }
+
+    @Test
+    public void getSumOfAllStudentsAge() {
+        int expected = Student.getSumOfAllStudentsAge();
+        assertEquals(expected, 54);
+    }
+
+    @Test
+    public void getSumOfAllStudentsAgeBySex_Male() {
+        int expected = Student.getSumOfAllStudentsAgeBySex(Sex.MALE);
+        assertEquals(expected, 17);
+    }
+
+    @Test
+    public void getSumOfAllStudentsAgeBySex_Female() {
+        int expected = Student.getSumOfAllStudentsAgeBySex(Sex.FEMALE);
+        assertEquals(expected, 37);
+    }
+
+    @Test
+    public void getAverageAgeOfAllStudents() {
+        int expected = Student.getAverageAgeOfAllStudents();
+        assertEquals(expected, 18);
+    }
+
+    @Test
+    public void getAverageOfAllStudentsBySex_Male() {
+        int expected = Student.getAverageOfAllStudentsBySex(Sex.MALE);
+        assertEquals(expected, 17);
+    }
+
+    @Test
+    public void getAverageOfAllStudentsBySex_Female() {
+        int expected = Student.getAverageOfAllStudentsBySex(Sex.FEMALE);
+        assertEquals(expected, 18);
+    }
 }

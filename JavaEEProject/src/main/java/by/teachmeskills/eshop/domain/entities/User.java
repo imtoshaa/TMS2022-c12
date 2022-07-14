@@ -1,4 +1,4 @@
-package by.teachmeskills.eshop.domain;
+package by.teachmeskills.eshop.domain.entities;
 
 import lombok.*;
 
@@ -11,8 +11,7 @@ import static by.teachmeskills.eshop.RequestParamsEnum.USERNAME;
 @Getter
 @Setter
 @ToString
-public class User {
-    private int id;
+public class User extends BaseEntity {
     private String username;
     private String name;
     private String surname;
@@ -38,7 +37,6 @@ public class User {
         this.name = name;
         this.surname = surname;
         this.password = password;
-        this.img = img;
         this.info = info;
         this.email = email;
         this.birthday = birthday;
@@ -63,7 +61,8 @@ public class User {
     }
 
     public static final class Builder {
-        private Builder(){}
+        private Builder() {
+        }
 
         public User buildUserFromResultSet(ResultSet rs) throws SQLException {
             User user = null;
@@ -77,7 +76,7 @@ public class User {
                 String info = rs.getString("info");
                 String email = rs.getString("email");
                 String birthday = rs.getString("birthday");
-                user = new User(id,log,name,surname,password,img,info,email,birthday);
+                user = new User(id, log, name, surname, password, img, info, email, birthday);
             }
             return user;
         }
