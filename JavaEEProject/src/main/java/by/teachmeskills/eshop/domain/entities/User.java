@@ -1,6 +1,7 @@
 package by.teachmeskills.eshop.domain.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import static by.teachmeskills.eshop.RequestParamsEnum.USERNAME;
 @Getter
 @Setter
 @ToString
+@SuperBuilder
 public class User extends BaseEntity {
     private String username;
     private String name;
@@ -23,16 +25,6 @@ public class User extends BaseEntity {
 
     public User(int id, String username, String name, String surname, String password, String img, String info, String email, String birthday) {
         this.id = id;
-        this.username = username;
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.info = info;
-        this.email = email;
-        this.birthday = birthday;
-    }
-
-    public User(String username, String name, String surname, String password, String info, String email, String birthday) {
         this.username = username;
         this.name = name;
         this.surname = surname;

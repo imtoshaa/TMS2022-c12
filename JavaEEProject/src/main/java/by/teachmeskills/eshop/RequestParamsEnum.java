@@ -2,6 +2,11 @@ package by.teachmeskills.eshop;
 
 public enum RequestParamsEnum {
     USERNAME("username"),
+    NAME("name"),
+    SURNAME("surname"),
+    INFO("info"),
+    EMAIL("email"),
+    BIRTHDAY("birthday"),
     PASSWORD("password"),
     USER("user"),
     COMMAND("command"),
