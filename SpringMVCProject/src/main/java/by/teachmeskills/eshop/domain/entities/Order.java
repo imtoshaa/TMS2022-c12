@@ -7,6 +7,12 @@ import lombok.experimental.SuperBuilder;
 
 import java.sql.ResultSet;
 
+import static by.teachmeskills.eshop.utils.EshopConstants.DATE;
+import static by.teachmeskills.eshop.utils.EshopConstants.ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.PRICE;
+import static by.teachmeskills.eshop.utils.EshopConstants.PRODUCT_ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.USER_ID;
+
 @Getter
 @AllArgsConstructor
 @SuperBuilder
@@ -28,11 +34,11 @@ public class Order extends BaseEntity {
         }
 
         public Order buildOrderFromResultSet(ResultSet rs) throws Exception {
-            int orderID = rs.getInt("ID");
-            String orderDate = String.valueOf(rs.getDate("DATE"));
-            int orderPrice = rs.getInt("PRICE");
-            int productID = rs.getInt("PRODUCT_ID");
-            int userId = rs.getInt("USER_ID");
+            int orderID = rs.getInt(ID);
+            String orderDate = String.valueOf(rs.getDate(DATE));
+            int orderPrice = rs.getInt(PRICE);
+            int productID = rs.getInt(PRODUCT_ID);
+            int userId = rs.getInt(USER_ID);
             ProductServiceImpl productService = new ProductServiceImpl();
             Product product = productService.getProductById(productID);
             return Order.builder()

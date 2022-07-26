@@ -11,6 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.teachmeskills.eshop.utils.EshopConstants.DESCRIPTION;
+import static by.teachmeskills.eshop.utils.EshopConstants.ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.IMG;
+import static by.teachmeskills.eshop.utils.EshopConstants.NAME;
+
 @Repository
 public class CategoryDaoImpl implements ICategoryDao {
     private static final String GET_ALL_CATEGORIES_QUERY = "SELECT * FROM CATEGORIES";
@@ -44,10 +49,10 @@ public class CategoryDaoImpl implements ICategoryDao {
             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_CATEGORIES_QUERY);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                int id = Integer.parseInt(rs.getString("id"));
-                String name = rs.getString("name");
-                String description = rs.getString("description");
-                String img = rs.getString("img");
+                int id = Integer.parseInt(rs.getString(ID));
+                String name = rs.getString(NAME);
+                String description = rs.getString(DESCRIPTION);
+                String img = rs.getString(IMG);
                 categories.add(Category.builder()
                         .id(id)
                         .description(description)

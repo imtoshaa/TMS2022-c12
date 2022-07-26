@@ -14,6 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static by.teachmeskills.eshop.utils.EshopConstants.DATE;
+import static by.teachmeskills.eshop.utils.EshopConstants.ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.PRICE;
+import static by.teachmeskills.eshop.utils.EshopConstants.PRODUCT_ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.USER_ID;
+
 @Repository
 public class OrderDaoImpl implements IOrderDao {
 
@@ -125,11 +131,11 @@ public class OrderDaoImpl implements IOrderDao {
     private Map<Integer, Order> getOrdersByResultSet(ResultSet resultSet) throws Exception {
         Map<Integer, Order> orderMap = new HashMap<>();
         while (resultSet.next()) {
-            int orderID = resultSet.getInt("ID");
-            String orderDate = String.valueOf(resultSet.getDate("DATE"));
-            int orderPrice = resultSet.getInt("PRICE");
-            int productID = resultSet.getInt("PRODUCT_ID");
-            int userId = resultSet.getInt("USER_ID");
+            int orderID = resultSet.getInt(ID);
+            String orderDate = String.valueOf(resultSet.getDate(DATE));
+            int orderPrice = resultSet.getInt(PRICE);
+            int productID = resultSet.getInt(PRODUCT_ID);
+            int userId = resultSet.getInt(USER_ID);
             Product product = productDao.getProductById(productID);
             orderMap.put(orderID, Order.builder()
                     .id(orderID)

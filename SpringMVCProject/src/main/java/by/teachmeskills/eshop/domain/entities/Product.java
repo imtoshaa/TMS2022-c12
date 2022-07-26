@@ -7,6 +7,13 @@ import lombok.experimental.SuperBuilder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static by.teachmeskills.eshop.utils.EshopConstants.CATEGORY_ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.DESCRIPTION;
+import static by.teachmeskills.eshop.utils.EshopConstants.ID;
+import static by.teachmeskills.eshop.utils.EshopConstants.IMG;
+import static by.teachmeskills.eshop.utils.EshopConstants.NAME;
+import static by.teachmeskills.eshop.utils.EshopConstants.PRICE;
+
 @Getter
 @SuperBuilder
 @AllArgsConstructor
@@ -27,12 +34,12 @@ public class Product extends BaseEntity {
         }
 
         public Product buildProductFromResultSet(ResultSet rs) throws SQLException {
-            int id = rs.getInt("id");
-            String name = rs.getString("name");
-            String description = rs.getString("description");
-            String img = rs.getString("img");
-            int price = rs.getInt("price");
-            int categoryId = rs.getInt("category_id");
+            int id = rs.getInt(ID);
+            String name = rs.getString(NAME);
+            String description = rs.getString(DESCRIPTION);
+            String img = rs.getString(IMG);
+            int price = rs.getInt(PRICE);
+            int categoryId = rs.getInt(CATEGORY_ID);
             return Product.builder()
                     .id(id)
                     .name(name)
